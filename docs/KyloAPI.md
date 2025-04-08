@@ -1,6 +1,6 @@
 # \KyloAPI
 
-All URIs are relative to *https://raw.githubusercontent.com/api/v1*
+All URIs are relative to *https://your_kowabunga_kahuna_server/api/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -28,14 +28,14 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+	kowabunga "github.com/kowabunga-cloud/kowabunga-go"
 )
 
 func main() {
 	kyloId := "kyloId_example" // string | The ID of the Kylo.
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
+	configuration := kowabunga.NewConfiguration()
+	apiClient := kowabunga.NewAPIClient(configuration)
 	r, err := apiClient.KyloAPI.DeleteKylo(context.Background(), kyloId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `KyloAPI.DeleteKylo``: %v\n", err)
@@ -96,13 +96,13 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+	kowabunga "github.com/kowabunga-cloud/kowabunga-go"
 )
 
 func main() {
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
+	configuration := kowabunga.NewConfiguration()
+	apiClient := kowabunga.NewAPIClient(configuration)
 	resp, r, err := apiClient.KyloAPI.ListKylos(context.Background()).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `KyloAPI.ListKylos``: %v\n", err)
@@ -157,14 +157,14 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+	kowabunga "github.com/kowabunga-cloud/kowabunga-go"
 )
 
 func main() {
 	kyloId := "kyloId_example" // string | The ID of the Kylo.
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
+	configuration := kowabunga.NewConfiguration()
+	apiClient := kowabunga.NewAPIClient(configuration)
 	resp, r, err := apiClient.KyloAPI.ReadKylo(context.Background(), kyloId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `KyloAPI.ReadKylo``: %v\n", err)
@@ -227,15 +227,15 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+	kowabunga "github.com/kowabunga-cloud/kowabunga-go"
 )
 
 func main() {
 	kyloId := "kyloId_example" // string | The ID of the Kylo.
-	kylo := *openapiclient.NewKylo("Name_example") // Kylo | Kylo payload.
+	kylo := *kowabunga.NewKylo("Name_example") // Kylo | Kylo payload.
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
+	configuration := kowabunga.NewConfiguration()
+	apiClient := kowabunga.NewAPIClient(configuration)
 	resp, r, err := apiClient.KyloAPI.UpdateKylo(context.Background(), kyloId).Kylo(kylo).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `KyloAPI.UpdateKylo``: %v\n", err)

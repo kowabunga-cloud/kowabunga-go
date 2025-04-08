@@ -1,6 +1,6 @@
 # \TemplateAPI
 
-All URIs are relative to *https://raw.githubusercontent.com/api/v1*
+All URIs are relative to *https://your_kowabunga_kahuna_server/api/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -28,14 +28,14 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+	kowabunga "github.com/kowabunga-cloud/kowabunga-go"
 )
 
 func main() {
 	templateId := "templateId_example" // string | The ID of the image template.
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
+	configuration := kowabunga.NewConfiguration()
+	apiClient := kowabunga.NewAPIClient(configuration)
 	r, err := apiClient.TemplateAPI.DeleteTemplate(context.Background(), templateId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `TemplateAPI.DeleteTemplate``: %v\n", err)
@@ -96,13 +96,13 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+	kowabunga "github.com/kowabunga-cloud/kowabunga-go"
 )
 
 func main() {
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
+	configuration := kowabunga.NewConfiguration()
+	apiClient := kowabunga.NewAPIClient(configuration)
 	resp, r, err := apiClient.TemplateAPI.ListTemplates(context.Background()).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `TemplateAPI.ListTemplates``: %v\n", err)
@@ -157,14 +157,14 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+	kowabunga "github.com/kowabunga-cloud/kowabunga-go"
 )
 
 func main() {
 	templateId := "templateId_example" // string | The ID of the image template.
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
+	configuration := kowabunga.NewConfiguration()
+	apiClient := kowabunga.NewAPIClient(configuration)
 	resp, r, err := apiClient.TemplateAPI.ReadTemplate(context.Background(), templateId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `TemplateAPI.ReadTemplate``: %v\n", err)
@@ -227,15 +227,15 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+	kowabunga "github.com/kowabunga-cloud/kowabunga-go"
 )
 
 func main() {
 	templateId := "templateId_example" // string | The ID of the image template.
-	template := *openapiclient.NewTemplate("Name_example", "Source_example") // Template | Template payload.
+	template := *kowabunga.NewTemplate("Name_example", "Source_example") // Template | Template payload.
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
+	configuration := kowabunga.NewConfiguration()
+	apiClient := kowabunga.NewAPIClient(configuration)
 	resp, r, err := apiClient.TemplateAPI.UpdateTemplate(context.Background(), templateId).Template(template).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `TemplateAPI.UpdateTemplate``: %v\n", err)

@@ -1,6 +1,6 @@
 # \UserAPI
 
-All URIs are relative to *https://raw.githubusercontent.com/api/v1*
+All URIs are relative to *https://your_kowabunga_kahuna_server/api/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -35,14 +35,14 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+	kowabunga "github.com/kowabunga-cloud/kowabunga-go"
 )
 
 func main() {
-	user := *openapiclient.NewUser("Name_example", "Email_example", "Role_example") // User | User payload.
+	user := *kowabunga.NewUser("Name_example", "Email_example", "Role_example") // User | User payload.
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
+	configuration := kowabunga.NewConfiguration()
+	apiClient := kowabunga.NewAPIClient(configuration)
 	resp, r, err := apiClient.UserAPI.CreateUser(context.Background()).User(user).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `UserAPI.CreateUser``: %v\n", err)
@@ -101,14 +101,14 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+	kowabunga "github.com/kowabunga-cloud/kowabunga-go"
 )
 
 func main() {
 	userId := "userId_example" // string | The ID of the Kowabunga user.
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
+	configuration := kowabunga.NewConfiguration()
+	apiClient := kowabunga.NewAPIClient(configuration)
 	r, err := apiClient.UserAPI.DeleteUser(context.Background(), userId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `UserAPI.DeleteUser``: %v\n", err)
@@ -169,13 +169,13 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+	kowabunga "github.com/kowabunga-cloud/kowabunga-go"
 )
 
 func main() {
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
+	configuration := kowabunga.NewConfiguration()
+	apiClient := kowabunga.NewAPIClient(configuration)
 	resp, r, err := apiClient.UserAPI.ListUsers(context.Background()).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `UserAPI.ListUsers``: %v\n", err)
@@ -230,14 +230,14 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+	kowabunga "github.com/kowabunga-cloud/kowabunga-go"
 )
 
 func main() {
-	userCredentials := *openapiclient.NewUserCredentials("Email_example", "Password_example") // UserCredentials | UserCredentials payload.
+	userCredentials := *kowabunga.NewUserCredentials("Email_example", "Password_example") // UserCredentials | UserCredentials payload.
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
+	configuration := kowabunga.NewConfiguration()
+	apiClient := kowabunga.NewAPIClient(configuration)
 	resp, r, err := apiClient.UserAPI.Login(context.Background()).UserCredentials(userCredentials).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `UserAPI.Login``: %v\n", err)
@@ -296,13 +296,13 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+	kowabunga "github.com/kowabunga-cloud/kowabunga-go"
 )
 
 func main() {
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
+	configuration := kowabunga.NewConfiguration()
+	apiClient := kowabunga.NewAPIClient(configuration)
 	r, err := apiClient.UserAPI.Logout(context.Background()).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `UserAPI.Logout``: %v\n", err)
@@ -355,14 +355,14 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+	kowabunga "github.com/kowabunga-cloud/kowabunga-go"
 )
 
 func main() {
 	userId := "userId_example" // string | The ID of the Kowabunga user.
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
+	configuration := kowabunga.NewConfiguration()
+	apiClient := kowabunga.NewAPIClient(configuration)
 	resp, r, err := apiClient.UserAPI.ReadUser(context.Background(), userId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `UserAPI.ReadUser``: %v\n", err)
@@ -425,14 +425,14 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+	kowabunga "github.com/kowabunga-cloud/kowabunga-go"
 )
 
 func main() {
-	userEmail := *openapiclient.NewUserEmail("Email_example") // UserEmail | UserEmail payload.
+	userEmail := *kowabunga.NewUserEmail("Email_example") // UserEmail | UserEmail payload.
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
+	configuration := kowabunga.NewConfiguration()
+	apiClient := kowabunga.NewAPIClient(configuration)
 	r, err := apiClient.UserAPI.ResetPassword(context.Background()).UserEmail(userEmail).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `UserAPI.ResetPassword``: %v\n", err)
@@ -489,14 +489,14 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+	kowabunga "github.com/kowabunga-cloud/kowabunga-go"
 )
 
 func main() {
 	userId := "userId_example" // string | The ID of the Kowabunga user.
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
+	configuration := kowabunga.NewConfiguration()
+	apiClient := kowabunga.NewAPIClient(configuration)
 	r, err := apiClient.UserAPI.ResetUserPassword(context.Background(), userId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `UserAPI.ResetUserPassword``: %v\n", err)
@@ -558,7 +558,7 @@ import (
 	"fmt"
 	"os"
     "time"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+	kowabunga "github.com/kowabunga-cloud/kowabunga-go"
 )
 
 func main() {
@@ -566,8 +566,8 @@ func main() {
 	expire := true // bool | Whether or not the token should expire. (optional)
 	expirationDate := time.Now() // string | Token's expiration date (YYYY-MM-DD format). (optional)
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
+	configuration := kowabunga.NewConfiguration()
+	apiClient := kowabunga.NewAPIClient(configuration)
 	r, err := apiClient.UserAPI.SetUserApiToken(context.Background(), userId).Expire(expire).ExpirationDate(expirationDate).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `UserAPI.SetUserApiToken``: %v\n", err)
@@ -630,15 +630,15 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+	kowabunga "github.com/kowabunga-cloud/kowabunga-go"
 )
 
 func main() {
 	userId := "userId_example" // string | The ID of the Kowabunga user.
-	password := *openapiclient.NewPassword("Value_example") // Password | Password payload.
+	password := *kowabunga.NewPassword("Value_example") // Password | Password payload.
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
+	configuration := kowabunga.NewConfiguration()
+	apiClient := kowabunga.NewAPIClient(configuration)
 	r, err := apiClient.UserAPI.SetUserPassword(context.Background(), userId).Password(password).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `UserAPI.SetUserPassword``: %v\n", err)
@@ -700,15 +700,15 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+	kowabunga "github.com/kowabunga-cloud/kowabunga-go"
 )
 
 func main() {
 	userId := "userId_example" // string | The ID of the Kowabunga user.
-	user := *openapiclient.NewUser("Name_example", "Email_example", "Role_example") // User | User payload.
+	user := *kowabunga.NewUser("Name_example", "Email_example", "Role_example") // User | User payload.
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
+	configuration := kowabunga.NewConfiguration()
+	apiClient := kowabunga.NewAPIClient(configuration)
 	resp, r, err := apiClient.UserAPI.UpdateUser(context.Background(), userId).User(user).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `UserAPI.UpdateUser``: %v\n", err)

@@ -1,6 +1,6 @@
 # \SubnetAPI
 
-All URIs are relative to *https://raw.githubusercontent.com/api/v1*
+All URIs are relative to *https://your_kowabunga_kahuna_server/api/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -30,16 +30,16 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+	kowabunga "github.com/kowabunga-cloud/kowabunga-go"
 )
 
 func main() {
 	subnetId := "subnetId_example" // string | The ID of the network subnet.
-	adapter := *openapiclient.NewAdapter("Name_example") // Adapter | Adapter payload.
+	adapter := *kowabunga.NewAdapter("Name_example") // Adapter | Adapter payload.
 	assignIP := true // bool | Whether Kowabunga should pick and assign an IP address to this adapter. (optional)
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
+	configuration := kowabunga.NewConfiguration()
+	apiClient := kowabunga.NewAPIClient(configuration)
 	resp, r, err := apiClient.SubnetAPI.CreateAdapter(context.Background(), subnetId).Adapter(adapter).AssignIP(assignIP).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `SubnetAPI.CreateAdapter``: %v\n", err)
@@ -104,14 +104,14 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+	kowabunga "github.com/kowabunga-cloud/kowabunga-go"
 )
 
 func main() {
 	subnetId := "subnetId_example" // string | The ID of the network subnet.
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
+	configuration := kowabunga.NewConfiguration()
+	apiClient := kowabunga.NewAPIClient(configuration)
 	r, err := apiClient.SubnetAPI.DeleteSubnet(context.Background(), subnetId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `SubnetAPI.DeleteSubnet``: %v\n", err)
@@ -172,14 +172,14 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+	kowabunga "github.com/kowabunga-cloud/kowabunga-go"
 )
 
 func main() {
 	subnetId := "subnetId_example" // string | The ID of the network subnet.
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
+	configuration := kowabunga.NewConfiguration()
+	apiClient := kowabunga.NewAPIClient(configuration)
 	resp, r, err := apiClient.SubnetAPI.ListSubnetAdapters(context.Background(), subnetId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `SubnetAPI.ListSubnetAdapters``: %v\n", err)
@@ -242,13 +242,13 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+	kowabunga "github.com/kowabunga-cloud/kowabunga-go"
 )
 
 func main() {
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
+	configuration := kowabunga.NewConfiguration()
+	apiClient := kowabunga.NewAPIClient(configuration)
 	resp, r, err := apiClient.SubnetAPI.ListSubnets(context.Background()).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `SubnetAPI.ListSubnets``: %v\n", err)
@@ -303,14 +303,14 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+	kowabunga "github.com/kowabunga-cloud/kowabunga-go"
 )
 
 func main() {
 	subnetId := "subnetId_example" // string | The ID of the network subnet.
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
+	configuration := kowabunga.NewConfiguration()
+	apiClient := kowabunga.NewAPIClient(configuration)
 	resp, r, err := apiClient.SubnetAPI.ReadSubnet(context.Background(), subnetId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `SubnetAPI.ReadSubnet``: %v\n", err)
@@ -373,15 +373,15 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+	kowabunga "github.com/kowabunga-cloud/kowabunga-go"
 )
 
 func main() {
 	subnetId := "subnetId_example" // string | The ID of the network subnet.
-	subnet := *openapiclient.NewSubnet("Name_example", "Cidr_example", "Gateway_example") // Subnet | Subnet payload.
+	subnet := *kowabunga.NewSubnet("Name_example", "Cidr_example", "Gateway_example") // Subnet | Subnet payload.
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
+	configuration := kowabunga.NewConfiguration()
+	apiClient := kowabunga.NewAPIClient(configuration)
 	resp, r, err := apiClient.SubnetAPI.UpdateSubnet(context.Background(), subnetId).Subnet(subnet).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `SubnetAPI.UpdateSubnet``: %v\n", err)

@@ -1,6 +1,6 @@
 # \KawaiiAPI
 
-All URIs are relative to *https://raw.githubusercontent.com/api/v1*
+All URIs are relative to *https://your_kowabunga_kahuna_server/api/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -33,15 +33,15 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+	kowabunga "github.com/kowabunga-cloud/kowabunga-go"
 )
 
 func main() {
 	kawaiiId := "kawaiiId_example" // string | The ID of the Kawaii.
-	kawaiiIpSec := *openapiclient.NewKawaiiIpSec("Name_example", "RemoteIp_example", "RemoteSubnet_example", "PreSharedKey_example", int64(123), "Phase1IntegrityAlgorithm_example", "Phase1EncryptionAlgorithm_example", int64(123), "Phase2IntegrityAlgorithm_example", "Phase2EncryptionAlgorithm_example") // KawaiiIpSec | KawaiiIpSec payload.
+	kawaiiIpSec := *kowabunga.NewKawaiiIpSec("Name_example", "RemoteIp_example", "RemoteSubnet_example", "PreSharedKey_example", int64(123), "Phase1IntegrityAlgorithm_example", "Phase1EncryptionAlgorithm_example", int64(123), "Phase2IntegrityAlgorithm_example", "Phase2EncryptionAlgorithm_example") // KawaiiIpSec | KawaiiIpSec payload.
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
+	configuration := kowabunga.NewConfiguration()
+	apiClient := kowabunga.NewAPIClient(configuration)
 	resp, r, err := apiClient.KawaiiAPI.CreateKawaiiIpSec(context.Background(), kawaiiId).KawaiiIpSec(kawaiiIpSec).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `KawaiiAPI.CreateKawaiiIpSec``: %v\n", err)
@@ -105,14 +105,14 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+	kowabunga "github.com/kowabunga-cloud/kowabunga-go"
 )
 
 func main() {
 	kawaiiId := "kawaiiId_example" // string | The ID of the Kawaii.
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
+	configuration := kowabunga.NewConfiguration()
+	apiClient := kowabunga.NewAPIClient(configuration)
 	r, err := apiClient.KawaiiAPI.DeleteKawaii(context.Background(), kawaiiId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `KawaiiAPI.DeleteKawaii``: %v\n", err)
@@ -173,15 +173,15 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+	kowabunga "github.com/kowabunga-cloud/kowabunga-go"
 )
 
 func main() {
 	kawaiiId := "kawaiiId_example" // string | The ID of the Kawaii.
 	kawaiiIpSecId := "kawaiiIpSecId_example" // string | The ID of the Kawaii IPsec connection.
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
+	configuration := kowabunga.NewConfiguration()
+	apiClient := kowabunga.NewAPIClient(configuration)
 	r, err := apiClient.KawaiiAPI.DeleteKawaiiIpSec(context.Background(), kawaiiId, kawaiiIpSecId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `KawaiiAPI.DeleteKawaiiIpSec``: %v\n", err)
@@ -244,14 +244,14 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+	kowabunga "github.com/kowabunga-cloud/kowabunga-go"
 )
 
 func main() {
 	kawaiiId := "kawaiiId_example" // string | The ID of the Kawaii.
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
+	configuration := kowabunga.NewConfiguration()
+	apiClient := kowabunga.NewAPIClient(configuration)
 	resp, r, err := apiClient.KawaiiAPI.ListKawaiiIpSecs(context.Background(), kawaiiId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `KawaiiAPI.ListKawaiiIpSecs``: %v\n", err)
@@ -314,13 +314,13 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+	kowabunga "github.com/kowabunga-cloud/kowabunga-go"
 )
 
 func main() {
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
+	configuration := kowabunga.NewConfiguration()
+	apiClient := kowabunga.NewAPIClient(configuration)
 	resp, r, err := apiClient.KawaiiAPI.ListKawaiis(context.Background()).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `KawaiiAPI.ListKawaiis``: %v\n", err)
@@ -375,14 +375,14 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+	kowabunga "github.com/kowabunga-cloud/kowabunga-go"
 )
 
 func main() {
 	kawaiiId := "kawaiiId_example" // string | The ID of the Kawaii.
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
+	configuration := kowabunga.NewConfiguration()
+	apiClient := kowabunga.NewAPIClient(configuration)
 	resp, r, err := apiClient.KawaiiAPI.ReadKawaii(context.Background(), kawaiiId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `KawaiiAPI.ReadKawaii``: %v\n", err)
@@ -445,15 +445,15 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+	kowabunga "github.com/kowabunga-cloud/kowabunga-go"
 )
 
 func main() {
 	kawaiiId := "kawaiiId_example" // string | The ID of the Kawaii.
 	kawaiiIpSecId := "kawaiiIpSecId_example" // string | The ID of the Kawaii IPsec connection.
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
+	configuration := kowabunga.NewConfiguration()
+	apiClient := kowabunga.NewAPIClient(configuration)
 	resp, r, err := apiClient.KawaiiAPI.ReadKawaiiIpSec(context.Background(), kawaiiId, kawaiiIpSecId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `KawaiiAPI.ReadKawaiiIpSec``: %v\n", err)
@@ -518,15 +518,15 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+	kowabunga "github.com/kowabunga-cloud/kowabunga-go"
 )
 
 func main() {
 	kawaiiId := "kawaiiId_example" // string | The ID of the Kawaii.
-	kawaii := *openapiclient.NewKawaii() // Kawaii | Kawaii payload.
+	kawaii := *kowabunga.NewKawaii() // Kawaii | Kawaii payload.
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
+	configuration := kowabunga.NewConfiguration()
+	apiClient := kowabunga.NewAPIClient(configuration)
 	resp, r, err := apiClient.KawaiiAPI.UpdateKawaii(context.Background(), kawaiiId).Kawaii(kawaii).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `KawaiiAPI.UpdateKawaii``: %v\n", err)
@@ -590,16 +590,16 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+	kowabunga "github.com/kowabunga-cloud/kowabunga-go"
 )
 
 func main() {
 	kawaiiId := "kawaiiId_example" // string | The ID of the Kawaii.
 	kawaiiIpSecId := "kawaiiIpSecId_example" // string | The ID of the Kawaii IPsec connection.
-	kawaiiIpSec := *openapiclient.NewKawaiiIpSec("Name_example", "RemoteIp_example", "RemoteSubnet_example", "PreSharedKey_example", int64(123), "Phase1IntegrityAlgorithm_example", "Phase1EncryptionAlgorithm_example", int64(123), "Phase2IntegrityAlgorithm_example", "Phase2EncryptionAlgorithm_example") // KawaiiIpSec | KawaiiIpSec payload.
+	kawaiiIpSec := *kowabunga.NewKawaiiIpSec("Name_example", "RemoteIp_example", "RemoteSubnet_example", "PreSharedKey_example", int64(123), "Phase1IntegrityAlgorithm_example", "Phase1EncryptionAlgorithm_example", int64(123), "Phase2IntegrityAlgorithm_example", "Phase2EncryptionAlgorithm_example") // KawaiiIpSec | KawaiiIpSec payload.
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
+	configuration := kowabunga.NewConfiguration()
+	apiClient := kowabunga.NewAPIClient(configuration)
 	resp, r, err := apiClient.KawaiiAPI.UpdateKawaiiIpSec(context.Background(), kawaiiId, kawaiiIpSecId).KawaiiIpSec(kawaiiIpSec).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `KawaiiAPI.UpdateKawaiiIpSec``: %v\n", err)

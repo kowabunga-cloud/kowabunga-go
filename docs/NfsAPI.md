@@ -1,6 +1,6 @@
 # \NfsAPI
 
-All URIs are relative to *https://raw.githubusercontent.com/api/v1*
+All URIs are relative to *https://your_kowabunga_kahuna_server/api/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -29,14 +29,14 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+	kowabunga "github.com/kowabunga-cloud/kowabunga-go"
 )
 
 func main() {
 	nfsId := "nfsId_example" // string | The ID of the NFS storage.
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
+	configuration := kowabunga.NewConfiguration()
+	apiClient := kowabunga.NewAPIClient(configuration)
 	r, err := apiClient.NfsAPI.DeleteStorageNFS(context.Background(), nfsId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `NfsAPI.DeleteStorageNFS``: %v\n", err)
@@ -97,14 +97,14 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+	kowabunga "github.com/kowabunga-cloud/kowabunga-go"
 )
 
 func main() {
 	nfsId := "nfsId_example" // string | The ID of the NFS storage.
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
+	configuration := kowabunga.NewConfiguration()
+	apiClient := kowabunga.NewAPIClient(configuration)
 	resp, r, err := apiClient.NfsAPI.ListStorageNFSKylos(context.Background(), nfsId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `NfsAPI.ListStorageNFSKylos``: %v\n", err)
@@ -167,13 +167,13 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+	kowabunga "github.com/kowabunga-cloud/kowabunga-go"
 )
 
 func main() {
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
+	configuration := kowabunga.NewConfiguration()
+	apiClient := kowabunga.NewAPIClient(configuration)
 	resp, r, err := apiClient.NfsAPI.ListStorageNFSs(context.Background()).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `NfsAPI.ListStorageNFSs``: %v\n", err)
@@ -228,14 +228,14 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+	kowabunga "github.com/kowabunga-cloud/kowabunga-go"
 )
 
 func main() {
 	nfsId := "nfsId_example" // string | The ID of the NFS storage.
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
+	configuration := kowabunga.NewConfiguration()
+	apiClient := kowabunga.NewAPIClient(configuration)
 	resp, r, err := apiClient.NfsAPI.ReadStorageNFS(context.Background(), nfsId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `NfsAPI.ReadStorageNFS``: %v\n", err)
@@ -298,15 +298,15 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+	kowabunga "github.com/kowabunga-cloud/kowabunga-go"
 )
 
 func main() {
 	nfsId := "nfsId_example" // string | The ID of the NFS storage.
-	storageNFS := *openapiclient.NewStorageNFS("Name_example", "Endpoint_example") // StorageNFS | StorageNFS payload.
+	storageNFS := *kowabunga.NewStorageNFS("Name_example", "Endpoint_example") // StorageNFS | StorageNFS payload.
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
+	configuration := kowabunga.NewConfiguration()
+	apiClient := kowabunga.NewAPIClient(configuration)
 	resp, r, err := apiClient.NfsAPI.UpdateStorageNFS(context.Background(), nfsId).StorageNFS(storageNFS).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `NfsAPI.UpdateStorageNFS``: %v\n", err)

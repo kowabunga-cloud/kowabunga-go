@@ -1,6 +1,6 @@
 # \KiwiAPI
 
-All URIs are relative to *https://raw.githubusercontent.com/api/v1*
+All URIs are relative to *https://your_kowabunga_kahuna_server/api/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -28,14 +28,14 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+	kowabunga "github.com/kowabunga-cloud/kowabunga-go"
 )
 
 func main() {
 	kiwiId := "kiwiId_example" // string | The ID of the Kiwi (Kowabunga Inner Wan Interface) provides edge-network services..
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
+	configuration := kowabunga.NewConfiguration()
+	apiClient := kowabunga.NewAPIClient(configuration)
 	r, err := apiClient.KiwiAPI.DeleteKiwi(context.Background(), kiwiId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `KiwiAPI.DeleteKiwi``: %v\n", err)
@@ -96,13 +96,13 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+	kowabunga "github.com/kowabunga-cloud/kowabunga-go"
 )
 
 func main() {
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
+	configuration := kowabunga.NewConfiguration()
+	apiClient := kowabunga.NewAPIClient(configuration)
 	resp, r, err := apiClient.KiwiAPI.ListKiwis(context.Background()).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `KiwiAPI.ListKiwis``: %v\n", err)
@@ -157,14 +157,14 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+	kowabunga "github.com/kowabunga-cloud/kowabunga-go"
 )
 
 func main() {
 	kiwiId := "kiwiId_example" // string | The ID of the Kiwi (Kowabunga Inner Wan Interface) provides edge-network services..
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
+	configuration := kowabunga.NewConfiguration()
+	apiClient := kowabunga.NewAPIClient(configuration)
 	resp, r, err := apiClient.KiwiAPI.ReadKiwi(context.Background(), kiwiId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `KiwiAPI.ReadKiwi``: %v\n", err)
@@ -227,15 +227,15 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+	kowabunga "github.com/kowabunga-cloud/kowabunga-go"
 )
 
 func main() {
 	kiwiId := "kiwiId_example" // string | The ID of the Kiwi (Kowabunga Inner Wan Interface) provides edge-network services..
-	kiwi := *openapiclient.NewKiwi("Name_example") // Kiwi | Kiwi payload.
+	kiwi := *kowabunga.NewKiwi("Name_example") // Kiwi | Kiwi payload.
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
+	configuration := kowabunga.NewConfiguration()
+	apiClient := kowabunga.NewAPIClient(configuration)
 	resp, r, err := apiClient.KiwiAPI.UpdateKiwi(context.Background(), kiwiId).Kiwi(kiwi).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `KiwiAPI.UpdateKiwi``: %v\n", err)

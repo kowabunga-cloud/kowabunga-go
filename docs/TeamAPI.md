@@ -1,6 +1,6 @@
 # \TeamAPI
 
-All URIs are relative to *https://raw.githubusercontent.com/api/v1*
+All URIs are relative to *https://your_kowabunga_kahuna_server/api/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -29,14 +29,14 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+	kowabunga "github.com/kowabunga-cloud/kowabunga-go"
 )
 
 func main() {
-	team := *openapiclient.NewTeam("Name_example", []string{"Users_example"}) // Team | Team payload.
+	team := *kowabunga.NewTeam("Name_example", []string{"Users_example"}) // Team | Team payload.
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
+	configuration := kowabunga.NewConfiguration()
+	apiClient := kowabunga.NewAPIClient(configuration)
 	resp, r, err := apiClient.TeamAPI.CreateTeam(context.Background()).Team(team).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `TeamAPI.CreateTeam``: %v\n", err)
@@ -95,14 +95,14 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+	kowabunga "github.com/kowabunga-cloud/kowabunga-go"
 )
 
 func main() {
 	teamId := "teamId_example" // string | The ID of the Kowabunga users team.
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
+	configuration := kowabunga.NewConfiguration()
+	apiClient := kowabunga.NewAPIClient(configuration)
 	r, err := apiClient.TeamAPI.DeleteTeam(context.Background(), teamId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `TeamAPI.DeleteTeam``: %v\n", err)
@@ -163,13 +163,13 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+	kowabunga "github.com/kowabunga-cloud/kowabunga-go"
 )
 
 func main() {
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
+	configuration := kowabunga.NewConfiguration()
+	apiClient := kowabunga.NewAPIClient(configuration)
 	resp, r, err := apiClient.TeamAPI.ListTeams(context.Background()).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `TeamAPI.ListTeams``: %v\n", err)
@@ -224,14 +224,14 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+	kowabunga "github.com/kowabunga-cloud/kowabunga-go"
 )
 
 func main() {
 	teamId := "teamId_example" // string | The ID of the Kowabunga users team.
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
+	configuration := kowabunga.NewConfiguration()
+	apiClient := kowabunga.NewAPIClient(configuration)
 	resp, r, err := apiClient.TeamAPI.ReadTeam(context.Background(), teamId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `TeamAPI.ReadTeam``: %v\n", err)
@@ -294,15 +294,15 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+	kowabunga "github.com/kowabunga-cloud/kowabunga-go"
 )
 
 func main() {
 	teamId := "teamId_example" // string | The ID of the Kowabunga users team.
-	team := *openapiclient.NewTeam("Name_example", []string{"Users_example"}) // Team | Team payload.
+	team := *kowabunga.NewTeam("Name_example", []string{"Users_example"}) // Team | Team payload.
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
+	configuration := kowabunga.NewConfiguration()
+	apiClient := kowabunga.NewAPIClient(configuration)
 	resp, r, err := apiClient.TeamAPI.UpdateTeam(context.Background(), teamId).Team(team).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `TeamAPI.UpdateTeam``: %v\n", err)

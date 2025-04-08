@@ -1,6 +1,6 @@
 # \KonveyAPI
 
-All URIs are relative to *https://raw.githubusercontent.com/api/v1*
+All URIs are relative to *https://your_kowabunga_kahuna_server/api/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -28,14 +28,14 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+	kowabunga "github.com/kowabunga-cloud/kowabunga-go"
 )
 
 func main() {
 	konveyId := "konveyId_example" // string | The ID of the Konvey (Kowabunga Network Load-Balancer).
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
+	configuration := kowabunga.NewConfiguration()
+	apiClient := kowabunga.NewAPIClient(configuration)
 	r, err := apiClient.KonveyAPI.DeleteKonvey(context.Background(), konveyId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `KonveyAPI.DeleteKonvey``: %v\n", err)
@@ -96,13 +96,13 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+	kowabunga "github.com/kowabunga-cloud/kowabunga-go"
 )
 
 func main() {
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
+	configuration := kowabunga.NewConfiguration()
+	apiClient := kowabunga.NewAPIClient(configuration)
 	resp, r, err := apiClient.KonveyAPI.ListKonveys(context.Background()).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `KonveyAPI.ListKonveys``: %v\n", err)
@@ -157,14 +157,14 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+	kowabunga "github.com/kowabunga-cloud/kowabunga-go"
 )
 
 func main() {
 	konveyId := "konveyId_example" // string | The ID of the Konvey (Kowabunga Network Load-Balancer).
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
+	configuration := kowabunga.NewConfiguration()
+	apiClient := kowabunga.NewAPIClient(configuration)
 	resp, r, err := apiClient.KonveyAPI.ReadKonvey(context.Background(), konveyId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `KonveyAPI.ReadKonvey``: %v\n", err)
@@ -227,15 +227,15 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+	kowabunga "github.com/kowabunga-cloud/kowabunga-go"
 )
 
 func main() {
 	konveyId := "konveyId_example" // string | The ID of the Konvey (Kowabunga Network Load-Balancer).
-	konvey := *openapiclient.NewKonvey([]openapiclient.KonveyEndpoint{*openapiclient.NewKonveyEndpoint("Name_example", int64(123), "Protocol_example", *openapiclient.NewKonveyBackends([]string{"Hosts_example"}, int64(123)))}) // Konvey | Konvey payload.
+	konvey := *kowabunga.NewKonvey([]openapiclient.KonveyEndpoint{*openapiclient.NewKonveyEndpoint("Name_example", int64(123), "Protocol_example", *openapiclient.NewKonveyBackends([]string{"Hosts_example"}, int64(123)))}) // Konvey | Konvey payload.
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
+	configuration := kowabunga.NewConfiguration()
+	apiClient := kowabunga.NewAPIClient(configuration)
 	resp, r, err := apiClient.KonveyAPI.UpdateKonvey(context.Background(), konveyId).Konvey(konvey).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `KonveyAPI.UpdateKonvey``: %v\n", err)

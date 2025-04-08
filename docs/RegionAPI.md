@@ -1,6 +1,6 @@
 # \RegionAPI
 
-All URIs are relative to *https://raw.githubusercontent.com/api/v1*
+All URIs are relative to *https://your_kowabunga_kahuna_server/api/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -41,15 +41,15 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+	kowabunga "github.com/kowabunga-cloud/kowabunga-go"
 )
 
 func main() {
 	regionId := "regionId_example" // string | The ID of the region.
-	kiwi := *openapiclient.NewKiwi("Name_example") // Kiwi | Kiwi payload.
+	kiwi := *kowabunga.NewKiwi("Name_example") // Kiwi | Kiwi payload.
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
+	configuration := kowabunga.NewConfiguration()
+	apiClient := kowabunga.NewAPIClient(configuration)
 	resp, r, err := apiClient.RegionAPI.CreateKiwi(context.Background(), regionId).Kiwi(kiwi).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `RegionAPI.CreateKiwi``: %v\n", err)
@@ -113,14 +113,14 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+	kowabunga "github.com/kowabunga-cloud/kowabunga-go"
 )
 
 func main() {
-	region := *openapiclient.NewRegion("Name_example") // Region | Region payload.
+	region := *kowabunga.NewRegion("Name_example") // Region | Region payload.
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
+	configuration := kowabunga.NewConfiguration()
+	apiClient := kowabunga.NewAPIClient(configuration)
 	resp, r, err := apiClient.RegionAPI.CreateRegion(context.Background()).Region(region).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `RegionAPI.CreateRegion``: %v\n", err)
@@ -179,16 +179,16 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+	kowabunga "github.com/kowabunga-cloud/kowabunga-go"
 )
 
 func main() {
 	regionId := "regionId_example" // string | The ID of the region.
-	storageNFS := *openapiclient.NewStorageNFS("Name_example", "Endpoint_example") // StorageNFS | StorageNFS payload.
+	storageNFS := *kowabunga.NewStorageNFS("Name_example", "Endpoint_example") // StorageNFS | StorageNFS payload.
 	poolId := "poolId_example" // string | Storage pool ID (optional, region's default if unspecified). (optional)
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
+	configuration := kowabunga.NewConfiguration()
+	apiClient := kowabunga.NewAPIClient(configuration)
 	resp, r, err := apiClient.RegionAPI.CreateStorageNFS(context.Background(), regionId).StorageNFS(storageNFS).PoolId(poolId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `RegionAPI.CreateStorageNFS``: %v\n", err)
@@ -253,15 +253,15 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+	kowabunga "github.com/kowabunga-cloud/kowabunga-go"
 )
 
 func main() {
 	regionId := "regionId_example" // string | The ID of the region.
-	storagePool := *openapiclient.NewStoragePool("Name_example", "Pool_example", []string{"Agents_example"}) // StoragePool | StoragePool payload.
+	storagePool := *kowabunga.NewStoragePool("Name_example", "Pool_example", []string{"Agents_example"}) // StoragePool | StoragePool payload.
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
+	configuration := kowabunga.NewConfiguration()
+	apiClient := kowabunga.NewAPIClient(configuration)
 	resp, r, err := apiClient.RegionAPI.CreateStoragePool(context.Background(), regionId).StoragePool(storagePool).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `RegionAPI.CreateStoragePool``: %v\n", err)
@@ -325,15 +325,15 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+	kowabunga "github.com/kowabunga-cloud/kowabunga-go"
 )
 
 func main() {
 	regionId := "regionId_example" // string | The ID of the region.
-	vNet := *openapiclient.NewVNet("Name_example", "Interface_example") // VNet | VNet payload.
+	vNet := *kowabunga.NewVNet("Name_example", "Interface_example") // VNet | VNet payload.
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
+	configuration := kowabunga.NewConfiguration()
+	apiClient := kowabunga.NewAPIClient(configuration)
 	resp, r, err := apiClient.RegionAPI.CreateVNet(context.Background(), regionId).VNet(vNet).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `RegionAPI.CreateVNet``: %v\n", err)
@@ -397,15 +397,15 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+	kowabunga "github.com/kowabunga-cloud/kowabunga-go"
 )
 
 func main() {
 	regionId := "regionId_example" // string | The ID of the region.
-	zone := *openapiclient.NewZone("Name_example") // Zone | Zone payload.
+	zone := *kowabunga.NewZone("Name_example") // Zone | Zone payload.
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
+	configuration := kowabunga.NewConfiguration()
+	apiClient := kowabunga.NewAPIClient(configuration)
 	resp, r, err := apiClient.RegionAPI.CreateZone(context.Background(), regionId).Zone(zone).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `RegionAPI.CreateZone``: %v\n", err)
@@ -469,14 +469,14 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+	kowabunga "github.com/kowabunga-cloud/kowabunga-go"
 )
 
 func main() {
 	regionId := "regionId_example" // string | The ID of the region.
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
+	configuration := kowabunga.NewConfiguration()
+	apiClient := kowabunga.NewAPIClient(configuration)
 	r, err := apiClient.RegionAPI.DeleteRegion(context.Background(), regionId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `RegionAPI.DeleteRegion``: %v\n", err)
@@ -537,14 +537,14 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+	kowabunga "github.com/kowabunga-cloud/kowabunga-go"
 )
 
 func main() {
 	regionId := "regionId_example" // string | The ID of the region.
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
+	configuration := kowabunga.NewConfiguration()
+	apiClient := kowabunga.NewAPIClient(configuration)
 	resp, r, err := apiClient.RegionAPI.ListRegionKiwis(context.Background(), regionId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `RegionAPI.ListRegionKiwis``: %v\n", err)
@@ -607,15 +607,15 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+	kowabunga "github.com/kowabunga-cloud/kowabunga-go"
 )
 
 func main() {
 	regionId := "regionId_example" // string | The ID of the region.
 	poolId := "poolId_example" // string | Storage pool ID (optional, region's default if unspecified). (optional)
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
+	configuration := kowabunga.NewConfiguration()
+	apiClient := kowabunga.NewAPIClient(configuration)
 	resp, r, err := apiClient.RegionAPI.ListRegionStorageNFSs(context.Background(), regionId).PoolId(poolId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `RegionAPI.ListRegionStorageNFSs``: %v\n", err)
@@ -679,14 +679,14 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+	kowabunga "github.com/kowabunga-cloud/kowabunga-go"
 )
 
 func main() {
 	regionId := "regionId_example" // string | The ID of the region.
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
+	configuration := kowabunga.NewConfiguration()
+	apiClient := kowabunga.NewAPIClient(configuration)
 	resp, r, err := apiClient.RegionAPI.ListRegionStoragePools(context.Background(), regionId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `RegionAPI.ListRegionStoragePools``: %v\n", err)
@@ -749,14 +749,14 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+	kowabunga "github.com/kowabunga-cloud/kowabunga-go"
 )
 
 func main() {
 	regionId := "regionId_example" // string | The ID of the region.
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
+	configuration := kowabunga.NewConfiguration()
+	apiClient := kowabunga.NewAPIClient(configuration)
 	resp, r, err := apiClient.RegionAPI.ListRegionVNets(context.Background(), regionId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `RegionAPI.ListRegionVNets``: %v\n", err)
@@ -819,14 +819,14 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+	kowabunga "github.com/kowabunga-cloud/kowabunga-go"
 )
 
 func main() {
 	regionId := "regionId_example" // string | The ID of the region.
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
+	configuration := kowabunga.NewConfiguration()
+	apiClient := kowabunga.NewAPIClient(configuration)
 	resp, r, err := apiClient.RegionAPI.ListRegionZones(context.Background(), regionId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `RegionAPI.ListRegionZones``: %v\n", err)
@@ -889,13 +889,13 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+	kowabunga "github.com/kowabunga-cloud/kowabunga-go"
 )
 
 func main() {
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
+	configuration := kowabunga.NewConfiguration()
+	apiClient := kowabunga.NewAPIClient(configuration)
 	resp, r, err := apiClient.RegionAPI.ListRegions(context.Background()).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `RegionAPI.ListRegions``: %v\n", err)
@@ -950,14 +950,14 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+	kowabunga "github.com/kowabunga-cloud/kowabunga-go"
 )
 
 func main() {
 	regionId := "regionId_example" // string | The ID of the region.
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
+	configuration := kowabunga.NewConfiguration()
+	apiClient := kowabunga.NewAPIClient(configuration)
 	resp, r, err := apiClient.RegionAPI.ReadRegion(context.Background(), regionId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `RegionAPI.ReadRegion``: %v\n", err)
@@ -1020,15 +1020,15 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+	kowabunga "github.com/kowabunga-cloud/kowabunga-go"
 )
 
 func main() {
 	regionId := "regionId_example" // string | The ID of the region.
 	nfsId := "nfsId_example" // string | The ID of the NFS storage.
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
+	configuration := kowabunga.NewConfiguration()
+	apiClient := kowabunga.NewAPIClient(configuration)
 	r, err := apiClient.RegionAPI.SetRegionDefaultStorageNFS(context.Background(), regionId, nfsId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `RegionAPI.SetRegionDefaultStorageNFS``: %v\n", err)
@@ -1091,15 +1091,15 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+	kowabunga "github.com/kowabunga-cloud/kowabunga-go"
 )
 
 func main() {
 	regionId := "regionId_example" // string | The ID of the region.
 	poolId := "poolId_example" // string | The ID of the storage pool.
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
+	configuration := kowabunga.NewConfiguration()
+	apiClient := kowabunga.NewAPIClient(configuration)
 	r, err := apiClient.RegionAPI.SetRegionDefaultStoragePool(context.Background(), regionId, poolId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `RegionAPI.SetRegionDefaultStoragePool``: %v\n", err)
@@ -1162,15 +1162,15 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+	kowabunga "github.com/kowabunga-cloud/kowabunga-go"
 )
 
 func main() {
 	regionId := "regionId_example" // string | The ID of the region.
-	region := *openapiclient.NewRegion("Name_example") // Region | Region payload.
+	region := *kowabunga.NewRegion("Name_example") // Region | Region payload.
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
+	configuration := kowabunga.NewConfiguration()
+	apiClient := kowabunga.NewAPIClient(configuration)
 	resp, r, err := apiClient.RegionAPI.UpdateRegion(context.Background(), regionId).Region(region).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `RegionAPI.UpdateRegion``: %v\n", err)

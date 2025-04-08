@@ -1,6 +1,6 @@
 # \TokenAPI
 
-All URIs are relative to *https://raw.githubusercontent.com/api/v1*
+All URIs are relative to *https://your_kowabunga_kahuna_server/api/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -28,14 +28,14 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+	kowabunga "github.com/kowabunga-cloud/kowabunga-go"
 )
 
 func main() {
 	tokenId := "tokenId_example" // string | The ID of the server-to-server authentication security token.
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
+	configuration := kowabunga.NewConfiguration()
+	apiClient := kowabunga.NewAPIClient(configuration)
 	r, err := apiClient.TokenAPI.DeleteApiToken(context.Background(), tokenId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `TokenAPI.DeleteApiToken``: %v\n", err)
@@ -96,13 +96,13 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+	kowabunga "github.com/kowabunga-cloud/kowabunga-go"
 )
 
 func main() {
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
+	configuration := kowabunga.NewConfiguration()
+	apiClient := kowabunga.NewAPIClient(configuration)
 	resp, r, err := apiClient.TokenAPI.ListApiTokens(context.Background()).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `TokenAPI.ListApiTokens``: %v\n", err)
@@ -157,14 +157,14 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+	kowabunga "github.com/kowabunga-cloud/kowabunga-go"
 )
 
 func main() {
 	tokenId := "tokenId_example" // string | The ID of the server-to-server authentication security token.
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
+	configuration := kowabunga.NewConfiguration()
+	apiClient := kowabunga.NewAPIClient(configuration)
 	resp, r, err := apiClient.TokenAPI.ReadApiToken(context.Background(), tokenId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `TokenAPI.ReadApiToken``: %v\n", err)
@@ -227,15 +227,15 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+	kowabunga "github.com/kowabunga-cloud/kowabunga-go"
 )
 
 func main() {
 	tokenId := "tokenId_example" // string | The ID of the server-to-server authentication security token.
-	apiToken := *openapiclient.NewApiToken("Name_example", false) // ApiToken | ApiToken payload.
+	apiToken := *kowabunga.NewApiToken("Name_example", false) // ApiToken | ApiToken payload.
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
+	configuration := kowabunga.NewConfiguration()
+	apiClient := kowabunga.NewAPIClient(configuration)
 	resp, r, err := apiClient.TokenAPI.UpdateApiToken(context.Background(), tokenId).ApiToken(apiToken).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `TokenAPI.UpdateApiToken``: %v\n", err)

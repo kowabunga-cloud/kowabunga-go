@@ -1,6 +1,6 @@
 # \ZoneAPI
 
-All URIs are relative to *https://raw.githubusercontent.com/api/v1*
+All URIs are relative to *https://your_kowabunga_kahuna_server/api/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -30,15 +30,15 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+	kowabunga "github.com/kowabunga-cloud/kowabunga-go"
 )
 
 func main() {
 	zoneId := "zoneId_example" // string | The ID of the availability zone.
-	kaktus := *openapiclient.NewKaktus("Name_example", []string{"Agents_example"}) // Kaktus | Kaktus payload.
+	kaktus := *kowabunga.NewKaktus("Name_example", []string{"Agents_example"}) // Kaktus | Kaktus payload.
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
+	configuration := kowabunga.NewConfiguration()
+	apiClient := kowabunga.NewAPIClient(configuration)
 	resp, r, err := apiClient.ZoneAPI.CreateKaktus(context.Background(), zoneId).Kaktus(kaktus).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ZoneAPI.CreateKaktus``: %v\n", err)
@@ -102,14 +102,14 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+	kowabunga "github.com/kowabunga-cloud/kowabunga-go"
 )
 
 func main() {
 	zoneId := "zoneId_example" // string | The ID of the availability zone.
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
+	configuration := kowabunga.NewConfiguration()
+	apiClient := kowabunga.NewAPIClient(configuration)
 	r, err := apiClient.ZoneAPI.DeleteZone(context.Background(), zoneId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ZoneAPI.DeleteZone``: %v\n", err)
@@ -170,14 +170,14 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+	kowabunga "github.com/kowabunga-cloud/kowabunga-go"
 )
 
 func main() {
 	zoneId := "zoneId_example" // string | The ID of the availability zone.
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
+	configuration := kowabunga.NewConfiguration()
+	apiClient := kowabunga.NewAPIClient(configuration)
 	resp, r, err := apiClient.ZoneAPI.ListZoneKaktuses(context.Background(), zoneId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ZoneAPI.ListZoneKaktuses``: %v\n", err)
@@ -240,13 +240,13 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+	kowabunga "github.com/kowabunga-cloud/kowabunga-go"
 )
 
 func main() {
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
+	configuration := kowabunga.NewConfiguration()
+	apiClient := kowabunga.NewAPIClient(configuration)
 	resp, r, err := apiClient.ZoneAPI.ListZones(context.Background()).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ZoneAPI.ListZones``: %v\n", err)
@@ -301,14 +301,14 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+	kowabunga "github.com/kowabunga-cloud/kowabunga-go"
 )
 
 func main() {
 	zoneId := "zoneId_example" // string | The ID of the availability zone.
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
+	configuration := kowabunga.NewConfiguration()
+	apiClient := kowabunga.NewAPIClient(configuration)
 	resp, r, err := apiClient.ZoneAPI.ReadZone(context.Background(), zoneId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ZoneAPI.ReadZone``: %v\n", err)
@@ -371,15 +371,15 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+	kowabunga "github.com/kowabunga-cloud/kowabunga-go"
 )
 
 func main() {
 	zoneId := "zoneId_example" // string | The ID of the availability zone.
-	zone := *openapiclient.NewZone("Name_example") // Zone | Zone payload.
+	zone := *kowabunga.NewZone("Name_example") // Zone | Zone payload.
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
+	configuration := kowabunga.NewConfiguration()
+	apiClient := kowabunga.NewAPIClient(configuration)
 	resp, r, err := apiClient.ZoneAPI.UpdateZone(context.Background(), zoneId).Zone(zone).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ZoneAPI.UpdateZone``: %v\n", err)

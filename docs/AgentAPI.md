@@ -1,6 +1,6 @@
 # \AgentAPI
 
-All URIs are relative to *https://raw.githubusercontent.com/api/v1*
+All URIs are relative to *https://your_kowabunga_kahuna_server/api/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -30,14 +30,14 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+	kowabunga "github.com/kowabunga-cloud/kowabunga-go"
 )
 
 func main() {
-	agent := *openapiclient.NewAgent("Name_example", "Type_example") // Agent | Agent payload.
+	agent := *kowabunga.NewAgent("Name_example", "Type_example") // Agent | Agent payload.
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
+	configuration := kowabunga.NewConfiguration()
+	apiClient := kowabunga.NewAPIClient(configuration)
 	resp, r, err := apiClient.AgentAPI.CreateAgent(context.Background()).Agent(agent).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `AgentAPI.CreateAgent``: %v\n", err)
@@ -96,14 +96,14 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+	kowabunga "github.com/kowabunga-cloud/kowabunga-go"
 )
 
 func main() {
 	agentId := "agentId_example" // string | The ID of the Kowabunga remote agent.
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
+	configuration := kowabunga.NewConfiguration()
+	apiClient := kowabunga.NewAPIClient(configuration)
 	r, err := apiClient.AgentAPI.DeleteAgent(context.Background(), agentId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `AgentAPI.DeleteAgent``: %v\n", err)
@@ -164,13 +164,13 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+	kowabunga "github.com/kowabunga-cloud/kowabunga-go"
 )
 
 func main() {
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
+	configuration := kowabunga.NewConfiguration()
+	apiClient := kowabunga.NewAPIClient(configuration)
 	resp, r, err := apiClient.AgentAPI.ListAgents(context.Background()).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `AgentAPI.ListAgents``: %v\n", err)
@@ -225,14 +225,14 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+	kowabunga "github.com/kowabunga-cloud/kowabunga-go"
 )
 
 func main() {
 	agentId := "agentId_example" // string | The ID of the Kowabunga remote agent.
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
+	configuration := kowabunga.NewConfiguration()
+	apiClient := kowabunga.NewAPIClient(configuration)
 	resp, r, err := apiClient.AgentAPI.ReadAgent(context.Background(), agentId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `AgentAPI.ReadAgent``: %v\n", err)
@@ -296,7 +296,7 @@ import (
 	"fmt"
 	"os"
     "time"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+	kowabunga "github.com/kowabunga-cloud/kowabunga-go"
 )
 
 func main() {
@@ -304,8 +304,8 @@ func main() {
 	expire := true // bool | Whether or not the token should expire. (optional)
 	expirationDate := time.Now() // string | Token's expiration date (YYYY-MM-DD format). (optional)
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
+	configuration := kowabunga.NewConfiguration()
+	apiClient := kowabunga.NewAPIClient(configuration)
 	resp, r, err := apiClient.AgentAPI.SetAgentApiToken(context.Background(), agentId).Expire(expire).ExpirationDate(expirationDate).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `AgentAPI.SetAgentApiToken``: %v\n", err)
@@ -370,15 +370,15 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+	kowabunga "github.com/kowabunga-cloud/kowabunga-go"
 )
 
 func main() {
 	agentId := "agentId_example" // string | The ID of the Kowabunga remote agent.
-	agent := *openapiclient.NewAgent("Name_example", "Type_example") // Agent | Agent payload.
+	agent := *kowabunga.NewAgent("Name_example", "Type_example") // Agent | Agent payload.
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
+	configuration := kowabunga.NewConfiguration()
+	apiClient := kowabunga.NewAPIClient(configuration)
 	resp, r, err := apiClient.AgentAPI.UpdateAgent(context.Background(), agentId).Agent(agent).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `AgentAPI.UpdateAgent``: %v\n", err)

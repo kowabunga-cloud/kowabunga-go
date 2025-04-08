@@ -1,6 +1,6 @@
 # \PoolAPI
 
-All URIs are relative to *https://raw.githubusercontent.com/api/v1*
+All URIs are relative to *https://your_kowabunga_kahuna_server/api/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -32,15 +32,15 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+	kowabunga "github.com/kowabunga-cloud/kowabunga-go"
 )
 
 func main() {
 	poolId := "poolId_example" // string | The ID of the storage pool.
-	template := *openapiclient.NewTemplate("Name_example", "Source_example") // Template | Template payload.
+	template := *kowabunga.NewTemplate("Name_example", "Source_example") // Template | Template payload.
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
+	configuration := kowabunga.NewConfiguration()
+	apiClient := kowabunga.NewAPIClient(configuration)
 	resp, r, err := apiClient.PoolAPI.CreateTemplate(context.Background(), poolId).Template(template).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `PoolAPI.CreateTemplate``: %v\n", err)
@@ -104,14 +104,14 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+	kowabunga "github.com/kowabunga-cloud/kowabunga-go"
 )
 
 func main() {
 	poolId := "poolId_example" // string | The ID of the storage pool.
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
+	configuration := kowabunga.NewConfiguration()
+	apiClient := kowabunga.NewAPIClient(configuration)
 	r, err := apiClient.PoolAPI.DeleteStoragePool(context.Background(), poolId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `PoolAPI.DeleteStoragePool``: %v\n", err)
@@ -172,14 +172,14 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+	kowabunga "github.com/kowabunga-cloud/kowabunga-go"
 )
 
 func main() {
 	poolId := "poolId_example" // string | The ID of the storage pool.
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
+	configuration := kowabunga.NewConfiguration()
+	apiClient := kowabunga.NewAPIClient(configuration)
 	resp, r, err := apiClient.PoolAPI.ListStoragePoolTemplates(context.Background(), poolId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `PoolAPI.ListStoragePoolTemplates``: %v\n", err)
@@ -242,14 +242,14 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+	kowabunga "github.com/kowabunga-cloud/kowabunga-go"
 )
 
 func main() {
 	poolId := "poolId_example" // string | The ID of the storage pool.
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
+	configuration := kowabunga.NewConfiguration()
+	apiClient := kowabunga.NewAPIClient(configuration)
 	resp, r, err := apiClient.PoolAPI.ListStoragePoolVolumes(context.Background(), poolId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `PoolAPI.ListStoragePoolVolumes``: %v\n", err)
@@ -312,13 +312,13 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+	kowabunga "github.com/kowabunga-cloud/kowabunga-go"
 )
 
 func main() {
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
+	configuration := kowabunga.NewConfiguration()
+	apiClient := kowabunga.NewAPIClient(configuration)
 	resp, r, err := apiClient.PoolAPI.ListStoragePools(context.Background()).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `PoolAPI.ListStoragePools``: %v\n", err)
@@ -373,14 +373,14 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+	kowabunga "github.com/kowabunga-cloud/kowabunga-go"
 )
 
 func main() {
 	poolId := "poolId_example" // string | The ID of the storage pool.
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
+	configuration := kowabunga.NewConfiguration()
+	apiClient := kowabunga.NewAPIClient(configuration)
 	resp, r, err := apiClient.PoolAPI.ReadStoragePool(context.Background(), poolId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `PoolAPI.ReadStoragePool``: %v\n", err)
@@ -443,15 +443,15 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+	kowabunga "github.com/kowabunga-cloud/kowabunga-go"
 )
 
 func main() {
 	poolId := "poolId_example" // string | The ID of the storage pool.
 	templateId := "templateId_example" // string | The ID of the image template.
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
+	configuration := kowabunga.NewConfiguration()
+	apiClient := kowabunga.NewAPIClient(configuration)
 	r, err := apiClient.PoolAPI.SetStoragePoolDefaultTemplate(context.Background(), poolId, templateId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `PoolAPI.SetStoragePoolDefaultTemplate``: %v\n", err)
@@ -514,15 +514,15 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+	kowabunga "github.com/kowabunga-cloud/kowabunga-go"
 )
 
 func main() {
 	poolId := "poolId_example" // string | The ID of the storage pool.
-	storagePool := *openapiclient.NewStoragePool("Name_example", "Pool_example", []string{"Agents_example"}) // StoragePool | StoragePool payload.
+	storagePool := *kowabunga.NewStoragePool("Name_example", "Pool_example", []string{"Agents_example"}) // StoragePool | StoragePool payload.
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
+	configuration := kowabunga.NewConfiguration()
+	apiClient := kowabunga.NewAPIClient(configuration)
 	resp, r, err := apiClient.PoolAPI.UpdateStoragePool(context.Background(), poolId).StoragePool(storagePool).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `PoolAPI.UpdateStoragePool``: %v\n", err)

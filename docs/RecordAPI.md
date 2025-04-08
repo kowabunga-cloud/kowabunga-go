@@ -1,6 +1,6 @@
 # \RecordAPI
 
-All URIs are relative to *https://raw.githubusercontent.com/api/v1*
+All URIs are relative to *https://your_kowabunga_kahuna_server/api/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -27,14 +27,14 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+	kowabunga "github.com/kowabunga-cloud/kowabunga-go"
 )
 
 func main() {
 	recordId := "recordId_example" // string | The ID of the DNS record.
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
+	configuration := kowabunga.NewConfiguration()
+	apiClient := kowabunga.NewAPIClient(configuration)
 	r, err := apiClient.RecordAPI.DeleteDnsRecord(context.Background(), recordId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `RecordAPI.DeleteDnsRecord``: %v\n", err)
@@ -95,14 +95,14 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+	kowabunga "github.com/kowabunga-cloud/kowabunga-go"
 )
 
 func main() {
 	recordId := "recordId_example" // string | The ID of the DNS record.
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
+	configuration := kowabunga.NewConfiguration()
+	apiClient := kowabunga.NewAPIClient(configuration)
 	resp, r, err := apiClient.RecordAPI.ReadDnsRecord(context.Background(), recordId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `RecordAPI.ReadDnsRecord``: %v\n", err)
@@ -165,15 +165,15 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+	kowabunga "github.com/kowabunga-cloud/kowabunga-go"
 )
 
 func main() {
 	recordId := "recordId_example" // string | The ID of the DNS record.
-	dnsRecord := *openapiclient.NewDnsRecord("Name_example", []string{"Addresses_example"}) // DnsRecord | DnsRecord payload.
+	dnsRecord := *kowabunga.NewDnsRecord("Name_example", []string{"Addresses_example"}) // DnsRecord | DnsRecord payload.
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
+	configuration := kowabunga.NewConfiguration()
+	apiClient := kowabunga.NewAPIClient(configuration)
 	resp, r, err := apiClient.RecordAPI.UpdateDnsRecord(context.Background(), recordId).DnsRecord(dnsRecord).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `RecordAPI.UpdateDnsRecord``: %v\n", err)

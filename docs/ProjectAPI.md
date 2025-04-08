@@ -1,6 +1,6 @@
 # \ProjectAPI
 
-All URIs are relative to *https://raw.githubusercontent.com/api/v1*
+All URIs are relative to *https://your_kowabunga_kahuna_server/api/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -47,15 +47,15 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+	kowabunga "github.com/kowabunga-cloud/kowabunga-go"
 )
 
 func main() {
-	project := *openapiclient.NewProject("Name_example", []string{"Teams_example"}, []string{"Regions_example"}) // Project | Project payload.
+	project := *kowabunga.NewProject("Name_example", []string{"Teams_example"}, []string{"Regions_example"}) // Project | Project payload.
 	subnetSize := int32(56) // int32 | The minimum VPC subnet size to be affected to the project. WARNING, this cannot be changed later. (optional)
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
+	configuration := kowabunga.NewConfiguration()
+	apiClient := kowabunga.NewAPIClient(configuration)
 	resp, r, err := apiClient.ProjectAPI.CreateProject(context.Background()).Project(project).SubnetSize(subnetSize).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ProjectAPI.CreateProject``: %v\n", err)
@@ -115,15 +115,15 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+	kowabunga "github.com/kowabunga-cloud/kowabunga-go"
 )
 
 func main() {
 	projectId := "projectId_example" // string | The ID of the project.
-	dnsRecord := *openapiclient.NewDnsRecord("Name_example", []string{"Addresses_example"}) // DnsRecord | DnsRecord payload.
+	dnsRecord := *kowabunga.NewDnsRecord("Name_example", []string{"Addresses_example"}) // DnsRecord | DnsRecord payload.
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
+	configuration := kowabunga.NewConfiguration()
+	apiClient := kowabunga.NewAPIClient(configuration)
 	resp, r, err := apiClient.ProjectAPI.CreateProjectDnsRecord(context.Background(), projectId).DnsRecord(dnsRecord).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ProjectAPI.CreateProjectDnsRecord``: %v\n", err)
@@ -187,16 +187,16 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+	kowabunga "github.com/kowabunga-cloud/kowabunga-go"
 )
 
 func main() {
 	projectId := "projectId_example" // string | The ID of the project.
 	regionId := "regionId_example" // string | The ID of the region.
-	kawaii := *openapiclient.NewKawaii() // Kawaii | Kawaii payload.
+	kawaii := *kowabunga.NewKawaii() // Kawaii | Kawaii payload.
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
+	configuration := kowabunga.NewConfiguration()
+	apiClient := kowabunga.NewAPIClient(configuration)
 	resp, r, err := apiClient.ProjectAPI.CreateProjectRegionKawaii(context.Background(), projectId, regionId).Kawaii(kawaii).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ProjectAPI.CreateProjectRegionKawaii``: %v\n", err)
@@ -262,16 +262,16 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+	kowabunga "github.com/kowabunga-cloud/kowabunga-go"
 )
 
 func main() {
 	projectId := "projectId_example" // string | The ID of the project.
 	regionId := "regionId_example" // string | The ID of the region.
-	konvey := *openapiclient.NewKonvey([]openapiclient.KonveyEndpoint{*openapiclient.NewKonveyEndpoint("Name_example", int64(123), "Protocol_example", *openapiclient.NewKonveyBackends([]string{"Hosts_example"}, int64(123)))}) // Konvey | Konvey payload.
+	konvey := *kowabunga.NewKonvey([]openapiclient.KonveyEndpoint{*openapiclient.NewKonveyEndpoint("Name_example", int64(123), "Protocol_example", *openapiclient.NewKonveyBackends([]string{"Hosts_example"}, int64(123)))}) // Konvey | Konvey payload.
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
+	configuration := kowabunga.NewConfiguration()
+	apiClient := kowabunga.NewAPIClient(configuration)
 	resp, r, err := apiClient.ProjectAPI.CreateProjectRegionKonvey(context.Background(), projectId, regionId).Konvey(konvey).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ProjectAPI.CreateProjectRegionKonvey``: %v\n", err)
@@ -337,17 +337,17 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+	kowabunga "github.com/kowabunga-cloud/kowabunga-go"
 )
 
 func main() {
 	projectId := "projectId_example" // string | The ID of the project.
 	regionId := "regionId_example" // string | The ID of the region.
-	kylo := *openapiclient.NewKylo("Name_example") // Kylo | Kylo payload.
+	kylo := *kowabunga.NewKylo("Name_example") // Kylo | Kylo payload.
 	nfsId := "nfsId_example" // string | NFS storage ID (optional, region's default if unspecified). (optional)
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
+	configuration := kowabunga.NewConfiguration()
+	apiClient := kowabunga.NewAPIClient(configuration)
 	resp, r, err := apiClient.ProjectAPI.CreateProjectRegionKylo(context.Background(), projectId, regionId).Kylo(kylo).NfsId(nfsId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ProjectAPI.CreateProjectRegionKylo``: %v\n", err)
@@ -414,18 +414,18 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+	kowabunga "github.com/kowabunga-cloud/kowabunga-go"
 )
 
 func main() {
 	projectId := "projectId_example" // string | The ID of the project.
 	regionId := "regionId_example" // string | The ID of the region.
-	volume := *openapiclient.NewVolume("Name_example", "Type_example", int64(123)) // Volume | Volume payload.
+	volume := *kowabunga.NewVolume("Name_example", "Type_example", int64(123)) // Volume | Volume payload.
 	poolId := "poolId_example" // string | Storage pool ID (optional, region's default if unspecified). (optional)
 	templateId := "templateId_example" // string | Template to clone the storage volume from (optional, region's default if unspecified). (optional)
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
+	configuration := kowabunga.NewConfiguration()
+	apiClient := kowabunga.NewAPIClient(configuration)
 	resp, r, err := apiClient.ProjectAPI.CreateProjectRegionVolume(context.Background(), projectId, regionId).Volume(volume).PoolId(poolId).TemplateId(templateId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ProjectAPI.CreateProjectRegionVolume``: %v\n", err)
@@ -493,16 +493,16 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+	kowabunga "github.com/kowabunga-cloud/kowabunga-go"
 )
 
 func main() {
 	projectId := "projectId_example" // string | The ID of the project.
 	zoneId := "zoneId_example" // string | The ID of the availability zone.
-	instance := *openapiclient.NewInstance("Name_example", int64(123), int64(123)) // Instance | Instance payload.
+	instance := *kowabunga.NewInstance("Name_example", int64(123), int64(123)) // Instance | Instance payload.
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
+	configuration := kowabunga.NewConfiguration()
+	apiClient := kowabunga.NewAPIClient(configuration)
 	resp, r, err := apiClient.ProjectAPI.CreateProjectZoneInstance(context.Background(), projectId, zoneId).Instance(instance).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ProjectAPI.CreateProjectZoneInstance``: %v\n", err)
@@ -568,19 +568,19 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+	kowabunga "github.com/kowabunga-cloud/kowabunga-go"
 )
 
 func main() {
 	projectId := "projectId_example" // string | The ID of the project.
 	zoneId := "zoneId_example" // string | The ID of the availability zone.
-	kompute := *openapiclient.NewKompute("Name_example", int64(123), int64(123), int64(123)) // Kompute | Kompute payload.
+	kompute := *kowabunga.NewKompute("Name_example", int64(123), int64(123), int64(123)) // Kompute | Kompute payload.
 	poolId := "poolId_example" // string | Storage pool ID (optional, region's default if unspecified). (optional)
 	templateId := "templateId_example" // string | Template to clone the storage volume from (optional, region's default if unspecified). (optional)
 	public := true // bool | Should Kompute be exposed over public Internet ? (a public IPv4 address will then be auto-assigned, default to false). (optional)
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
+	configuration := kowabunga.NewConfiguration()
+	apiClient := kowabunga.NewAPIClient(configuration)
 	resp, r, err := apiClient.ProjectAPI.CreateProjectZoneKompute(context.Background(), projectId, zoneId).Kompute(kompute).PoolId(poolId).TemplateId(templateId).Public(public).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ProjectAPI.CreateProjectZoneKompute``: %v\n", err)
@@ -649,16 +649,16 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+	kowabunga "github.com/kowabunga-cloud/kowabunga-go"
 )
 
 func main() {
 	projectId := "projectId_example" // string | The ID of the project.
 	zoneId := "zoneId_example" // string | The ID of the availability zone.
-	konvey := *openapiclient.NewKonvey([]openapiclient.KonveyEndpoint{*openapiclient.NewKonveyEndpoint("Name_example", int64(123), "Protocol_example", *openapiclient.NewKonveyBackends([]string{"Hosts_example"}, int64(123)))}) // Konvey | Konvey payload.
+	konvey := *kowabunga.NewKonvey([]openapiclient.KonveyEndpoint{*openapiclient.NewKonveyEndpoint("Name_example", int64(123), "Protocol_example", *openapiclient.NewKonveyBackends([]string{"Hosts_example"}, int64(123)))}) // Konvey | Konvey payload.
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
+	configuration := kowabunga.NewConfiguration()
+	apiClient := kowabunga.NewAPIClient(configuration)
 	resp, r, err := apiClient.ProjectAPI.CreateProjectZoneKonvey(context.Background(), projectId, zoneId).Konvey(konvey).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ProjectAPI.CreateProjectZoneKonvey``: %v\n", err)
@@ -724,14 +724,14 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+	kowabunga "github.com/kowabunga-cloud/kowabunga-go"
 )
 
 func main() {
 	projectId := "projectId_example" // string | The ID of the project.
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
+	configuration := kowabunga.NewConfiguration()
+	apiClient := kowabunga.NewAPIClient(configuration)
 	r, err := apiClient.ProjectAPI.DeleteProject(context.Background(), projectId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ProjectAPI.DeleteProject``: %v\n", err)
@@ -792,14 +792,14 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+	kowabunga "github.com/kowabunga-cloud/kowabunga-go"
 )
 
 func main() {
 	projectId := "projectId_example" // string | The ID of the project.
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
+	configuration := kowabunga.NewConfiguration()
+	apiClient := kowabunga.NewAPIClient(configuration)
 	resp, r, err := apiClient.ProjectAPI.ListProjectDnsRecords(context.Background(), projectId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ProjectAPI.ListProjectDnsRecords``: %v\n", err)
@@ -862,15 +862,15 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+	kowabunga "github.com/kowabunga-cloud/kowabunga-go"
 )
 
 func main() {
 	projectId := "projectId_example" // string | The ID of the project.
 	regionId := "regionId_example" // string | The ID of the region.
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
+	configuration := kowabunga.NewConfiguration()
+	apiClient := kowabunga.NewAPIClient(configuration)
 	resp, r, err := apiClient.ProjectAPI.ListProjectRegionKawaiis(context.Background(), projectId, regionId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ProjectAPI.ListProjectRegionKawaiis``: %v\n", err)
@@ -935,15 +935,15 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+	kowabunga "github.com/kowabunga-cloud/kowabunga-go"
 )
 
 func main() {
 	projectId := "projectId_example" // string | The ID of the project.
 	regionId := "regionId_example" // string | The ID of the region.
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
+	configuration := kowabunga.NewConfiguration()
+	apiClient := kowabunga.NewAPIClient(configuration)
 	resp, r, err := apiClient.ProjectAPI.ListProjectRegionKonveys(context.Background(), projectId, regionId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ProjectAPI.ListProjectRegionKonveys``: %v\n", err)
@@ -1008,7 +1008,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+	kowabunga "github.com/kowabunga-cloud/kowabunga-go"
 )
 
 func main() {
@@ -1016,8 +1016,8 @@ func main() {
 	regionId := "regionId_example" // string | The ID of the region.
 	nfsId := "nfsId_example" // string | NFS storage ID (optional, region's default if unspecified). (optional)
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
+	configuration := kowabunga.NewConfiguration()
+	apiClient := kowabunga.NewAPIClient(configuration)
 	resp, r, err := apiClient.ProjectAPI.ListProjectRegionKylos(context.Background(), projectId, regionId).NfsId(nfsId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ProjectAPI.ListProjectRegionKylos``: %v\n", err)
@@ -1083,15 +1083,15 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+	kowabunga "github.com/kowabunga-cloud/kowabunga-go"
 )
 
 func main() {
 	projectId := "projectId_example" // string | The ID of the project.
 	regionId := "regionId_example" // string | The ID of the region.
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
+	configuration := kowabunga.NewConfiguration()
+	apiClient := kowabunga.NewAPIClient(configuration)
 	resp, r, err := apiClient.ProjectAPI.ListProjectRegionVolumes(context.Background(), projectId, regionId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ProjectAPI.ListProjectRegionVolumes``: %v\n", err)
@@ -1156,15 +1156,15 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+	kowabunga "github.com/kowabunga-cloud/kowabunga-go"
 )
 
 func main() {
 	projectId := "projectId_example" // string | The ID of the project.
 	zoneId := "zoneId_example" // string | The ID of the availability zone.
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
+	configuration := kowabunga.NewConfiguration()
+	apiClient := kowabunga.NewAPIClient(configuration)
 	resp, r, err := apiClient.ProjectAPI.ListProjectZoneInstances(context.Background(), projectId, zoneId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ProjectAPI.ListProjectZoneInstances``: %v\n", err)
@@ -1229,15 +1229,15 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+	kowabunga "github.com/kowabunga-cloud/kowabunga-go"
 )
 
 func main() {
 	projectId := "projectId_example" // string | The ID of the project.
 	zoneId := "zoneId_example" // string | The ID of the availability zone.
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
+	configuration := kowabunga.NewConfiguration()
+	apiClient := kowabunga.NewAPIClient(configuration)
 	resp, r, err := apiClient.ProjectAPI.ListProjectZoneKomputes(context.Background(), projectId, zoneId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ProjectAPI.ListProjectZoneKomputes``: %v\n", err)
@@ -1302,15 +1302,15 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+	kowabunga "github.com/kowabunga-cloud/kowabunga-go"
 )
 
 func main() {
 	projectId := "projectId_example" // string | The ID of the project.
 	zoneId := "zoneId_example" // string | The ID of the availability zone.
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
+	configuration := kowabunga.NewConfiguration()
+	apiClient := kowabunga.NewAPIClient(configuration)
 	resp, r, err := apiClient.ProjectAPI.ListProjectZoneKonveys(context.Background(), projectId, zoneId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ProjectAPI.ListProjectZoneKonveys``: %v\n", err)
@@ -1375,14 +1375,14 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+	kowabunga "github.com/kowabunga-cloud/kowabunga-go"
 )
 
 func main() {
 	subnetSize := int32(56) // int32 | The minimum VPC subnet size to be affected to the project. WARNING, this cannot be changed later. (optional)
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
+	configuration := kowabunga.NewConfiguration()
+	apiClient := kowabunga.NewAPIClient(configuration)
 	resp, r, err := apiClient.ProjectAPI.ListProjects(context.Background()).SubnetSize(subnetSize).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ProjectAPI.ListProjects``: %v\n", err)
@@ -1441,14 +1441,14 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+	kowabunga "github.com/kowabunga-cloud/kowabunga-go"
 )
 
 func main() {
 	projectId := "projectId_example" // string | The ID of the project.
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
+	configuration := kowabunga.NewConfiguration()
+	apiClient := kowabunga.NewAPIClient(configuration)
 	resp, r, err := apiClient.ProjectAPI.ReadProject(context.Background(), projectId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ProjectAPI.ReadProject``: %v\n", err)
@@ -1511,14 +1511,14 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+	kowabunga "github.com/kowabunga-cloud/kowabunga-go"
 )
 
 func main() {
 	projectId := "projectId_example" // string | The ID of the project.
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
+	configuration := kowabunga.NewConfiguration()
+	apiClient := kowabunga.NewAPIClient(configuration)
 	resp, r, err := apiClient.ProjectAPI.ReadProjectCost(context.Background(), projectId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ProjectAPI.ReadProjectCost``: %v\n", err)
@@ -1581,14 +1581,14 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+	kowabunga "github.com/kowabunga-cloud/kowabunga-go"
 )
 
 func main() {
 	projectId := "projectId_example" // string | The ID of the project.
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
+	configuration := kowabunga.NewConfiguration()
+	apiClient := kowabunga.NewAPIClient(configuration)
 	resp, r, err := apiClient.ProjectAPI.ReadProjectUsage(context.Background(), projectId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ProjectAPI.ReadProjectUsage``: %v\n", err)
@@ -1651,15 +1651,15 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+	kowabunga "github.com/kowabunga-cloud/kowabunga-go"
 )
 
 func main() {
 	projectId := "projectId_example" // string | The ID of the project.
-	project := *openapiclient.NewProject("Name_example", []string{"Teams_example"}, []string{"Regions_example"}) // Project | Project payload.
+	project := *kowabunga.NewProject("Name_example", []string{"Teams_example"}, []string{"Regions_example"}) // Project | Project payload.
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
+	configuration := kowabunga.NewConfiguration()
+	apiClient := kowabunga.NewAPIClient(configuration)
 	resp, r, err := apiClient.ProjectAPI.UpdateProject(context.Background(), projectId).Project(project).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ProjectAPI.UpdateProject``: %v\n", err)

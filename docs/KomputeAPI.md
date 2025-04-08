@@ -1,6 +1,6 @@
 # \KomputeAPI
 
-All URIs are relative to *https://raw.githubusercontent.com/api/v1*
+All URIs are relative to *https://your_kowabunga_kahuna_server/api/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -36,14 +36,14 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+	kowabunga "github.com/kowabunga-cloud/kowabunga-go"
 )
 
 func main() {
 	komputeId := "komputeId_example" // string | The ID of the Kompute.
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
+	configuration := kowabunga.NewConfiguration()
+	apiClient := kowabunga.NewAPIClient(configuration)
 	r, err := apiClient.KomputeAPI.DeleteKompute(context.Background(), komputeId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `KomputeAPI.DeleteKompute``: %v\n", err)
@@ -104,13 +104,13 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+	kowabunga "github.com/kowabunga-cloud/kowabunga-go"
 )
 
 func main() {
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
+	configuration := kowabunga.NewConfiguration()
+	apiClient := kowabunga.NewAPIClient(configuration)
 	resp, r, err := apiClient.KomputeAPI.ListKomputes(context.Background()).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `KomputeAPI.ListKomputes``: %v\n", err)
@@ -165,14 +165,14 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+	kowabunga "github.com/kowabunga-cloud/kowabunga-go"
 )
 
 func main() {
 	komputeId := "komputeId_example" // string | The ID of the Kompute.
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
+	configuration := kowabunga.NewConfiguration()
+	apiClient := kowabunga.NewAPIClient(configuration)
 	resp, r, err := apiClient.KomputeAPI.ReadKompute(context.Background(), komputeId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `KomputeAPI.ReadKompute``: %v\n", err)
@@ -235,14 +235,14 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+	kowabunga "github.com/kowabunga-cloud/kowabunga-go"
 )
 
 func main() {
 	komputeId := "komputeId_example" // string | The ID of the Kompute.
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
+	configuration := kowabunga.NewConfiguration()
+	apiClient := kowabunga.NewAPIClient(configuration)
 	resp, r, err := apiClient.KomputeAPI.ReadKomputeState(context.Background(), komputeId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `KomputeAPI.ReadKomputeState``: %v\n", err)
@@ -305,14 +305,14 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+	kowabunga "github.com/kowabunga-cloud/kowabunga-go"
 )
 
 func main() {
 	komputeId := "komputeId_example" // string | The ID of the Kompute.
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
+	configuration := kowabunga.NewConfiguration()
+	apiClient := kowabunga.NewAPIClient(configuration)
 	r, err := apiClient.KomputeAPI.RebootKompute(context.Background(), komputeId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `KomputeAPI.RebootKompute``: %v\n", err)
@@ -373,14 +373,14 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+	kowabunga "github.com/kowabunga-cloud/kowabunga-go"
 )
 
 func main() {
 	komputeId := "komputeId_example" // string | The ID of the Kompute.
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
+	configuration := kowabunga.NewConfiguration()
+	apiClient := kowabunga.NewAPIClient(configuration)
 	r, err := apiClient.KomputeAPI.ResetKompute(context.Background(), komputeId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `KomputeAPI.ResetKompute``: %v\n", err)
@@ -441,14 +441,14 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+	kowabunga "github.com/kowabunga-cloud/kowabunga-go"
 )
 
 func main() {
 	komputeId := "komputeId_example" // string | The ID of the Kompute.
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
+	configuration := kowabunga.NewConfiguration()
+	apiClient := kowabunga.NewAPIClient(configuration)
 	r, err := apiClient.KomputeAPI.ResumeKompute(context.Background(), komputeId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `KomputeAPI.ResumeKompute``: %v\n", err)
@@ -509,14 +509,14 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+	kowabunga "github.com/kowabunga-cloud/kowabunga-go"
 )
 
 func main() {
 	komputeId := "komputeId_example" // string | The ID of the Kompute.
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
+	configuration := kowabunga.NewConfiguration()
+	apiClient := kowabunga.NewAPIClient(configuration)
 	r, err := apiClient.KomputeAPI.ShutdownKompute(context.Background(), komputeId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `KomputeAPI.ShutdownKompute``: %v\n", err)
@@ -577,14 +577,14 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+	kowabunga "github.com/kowabunga-cloud/kowabunga-go"
 )
 
 func main() {
 	komputeId := "komputeId_example" // string | The ID of the Kompute.
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
+	configuration := kowabunga.NewConfiguration()
+	apiClient := kowabunga.NewAPIClient(configuration)
 	r, err := apiClient.KomputeAPI.StartKompute(context.Background(), komputeId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `KomputeAPI.StartKompute``: %v\n", err)
@@ -645,14 +645,14 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+	kowabunga "github.com/kowabunga-cloud/kowabunga-go"
 )
 
 func main() {
 	komputeId := "komputeId_example" // string | The ID of the Kompute.
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
+	configuration := kowabunga.NewConfiguration()
+	apiClient := kowabunga.NewAPIClient(configuration)
 	r, err := apiClient.KomputeAPI.StopKompute(context.Background(), komputeId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `KomputeAPI.StopKompute``: %v\n", err)
@@ -713,14 +713,14 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+	kowabunga "github.com/kowabunga-cloud/kowabunga-go"
 )
 
 func main() {
 	komputeId := "komputeId_example" // string | The ID of the Kompute.
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
+	configuration := kowabunga.NewConfiguration()
+	apiClient := kowabunga.NewAPIClient(configuration)
 	r, err := apiClient.KomputeAPI.SuspendKompute(context.Background(), komputeId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `KomputeAPI.SuspendKompute``: %v\n", err)
@@ -781,15 +781,15 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+	kowabunga "github.com/kowabunga-cloud/kowabunga-go"
 )
 
 func main() {
 	komputeId := "komputeId_example" // string | The ID of the Kompute.
-	kompute := *openapiclient.NewKompute("Name_example", int64(123), int64(123), int64(123)) // Kompute | Kompute payload.
+	kompute := *kowabunga.NewKompute("Name_example", int64(123), int64(123), int64(123)) // Kompute | Kompute payload.
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
+	configuration := kowabunga.NewConfiguration()
+	apiClient := kowabunga.NewAPIClient(configuration)
 	resp, r, err := apiClient.KomputeAPI.UpdateKompute(context.Background(), komputeId).Kompute(kompute).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `KomputeAPI.UpdateKompute``: %v\n", err)

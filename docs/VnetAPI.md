@@ -1,6 +1,6 @@
 # \VnetAPI
 
-All URIs are relative to *https://raw.githubusercontent.com/api/v1*
+All URIs are relative to *https://your_kowabunga_kahuna_server/api/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -31,15 +31,15 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+	kowabunga "github.com/kowabunga-cloud/kowabunga-go"
 )
 
 func main() {
 	vnetId := "vnetId_example" // string | The ID of the virtual network.
-	subnet := *openapiclient.NewSubnet("Name_example", "Cidr_example", "Gateway_example") // Subnet | Subnet payload.
+	subnet := *kowabunga.NewSubnet("Name_example", "Cidr_example", "Gateway_example") // Subnet | Subnet payload.
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
+	configuration := kowabunga.NewConfiguration()
+	apiClient := kowabunga.NewAPIClient(configuration)
 	resp, r, err := apiClient.VnetAPI.CreateSubnet(context.Background(), vnetId).Subnet(subnet).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `VnetAPI.CreateSubnet``: %v\n", err)
@@ -103,14 +103,14 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+	kowabunga "github.com/kowabunga-cloud/kowabunga-go"
 )
 
 func main() {
 	vnetId := "vnetId_example" // string | The ID of the virtual network.
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
+	configuration := kowabunga.NewConfiguration()
+	apiClient := kowabunga.NewAPIClient(configuration)
 	r, err := apiClient.VnetAPI.DeleteVNet(context.Background(), vnetId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `VnetAPI.DeleteVNet``: %v\n", err)
@@ -171,14 +171,14 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+	kowabunga "github.com/kowabunga-cloud/kowabunga-go"
 )
 
 func main() {
 	vnetId := "vnetId_example" // string | The ID of the virtual network.
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
+	configuration := kowabunga.NewConfiguration()
+	apiClient := kowabunga.NewAPIClient(configuration)
 	resp, r, err := apiClient.VnetAPI.ListVNetSubnets(context.Background(), vnetId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `VnetAPI.ListVNetSubnets``: %v\n", err)
@@ -241,13 +241,13 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+	kowabunga "github.com/kowabunga-cloud/kowabunga-go"
 )
 
 func main() {
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
+	configuration := kowabunga.NewConfiguration()
+	apiClient := kowabunga.NewAPIClient(configuration)
 	resp, r, err := apiClient.VnetAPI.ListVNets(context.Background()).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `VnetAPI.ListVNets``: %v\n", err)
@@ -302,14 +302,14 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+	kowabunga "github.com/kowabunga-cloud/kowabunga-go"
 )
 
 func main() {
 	vnetId := "vnetId_example" // string | The ID of the virtual network.
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
+	configuration := kowabunga.NewConfiguration()
+	apiClient := kowabunga.NewAPIClient(configuration)
 	resp, r, err := apiClient.VnetAPI.ReadVNet(context.Background(), vnetId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `VnetAPI.ReadVNet``: %v\n", err)
@@ -372,15 +372,15 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+	kowabunga "github.com/kowabunga-cloud/kowabunga-go"
 )
 
 func main() {
 	vnetId := "vnetId_example" // string | The ID of the virtual network.
 	subnetId := "subnetId_example" // string | The ID of the network subnet.
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
+	configuration := kowabunga.NewConfiguration()
+	apiClient := kowabunga.NewAPIClient(configuration)
 	r, err := apiClient.VnetAPI.SetVNetDefaultSubnet(context.Background(), vnetId, subnetId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `VnetAPI.SetVNetDefaultSubnet``: %v\n", err)
@@ -443,15 +443,15 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+	kowabunga "github.com/kowabunga-cloud/kowabunga-go"
 )
 
 func main() {
 	vnetId := "vnetId_example" // string | The ID of the virtual network.
-	vNet := *openapiclient.NewVNet("Name_example", "Interface_example") // VNet | VNet payload.
+	vNet := *kowabunga.NewVNet("Name_example", "Interface_example") // VNet | VNet payload.
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
+	configuration := kowabunga.NewConfiguration()
+	apiClient := kowabunga.NewAPIClient(configuration)
 	resp, r, err := apiClient.VnetAPI.UpdateVNet(context.Background(), vnetId).VNet(vNet).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `VnetAPI.UpdateVNet``: %v\n", err)

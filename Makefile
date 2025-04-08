@@ -8,6 +8,8 @@
 # Common #
 ##########
 
+PACKAGE_NAME = github.com/kowabunga-cloud/kowabunga-go
+
 V = 0
 Q = $(if $(filter 1,$V),,@)
 M = $(shell printf "\033[34;1m▶\033[0m")
@@ -80,6 +82,9 @@ sdk: get-openapi-generator ; $(info $(M) [OpenAPIv3] Generate Golang SDK client 
 	  $(OUT)
 	$Q sed -i 's%openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"%%g' $(BUILD_DIR)/test/*.go
 	$Q sed -i 's%openapiclient\.%%' $(BUILD_DIR)/test/*.go
+	$Q sed -i 's%openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"%kowabunga "$(PACKAGE_NAME)"%g' $(BUILD_DIR)/docs/*.md
+	$Q sed -i 's%openapiclient\.%kowabunga\.%' $(BUILD_DIR)/docs/*.md
+	$Q sed -i 's%raw\.githubusercontent\.com%your_kowabunga_kahuna_server%' $(BUILD_DIR)/docs/*.md
 	$Q rm -f $(BUILD_DIR)/.gitignore
 	$Q rm -rf $(BUILD_DIR)/.openapi-generator
 	$Q rm -f $(BUILD_DIR)/.openapi-generator-ignore

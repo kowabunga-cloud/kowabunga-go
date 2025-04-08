@@ -1,6 +1,6 @@
 # \AdapterAPI
 
-All URIs are relative to *https://raw.githubusercontent.com/api/v1*
+All URIs are relative to *https://your_kowabunga_kahuna_server/api/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -28,14 +28,14 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+	kowabunga "github.com/kowabunga-cloud/kowabunga-go"
 )
 
 func main() {
 	adapterId := "adapterId_example" // string | The ID of the network adapter.
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
+	configuration := kowabunga.NewConfiguration()
+	apiClient := kowabunga.NewAPIClient(configuration)
 	r, err := apiClient.AdapterAPI.DeleteAdapter(context.Background(), adapterId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `AdapterAPI.DeleteAdapter``: %v\n", err)
@@ -96,13 +96,13 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+	kowabunga "github.com/kowabunga-cloud/kowabunga-go"
 )
 
 func main() {
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
+	configuration := kowabunga.NewConfiguration()
+	apiClient := kowabunga.NewAPIClient(configuration)
 	resp, r, err := apiClient.AdapterAPI.ListAdapters(context.Background()).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `AdapterAPI.ListAdapters``: %v\n", err)
@@ -157,14 +157,14 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+	kowabunga "github.com/kowabunga-cloud/kowabunga-go"
 )
 
 func main() {
 	adapterId := "adapterId_example" // string | The ID of the network adapter.
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
+	configuration := kowabunga.NewConfiguration()
+	apiClient := kowabunga.NewAPIClient(configuration)
 	resp, r, err := apiClient.AdapterAPI.ReadAdapter(context.Background(), adapterId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `AdapterAPI.ReadAdapter``: %v\n", err)
@@ -227,15 +227,15 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+	kowabunga "github.com/kowabunga-cloud/kowabunga-go"
 )
 
 func main() {
 	adapterId := "adapterId_example" // string | The ID of the network adapter.
-	adapter := *openapiclient.NewAdapter("Name_example") // Adapter | Adapter payload.
+	adapter := *kowabunga.NewAdapter("Name_example") // Adapter | Adapter payload.
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
+	configuration := kowabunga.NewConfiguration()
+	apiClient := kowabunga.NewAPIClient(configuration)
 	resp, r, err := apiClient.AdapterAPI.UpdateAdapter(context.Background(), adapterId).Adapter(adapter).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `AdapterAPI.UpdateAdapter``: %v\n", err)

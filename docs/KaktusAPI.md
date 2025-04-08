@@ -1,6 +1,6 @@
 # \KaktusAPI
 
-All URIs are relative to *https://raw.githubusercontent.com/api/v1*
+All URIs are relative to *https://your_kowabunga_kahuna_server/api/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -30,14 +30,14 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+	kowabunga "github.com/kowabunga-cloud/kowabunga-go"
 )
 
 func main() {
 	kaktusId := "kaktusId_example" // string | The ID of the Kaktus computing node.
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
+	configuration := kowabunga.NewConfiguration()
+	apiClient := kowabunga.NewAPIClient(configuration)
 	r, err := apiClient.KaktusAPI.DeleteKaktus(context.Background(), kaktusId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `KaktusAPI.DeleteKaktus``: %v\n", err)
@@ -98,14 +98,14 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+	kowabunga "github.com/kowabunga-cloud/kowabunga-go"
 )
 
 func main() {
 	kaktusId := "kaktusId_example" // string | The ID of the Kaktus computing node.
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
+	configuration := kowabunga.NewConfiguration()
+	apiClient := kowabunga.NewAPIClient(configuration)
 	resp, r, err := apiClient.KaktusAPI.ListKaktusInstances(context.Background(), kaktusId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `KaktusAPI.ListKaktusInstances``: %v\n", err)
@@ -168,13 +168,13 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+	kowabunga "github.com/kowabunga-cloud/kowabunga-go"
 )
 
 func main() {
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
+	configuration := kowabunga.NewConfiguration()
+	apiClient := kowabunga.NewAPIClient(configuration)
 	resp, r, err := apiClient.KaktusAPI.ListKaktuss(context.Background()).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `KaktusAPI.ListKaktuss``: %v\n", err)
@@ -229,14 +229,14 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+	kowabunga "github.com/kowabunga-cloud/kowabunga-go"
 )
 
 func main() {
 	kaktusId := "kaktusId_example" // string | The ID of the Kaktus computing node.
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
+	configuration := kowabunga.NewConfiguration()
+	apiClient := kowabunga.NewAPIClient(configuration)
 	resp, r, err := apiClient.KaktusAPI.ReadKaktus(context.Background(), kaktusId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `KaktusAPI.ReadKaktus``: %v\n", err)
@@ -299,14 +299,14 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+	kowabunga "github.com/kowabunga-cloud/kowabunga-go"
 )
 
 func main() {
 	kaktusId := "kaktusId_example" // string | The ID of the Kaktus computing node.
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
+	configuration := kowabunga.NewConfiguration()
+	apiClient := kowabunga.NewAPIClient(configuration)
 	resp, r, err := apiClient.KaktusAPI.ReadKaktusCaps(context.Background(), kaktusId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `KaktusAPI.ReadKaktusCaps``: %v\n", err)
@@ -369,15 +369,15 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+	kowabunga "github.com/kowabunga-cloud/kowabunga-go"
 )
 
 func main() {
 	kaktusId := "kaktusId_example" // string | The ID of the Kaktus computing node.
-	kaktus := *openapiclient.NewKaktus("Name_example", []string{"Agents_example"}) // Kaktus | Kaktus payload.
+	kaktus := *kowabunga.NewKaktus("Name_example", []string{"Agents_example"}) // Kaktus | Kaktus payload.
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
+	configuration := kowabunga.NewConfiguration()
+	apiClient := kowabunga.NewAPIClient(configuration)
 	resp, r, err := apiClient.KaktusAPI.UpdateKaktus(context.Background(), kaktusId).Kaktus(kaktus).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `KaktusAPI.UpdateKaktus``: %v\n", err)

@@ -1,6 +1,6 @@
 # \InstanceAPI
 
-All URIs are relative to *https://raw.githubusercontent.com/api/v1*
+All URIs are relative to *https://your_kowabunga_kahuna_server/api/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -37,14 +37,14 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+	kowabunga "github.com/kowabunga-cloud/kowabunga-go"
 )
 
 func main() {
 	instanceId := "instanceId_example" // string | The ID of the virtual machine instance.
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
+	configuration := kowabunga.NewConfiguration()
+	apiClient := kowabunga.NewAPIClient(configuration)
 	r, err := apiClient.InstanceAPI.DeleteInstance(context.Background(), instanceId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `InstanceAPI.DeleteInstance``: %v\n", err)
@@ -105,13 +105,13 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+	kowabunga "github.com/kowabunga-cloud/kowabunga-go"
 )
 
 func main() {
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
+	configuration := kowabunga.NewConfiguration()
+	apiClient := kowabunga.NewAPIClient(configuration)
 	resp, r, err := apiClient.InstanceAPI.ListInstances(context.Background()).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `InstanceAPI.ListInstances``: %v\n", err)
@@ -166,14 +166,14 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+	kowabunga "github.com/kowabunga-cloud/kowabunga-go"
 )
 
 func main() {
 	instanceId := "instanceId_example" // string | The ID of the virtual machine instance.
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
+	configuration := kowabunga.NewConfiguration()
+	apiClient := kowabunga.NewAPIClient(configuration)
 	resp, r, err := apiClient.InstanceAPI.ReadInstance(context.Background(), instanceId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `InstanceAPI.ReadInstance``: %v\n", err)
@@ -236,14 +236,14 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+	kowabunga "github.com/kowabunga-cloud/kowabunga-go"
 )
 
 func main() {
 	instanceId := "instanceId_example" // string | The ID of the virtual machine instance.
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
+	configuration := kowabunga.NewConfiguration()
+	apiClient := kowabunga.NewAPIClient(configuration)
 	resp, r, err := apiClient.InstanceAPI.ReadInstanceRemoteConnection(context.Background(), instanceId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `InstanceAPI.ReadInstanceRemoteConnection``: %v\n", err)
@@ -306,14 +306,14 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+	kowabunga "github.com/kowabunga-cloud/kowabunga-go"
 )
 
 func main() {
 	instanceId := "instanceId_example" // string | The ID of the virtual machine instance.
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
+	configuration := kowabunga.NewConfiguration()
+	apiClient := kowabunga.NewAPIClient(configuration)
 	resp, r, err := apiClient.InstanceAPI.ReadInstanceState(context.Background(), instanceId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `InstanceAPI.ReadInstanceState``: %v\n", err)
@@ -376,14 +376,14 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+	kowabunga "github.com/kowabunga-cloud/kowabunga-go"
 )
 
 func main() {
 	instanceId := "instanceId_example" // string | The ID of the virtual machine instance.
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
+	configuration := kowabunga.NewConfiguration()
+	apiClient := kowabunga.NewAPIClient(configuration)
 	r, err := apiClient.InstanceAPI.RebootInstance(context.Background(), instanceId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `InstanceAPI.RebootInstance``: %v\n", err)
@@ -444,14 +444,14 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+	kowabunga "github.com/kowabunga-cloud/kowabunga-go"
 )
 
 func main() {
 	instanceId := "instanceId_example" // string | The ID of the virtual machine instance.
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
+	configuration := kowabunga.NewConfiguration()
+	apiClient := kowabunga.NewAPIClient(configuration)
 	r, err := apiClient.InstanceAPI.ResetInstance(context.Background(), instanceId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `InstanceAPI.ResetInstance``: %v\n", err)
@@ -512,14 +512,14 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+	kowabunga "github.com/kowabunga-cloud/kowabunga-go"
 )
 
 func main() {
 	instanceId := "instanceId_example" // string | The ID of the virtual machine instance.
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
+	configuration := kowabunga.NewConfiguration()
+	apiClient := kowabunga.NewAPIClient(configuration)
 	r, err := apiClient.InstanceAPI.ResumeInstance(context.Background(), instanceId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `InstanceAPI.ResumeInstance``: %v\n", err)
@@ -580,14 +580,14 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+	kowabunga "github.com/kowabunga-cloud/kowabunga-go"
 )
 
 func main() {
 	instanceId := "instanceId_example" // string | The ID of the virtual machine instance.
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
+	configuration := kowabunga.NewConfiguration()
+	apiClient := kowabunga.NewAPIClient(configuration)
 	r, err := apiClient.InstanceAPI.ShutdownInstance(context.Background(), instanceId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `InstanceAPI.ShutdownInstance``: %v\n", err)
@@ -648,14 +648,14 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+	kowabunga "github.com/kowabunga-cloud/kowabunga-go"
 )
 
 func main() {
 	instanceId := "instanceId_example" // string | The ID of the virtual machine instance.
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
+	configuration := kowabunga.NewConfiguration()
+	apiClient := kowabunga.NewAPIClient(configuration)
 	r, err := apiClient.InstanceAPI.StartInstance(context.Background(), instanceId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `InstanceAPI.StartInstance``: %v\n", err)
@@ -716,14 +716,14 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+	kowabunga "github.com/kowabunga-cloud/kowabunga-go"
 )
 
 func main() {
 	instanceId := "instanceId_example" // string | The ID of the virtual machine instance.
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
+	configuration := kowabunga.NewConfiguration()
+	apiClient := kowabunga.NewAPIClient(configuration)
 	r, err := apiClient.InstanceAPI.StopInstance(context.Background(), instanceId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `InstanceAPI.StopInstance``: %v\n", err)
@@ -784,14 +784,14 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+	kowabunga "github.com/kowabunga-cloud/kowabunga-go"
 )
 
 func main() {
 	instanceId := "instanceId_example" // string | The ID of the virtual machine instance.
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
+	configuration := kowabunga.NewConfiguration()
+	apiClient := kowabunga.NewAPIClient(configuration)
 	r, err := apiClient.InstanceAPI.SuspendInstance(context.Background(), instanceId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `InstanceAPI.SuspendInstance``: %v\n", err)
@@ -852,15 +852,15 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+	kowabunga "github.com/kowabunga-cloud/kowabunga-go"
 )
 
 func main() {
 	instanceId := "instanceId_example" // string | The ID of the virtual machine instance.
-	instance := *openapiclient.NewInstance("Name_example", int64(123), int64(123)) // Instance | Instance payload.
+	instance := *kowabunga.NewInstance("Name_example", int64(123), int64(123)) // Instance | Instance payload.
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
+	configuration := kowabunga.NewConfiguration()
+	apiClient := kowabunga.NewAPIClient(configuration)
 	resp, r, err := apiClient.InstanceAPI.UpdateInstance(context.Background(), instanceId).Instance(instance).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `InstanceAPI.UpdateInstance``: %v\n", err)
