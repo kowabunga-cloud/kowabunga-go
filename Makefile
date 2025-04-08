@@ -2,7 +2,7 @@
 # Apache License, Version 2.0 (see LICENSE or https://www.apache.org/licenses/LICENSE-2.0.txt)
 # SPDX-License-Identifier: Apache-2.0
 
-.DEFAULT_GOAL := sdk
+.DEFAULT_GOAL := all
 
 ##########
 # Common #
@@ -17,6 +17,26 @@ ifeq ($(V), 1)
 else
   OUT = ">/dev/null"
 endif
+
+# This target grabs the necessary go modules
+.PHONY: mod
+mod: ; $(info $(M) Collecting modules…) @
+	$Q go mod download
+	$Q go mod tidy
+
+# Updates all go modules
+update: ; $(info $(M) Updating modules…) @
+	$Q go get -u ./...
+	$Q go mod tidy
+
+.PHONY: all
+all: sdk tests ; @
+	$Q echo "done"
+
+.PHONY: clean
+clean: ; $(info $(M) Cleaning build residues…) @
+	$Q rm -rf $(BUILD_DIR)
+	$Q rm -rf $(NODE_DIR)
 
 ######################
 # Build Dependencies #
@@ -58,6 +78,8 @@ sdk: get-openapi-generator ; $(info $(M) [OpenAPIv3] Generate Golang SDK client 
 	  -i $(SDK_OPENAPI_SPEC) \
 	  -o $(BUILD_DIR) \
 	  $(OUT)
+	$Q sed -i 's%openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"%%g' $(BUILD_DIR)/test/*.go
+	$Q sed -i 's%openapiclient\.%%' $(BUILD_DIR)/test/*.go
 	$Q rm -f $(BUILD_DIR)/.gitignore
 	$Q rm -rf $(BUILD_DIR)/.openapi-generator
 	$Q rm -f $(BUILD_DIR)/.openapi-generator-ignore
@@ -66,15 +88,10 @@ sdk: get-openapi-generator ; $(info $(M) [OpenAPIv3] Generate Golang SDK client 
 	$Q rm -f $(BUILD_DIR)/git_push.sh
 	$Q rm -rf $(BUILD_DIR)/README.md
 	$Q cp -rf $(BUILD_DIR)/docs .
-	$Q cp -rf $(BUILD_DIR)/test .
+	$Q cp -rf $(BUILD_DIR)/test/*.go .
 	$Q cp -rf $(BUILD_DIR)/*.go .
 	$Q rm -rf $(BUILD_DIR)
 
-.PHONY: all
-all: sdk ; @
-	$Q echo "done"
-
-.PHONY: clean
-clean: ; $(info $(M) Cleaning build residues…) @
-	$Q rm -rf $(BUILD_DIR)
-	$Q rm -rf $(NODE_DIR)
+.PHONY: tests
+tests: ; $(info $(M) [Go] Testing Kowabunga SDK…) @
+	$Q go test ./... -count=1

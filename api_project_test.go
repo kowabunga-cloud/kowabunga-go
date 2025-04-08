@@ -14,13 +14,13 @@ import (
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 	"testing"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
+	
 )
 
 func Test_kowabunga_ProjectAPIService(t *testing.T) {
 
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
+	configuration := NewConfiguration()
+	apiClient := NewAPIClient(configuration)
 
 	t.Run("Test ProjectAPIService CreateProject", func(t *testing.T) {
 
