@@ -58,14 +58,23 @@ sdk: get-openapi-generator ; $(info $(M) [OpenAPIv3] Generate Golang SDK client 
 	  -i $(SDK_OPENAPI_SPEC) \
 	  -o $(BUILD_DIR) \
 	  $(OUT)
-	 $Q rm -f $(BUILD_DIR)/.gitignore
-	 $Q rm -rf $(BUILD_DIR)/.openapi-generator
-	 $Q rm -f $(BUILD_DIR)/.openapi-generator-ignore
-	 $Q rm -f $(BUILD_DIR)/.travis.yml
-	 $Q rm -rf $(BUILD_DIR)/api
-	 $Q rm -f $(BUILD_DIR)/git_push.sh
-	 $Q rm -rf $(BUILD_DIR)/README.md
+	$Q rm -f $(BUILD_DIR)/.gitignore
+	$Q rm -rf $(BUILD_DIR)/.openapi-generator
+	$Q rm -f $(BUILD_DIR)/.openapi-generator-ignore
+	$Q rm -f $(BUILD_DIR)/.travis.yml
+	$Q rm -rf $(BUILD_DIR)/api
+	$Q rm -f $(BUILD_DIR)/git_push.sh
+	$Q rm -rf $(BUILD_DIR)/README.md
+	$Q cp -rf $(BUILD_DIR)/docs .
+	$Q cp -rf $(BUILD_DIR)/test .
+	$Q cp -rf $(BUILD_DIR)/*.go .
+	$Q rm -rf $(BUILD_DIR)
 
 .PHONY: all
 all: sdk ; @
 	$Q echo "done"
+
+.PHONY: clean
+clean: ; $(info $(M) Cleaning build residues…) @
+	$Q rm -rf $(BUILD_DIR)
+	$Q rm -rf $(NODE_DIR)
