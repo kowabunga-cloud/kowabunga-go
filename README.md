@@ -1,3 +1,11 @@
+<p align="center">
+  <a href="https://sentry.io/?utm_source=github&utm_medium=logo" target="_blank">
+    <picture>
+      <img src="https://rawcdn.githack.com/kowabunga-cloud/infographics/master/art/kowabunga-square-600x600-2.png" alt="Kowabunga" width="200">
+    </picture>
+  </a>
+</p>
+
 # Official Kowabunga SDK for Go
 
 ## Installation
