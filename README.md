@@ -10,6 +10,17 @@
 
 # Official Kowabunga SDK for Go
 
+This is official Go SDK for Kowabunga API.
+
+[![License: Apache License, Version 2.0](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://spdx.org/licenses/Apache-2.0.html)
+
+## Current Releases
+
+| Project            | Release Badge                                                                                       |
+|--------------------|-----------------------------------------------------------------------------------------------------|
+| **Kowabunga**           | [![Kowabunga Release](https://img.shields.io/github/v/release/kowabunga-cloud/kowabunga)](https://github.com/kowabunga-cloud/kowabunga/releases) |
+| **Kowabunga Go SDK**     | [![Kowabunga Go SDK Release](https://img.shields.io/github/v/release/kowabunga-cloud/kowabunga-go)](https://github.com/kowabunga-cloud/kowabunga-go/releases) |
+
 ## Installation
 
 `kowabunga-go` can be installed like any other Go library through `go get`:
