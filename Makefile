@@ -39,6 +39,11 @@ all: sdk tests ; @
 clean: ; $(info $(M) Cleaning build residues…) @
 	$Q rm -rf $(BUILD_DIR)
 	$Q rm -rf $(NODE_DIR)
+	$Q rm -f openapitools.json
+	$Q rm -f package.json
+	$Q rm -f package-lock.json
+	$Q rm -f yarn.lock
+	$Q rm -f yarn-error.log
 
 ######################
 # Build Dependencies #
