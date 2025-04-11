@@ -60,7 +60,6 @@ u, _ := url.Parse(uri)
 cfg := kowabunga.NewConfiguration()
 cfg.Host = u.Host
 cfg.Scheme = u.Scheme
-cfg.Debug = true
 cfg.AddDefaultHeader("X-API-Key", token)
 
 client = kowabunga.NewAPIClient(cfg), nil
