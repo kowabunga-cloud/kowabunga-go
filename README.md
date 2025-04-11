@@ -14,6 +14,7 @@ This is official Go SDK for Kowabunga API.
 
 [![License: Apache License, Version 2.0](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://spdx.org/licenses/Apache-2.0.html)
 [![go.dev](https://img.shields.io/badge/go.dev-pkg-007d9c.svg?style=flat)](https://pkg.go.dev/github.com/kowabunga-cloud/kowabunga-go)
+[![Build Status](https://github.com/kowabunga-cloud/kowabunga-go/actions/workflows/go.yml/badge.svg)](https://github.com/kowabunga-cloud/kowabunga-go/actions/workflows/go.yml)
 
 ## Current Releases
 
