@@ -70,7 +70,7 @@ get-openapi-generator: get-yarn ;$(info $(M) [Yarn] Installing openapi-generator
 BUILD_DIR = build
 
 # use "heads/master" to build from latest
-SDK_OPENAPI_VERSION = "tags/v0.52.5"
+SDK_OPENAPI_VERSION = "tags/v0.53.1"
 SDK_OPENAPI_SPEC = "https://raw.githubusercontent.com/kowabunga-cloud/openapi/refs/$(SDK_OPENAPI_VERSION)/openapi.yaml"
 SDK_GENERATOR = go
 SDK_PKG_NAME = kowabunga

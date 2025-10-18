@@ -1,5 +1,5 @@
 /*
-Kowabunga API documentation
+Kowabunga API
 
 Testing KaktusAPIService
 

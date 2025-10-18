@@ -1,5 +1,5 @@
 /*
-Kowabunga API documentation
+Kowabunga API
 
 Testing RegionAPIService
 
@@ -41,6 +41,20 @@ func Test_kowabunga_RegionAPIService(t *testing.T) {
 		t.Skip("skip test")  // remove to run test
 
 		resp, httpRes, err := apiClient.RegionAPI.CreateRegion(context.Background()).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test RegionAPIService CreateRegionDnsRecord", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var regionId string
+
+		resp, httpRes, err := apiClient.RegionAPI.CreateRegionDnsRecord(context.Background(), regionId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -113,6 +127,20 @@ func Test_kowabunga_RegionAPIService(t *testing.T) {
 		httpRes, err := apiClient.RegionAPI.DeleteRegion(context.Background(), regionId).Execute()
 
 		require.Nil(t, err)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test RegionAPIService ListRegionDnsRecords", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var regionId string
+
+		resp, httpRes, err := apiClient.RegionAPI.ListRegionDnsRecords(context.Background(), regionId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
 		assert.Equal(t, 200, httpRes.StatusCode)
 
 	})

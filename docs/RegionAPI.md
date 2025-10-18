@@ -6,11 +6,13 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**CreateKiwi**](RegionAPI.md#CreateKiwi) | **Post** /region/{regionId}/kiwi | 
 [**CreateRegion**](RegionAPI.md#CreateRegion) | **Post** /region | 
+[**CreateRegionDnsRecord**](RegionAPI.md#CreateRegionDnsRecord) | **Post** /region/{regionId}/record | 
 [**CreateStorageNFS**](RegionAPI.md#CreateStorageNFS) | **Post** /region/{regionId}/nfs | 
 [**CreateStoragePool**](RegionAPI.md#CreateStoragePool) | **Post** /region/{regionId}/pool | 
 [**CreateVNet**](RegionAPI.md#CreateVNet) | **Post** /region/{regionId}/vnet | 
 [**CreateZone**](RegionAPI.md#CreateZone) | **Post** /region/{regionId}/zone | 
 [**DeleteRegion**](RegionAPI.md#DeleteRegion) | **Delete** /region/{regionId} | 
+[**ListRegionDnsRecords**](RegionAPI.md#ListRegionDnsRecords) | **Get** /region/{regionId}/records | 
 [**ListRegionKiwis**](RegionAPI.md#ListRegionKiwis) | **Get** /region/{regionId}/kiwis | 
 [**ListRegionStorageNFSs**](RegionAPI.md#ListRegionStorageNFSs) | **Get** /region/{regionId}/nfs | 
 [**ListRegionStoragePools**](RegionAPI.md#ListRegionStoragePools) | **Get** /region/{regionId}/pools | 
@@ -147,6 +149,78 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**Region**](Region.md)
+
+### Authorization
+
+[ApiKeyAuth](../README.md#ApiKeyAuth), [BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## CreateRegionDnsRecord
+
+> DnsRecord CreateRegionDnsRecord(ctx, regionId).DnsRecord(dnsRecord).Execute()
+
+
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	kowabunga "github.com/kowabunga-cloud/kowabunga-go"
+)
+
+func main() {
+	regionId := "regionId_example" // string | The ID of the region.
+	dnsRecord := *kowabunga.NewDnsRecord("Name_example", []string{"Addresses_example"}) // DnsRecord | DnsRecord payload.
+
+	configuration := kowabunga.NewConfiguration()
+	apiClient := kowabunga.NewAPIClient(configuration)
+	resp, r, err := apiClient.RegionAPI.CreateRegionDnsRecord(context.Background(), regionId).DnsRecord(dnsRecord).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `RegionAPI.CreateRegionDnsRecord``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `CreateRegionDnsRecord`: DnsRecord
+	fmt.Fprintf(os.Stdout, "Response from `RegionAPI.CreateRegionDnsRecord`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**regionId** | **string** | The ID of the region. | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreateRegionDnsRecordRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **dnsRecord** | [**DnsRecord**](DnsRecord.md) | DnsRecord payload. | 
+
+### Return type
+
+[**DnsRecord**](DnsRecord.md)
 
 ### Authorization
 
@@ -505,6 +579,76 @@ Name | Type | Description  | Notes
 ### Return type
 
  (empty response body)
+
+### Authorization
+
+[ApiKeyAuth](../README.md#ApiKeyAuth), [BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## ListRegionDnsRecords
+
+> []string ListRegionDnsRecords(ctx, regionId).Execute()
+
+
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	kowabunga "github.com/kowabunga-cloud/kowabunga-go"
+)
+
+func main() {
+	regionId := "regionId_example" // string | The ID of the region.
+
+	configuration := kowabunga.NewConfiguration()
+	apiClient := kowabunga.NewAPIClient(configuration)
+	resp, r, err := apiClient.RegionAPI.ListRegionDnsRecords(context.Background(), regionId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `RegionAPI.ListRegionDnsRecords``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `ListRegionDnsRecords`: []string
+	fmt.Fprintf(os.Stdout, "Response from `RegionAPI.ListRegionDnsRecords`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**regionId** | **string** | The ID of the region. | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiListRegionDnsRecordsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+**[]string**
 
 ### Authorization
 
