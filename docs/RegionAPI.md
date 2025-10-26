@@ -119,7 +119,7 @@ import (
 )
 
 func main() {
-	region := *kowabunga.NewRegion("Name_example") // Region | Region payload.
+	region := *kowabunga.NewRegion("Name_example", "Domain_example") // Region | Region payload.
 
 	configuration := kowabunga.NewConfiguration()
 	apiClient := kowabunga.NewAPIClient(configuration)
@@ -1311,7 +1311,7 @@ import (
 
 func main() {
 	regionId := "regionId_example" // string | The ID of the region.
-	region := *kowabunga.NewRegion("Name_example") // Region | Region payload.
+	region := *kowabunga.NewRegion("Name_example", "Domain_example") // Region | Region payload.
 
 	configuration := kowabunga.NewConfiguration()
 	apiClient := kowabunga.NewAPIClient(configuration)

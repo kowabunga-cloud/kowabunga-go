@@ -3,7 +3,7 @@ Kowabunga API
 
 Kvm Orchestrator With A BUNch of Goods Added
 
-API version: 0.53.1
+API version: 0.53.2
 Contact: maintainers@kowabunga.cloud
 */
 
@@ -28,6 +28,8 @@ type Region struct {
 	Name string `json:"name"`
 	// The region description.
 	Description *string `json:"description,omitempty"`
+	// Region domain name (e.g. myregion.kowabunga.acme.com).
+	Domain string `json:"domain"`
 }
 
 type _Region Region
@@ -36,9 +38,10 @@ type _Region Region
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewRegion(name string) *Region {
+func NewRegion(name string, domain string) *Region {
 	this := Region{}
 	this.Name = name
+	this.Domain = domain
 	return &this
 }
 
@@ -138,6 +141,30 @@ func (o *Region) SetDescription(v string) {
 	o.Description = &v
 }
 
+// GetDomain returns the Domain field value
+func (o *Region) GetDomain() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Domain
+}
+
+// GetDomainOk returns a tuple with the Domain field value
+// and a boolean to check if the value has been set.
+func (o *Region) GetDomainOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Domain, true
+}
+
+// SetDomain sets field value
+func (o *Region) SetDomain(v string) {
+	o.Domain = v
+}
+
 func (o Region) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -155,6 +182,7 @@ func (o Region) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Description) {
 		toSerialize["description"] = o.Description
 	}
+	toSerialize["domain"] = o.Domain
 	return toSerialize, nil
 }
 
@@ -164,6 +192,7 @@ func (o *Region) UnmarshalJSON(data []byte) (err error) {
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
 		"name",
+		"domain",
 	}
 
 	allProperties := make(map[string]interface{})

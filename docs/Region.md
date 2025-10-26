@@ -7,12 +7,13 @@ Name | Type | Description | Notes
 **Id** | Pointer to **string** | The region ID (auto-generated). | [optional] 
 **Name** | **string** | The region name. | 
 **Description** | Pointer to **string** | The region description. | [optional] 
+**Domain** | **string** | Region domain name (e.g. myregion.kowabunga.acme.com). | 
 
 ## Methods
 
 ### NewRegion
 
-`func NewRegion(name string, ) *Region`
+`func NewRegion(name string, domain string, ) *Region`
 
 NewRegion instantiates a new Region object
 This constructor will assign default values to properties that have it defined,
@@ -96,6 +97,26 @@ SetDescription sets Description field to given value.
 `func (o *Region) HasDescription() bool`
 
 HasDescription returns a boolean if a field has been set.
+
+### GetDomain
+
+`func (o *Region) GetDomain() string`
+
+GetDomain returns the Domain field if non-nil, zero value otherwise.
+
+### GetDomainOk
+
+`func (o *Region) GetDomainOk() (*string, bool)`
+
+GetDomainOk returns a tuple with the Domain field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDomain
+
+`func (o *Region) SetDomain(v string)`
+
+SetDomain sets Domain field to given value.
+
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
