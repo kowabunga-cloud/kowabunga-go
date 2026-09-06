@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.54.0
+
+The Kowabunga project team is happy to announce the immediate availability of Kowabunga Go SDK v0.54.0.
+
 ## 0.53.2
 
 The Kowabunga project team is happy to announce the immediate availability of Kowabunga Go SDK v0.53.2.

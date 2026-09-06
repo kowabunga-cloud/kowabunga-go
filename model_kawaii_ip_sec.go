@@ -3,7 +3,7 @@ Kowabunga API
 
 Kvm Orchestrator With A BUNch of Goods Added
 
-API version: 0.53.2
+API version: 0.54.0
 Contact: maintainers@kowabunga.cloud
 */
 
@@ -60,6 +60,7 @@ type KawaiiIpSec struct {
 	Phase2IntegrityAlgorithm string `json:"phase2_integrity_algorithm"`
 	// The Kawaii IPsec connection phase 2 encryption algorithm..
 	Phase2EncryptionAlgorithm string `json:"phase2_encryption_algorithm"`
+	// The Kawaii IPsec connection firewall settings on the IPsec interface.
 	Firewall *KawaiiFirewall `json:"firewall,omitempty"`
 }
 

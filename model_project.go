@@ -3,7 +3,7 @@ Kowabunga API
 
 Kvm Orchestrator With A BUNch of Goods Added
 
-API version: 0.53.2
+API version: 0.54.0
 Contact: maintainers@kowabunga.cloud
 */
 
@@ -40,6 +40,7 @@ type Project struct {
 	Tags []string `json:"tags,omitempty"`
 	// A list of metadata to be associated to the project.
 	Metadatas []Metadata `json:"metadatas,omitempty"`
+	// The global project resource quotas (0 for unlimited).
 	Quotas *ProjectResources `json:"quotas,omitempty"`
 	// The assigned project VPC private subnets IDs (read-only).
 	PrivateSubnets []RegionSubnet `json:"private_subnets,omitempty"`

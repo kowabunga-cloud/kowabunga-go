@@ -3,7 +3,7 @@ Kowabunga API
 
 Kvm Orchestrator With A BUNch of Goods Added
 
-API version: 0.53.2
+API version: 0.54.0
 Contact: maintainers@kowabunga.cloud
 */
 
@@ -36,6 +36,7 @@ type StoragePool struct {
 	CephPort *int64 `json:"ceph_port,omitempty"`
 	// The libvirt secret UUID for CephX authentication.
 	CephSecretUuid *string `json:"ceph_secret_uuid,omitempty"`
+	// Cost associated to the storage pool.
 	Cost *Cost `json:"cost,omitempty"`
 	// a list of existing remote agents managing the storage pool.
 	Agents []string `json:"agents"`

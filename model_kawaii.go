@@ -3,7 +3,7 @@ Kowabunga API
 
 Kvm Orchestrator With A BUNch of Goods Added
 
-API version: 0.53.2
+API version: 0.54.0
 Contact: maintainers@kowabunga.cloud
 */
 
@@ -26,7 +26,9 @@ type Kawaii struct {
 	Name *string `json:"name,omitempty"`
 	// The Kawaii description.
 	Description *string `json:"description,omitempty"`
+	// The Kawaii list of assigned virtual IPs per-zone addresses (read-only).
 	Netip *KawaiiNetIp `json:"netip,omitempty"`
+	// The Kawaii firewall settings from/to public Internet).
 	Firewall *KawaiiFirewall `json:"firewall,omitempty"`
 	// The Kawaii list of NAT forwarding entries. Kawaii will forward public Internet traffic from all public virtual IPs to requested private subnet IP addresses.
 	Dnat []KawaiiDNatRule `json:"dnat,omitempty"`

@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **Name** | **string** | The Konvey (Kowabunga Network Load-Balancer) endpoint name. | 
 **Port** | **int64** | The port to be exposed. | 
 **Protocol** | **string** | The transport layer protocol to be exposed. | [default to "tcp"]
-**Backends** | [**KonveyBackends**](KonveyBackends.md) |  | 
+**Backends** | [**KonveyBackends**](KonveyBackends.md) | The Konvey (Kowabunga Network Load-Balancer) list of load-balanced backends. | 
 
 ## Methods
 

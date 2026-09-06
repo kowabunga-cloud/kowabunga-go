@@ -23,7 +23,7 @@ Name | Type | Description | Notes
 **Phase2DhGroupNumber** | **int64** | The Kawaii IPsec connection phase 2 Diffie Hellman IANA algorithm. | 
 **Phase2IntegrityAlgorithm** | **string** | The Kawaii IPsec connection phase 2 integrity algorithm.. | 
 **Phase2EncryptionAlgorithm** | **string** | The Kawaii IPsec connection phase 2 encryption algorithm.. | 
-**Firewall** | Pointer to [**KawaiiFirewall**](KawaiiFirewall.md) |  | [optional] 
+**Firewall** | Pointer to [**KawaiiFirewall**](KawaiiFirewall.md) | The Kawaii IPsec connection firewall settings on the IPsec interface. | [optional] 
 
 ## Methods
 

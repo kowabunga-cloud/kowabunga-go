@@ -3,7 +3,7 @@ Kowabunga API
 
 Kvm Orchestrator With A BUNch of Goods Added
 
-API version: 0.53.2
+API version: 0.54.0
 Contact: maintainers@kowabunga.cloud
 */
 
@@ -28,7 +28,9 @@ type Kaktus struct {
 	Name string `json:"name"`
 	// The Kaktus computing node description.
 	Description *string `json:"description,omitempty"`
+	// Cost associated to the Kaktus node's CPU resources.
 	CpuCost *Cost `json:"cpu_cost,omitempty"`
+	// Cost associated to the Kaktus node's memory resources.
 	MemoryCost *Cost `json:"memory_cost,omitempty"`
 	// The Kaktus node CPU resource over-commit ratio. Overcommitting CPU resources for VMs means allocating more virtual CPUs (vCPUs) to the virtual machines (VMs) than the physical cores available on the node. This can help optimize the utilization of the node CPU and increase the density of VMs per node.
 	OvercommitCpuRatio *int64 `json:"overcommit_cpu_ratio,omitempty"`

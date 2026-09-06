@@ -3,7 +3,7 @@ Kowabunga API
 
 Kvm Orchestrator With A BUNch of Goods Added
 
-API version: 0.53.2
+API version: 0.54.0
 Contact: maintainers@kowabunga.cloud
 */
 
@@ -22,6 +22,7 @@ var _ MappedNullable = &KaktusCaps{}
 
 // KaktusCaps A Kaktus computing node capability.
 type KaktusCaps struct {
+	// The Kaktus computing node CPU characteristics.
 	Cpu KaktusCPU `json:"cpu"`
 	// The Kaktus computing node memory size (bytes).
 	Memory int64 `json:"memory"`

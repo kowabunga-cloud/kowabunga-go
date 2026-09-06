@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Cpu** | [**KaktusCPU**](KaktusCPU.md) |  | 
+**Cpu** | [**KaktusCPU**](KaktusCPU.md) | The Kaktus computing node CPU characteristics. | 
 **Memory** | **int64** | The Kaktus computing node memory size (bytes). | 
 
 ## Methods

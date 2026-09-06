@@ -12,6 +12,7 @@ Name | Type | Description | Notes
 **Disk** | **int64** | The Kompute OS disk size (in bytes). | 
 **DataDisk** | Pointer to **int64** | The Kompute extra data disk size (in bytes). If unspecified, no extra data disk will be assigned. | [optional] [default to 0]
 **Ip** | Pointer to **string** | The Kompute assigned private IPv4 address (read-only). | [optional] 
+**Uefi** | Pointer to **bool** | enable UEFI secure firmware (vs. legacy BIOS). | [optional] [default to true]
 
 ## Methods
 
@@ -211,6 +212,31 @@ SetIp sets Ip field to given value.
 `func (o *Kompute) HasIp() bool`
 
 HasIp returns a boolean if a field has been set.
+
+### GetUefi
+
+`func (o *Kompute) GetUefi() bool`
+
+GetUefi returns the Uefi field if non-nil, zero value otherwise.
+
+### GetUefiOk
+
+`func (o *Kompute) GetUefiOk() (*bool, bool)`
+
+GetUefiOk returns a tuple with the Uefi field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetUefi
+
+`func (o *Kompute) SetUefi(v bool)`
+
+SetUefi sets Uefi field to given value.
+
+### HasUefi
+
+`func (o *Kompute) HasUefi() bool`
+
+HasUefi returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

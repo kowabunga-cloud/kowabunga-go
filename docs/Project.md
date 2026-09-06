@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 **BootstrapPubkey** | Pointer to **string** | Default public SSH key, to be associated to bootstrap user. Will use Kowabunga&#39;s default configuration one if unspecified. | [optional] 
 **Tags** | Pointer to **[]string** | A list of tags to be associated to the project. | [optional] 
 **Metadatas** | Pointer to [**[]Metadata**](Metadata.md) | A list of metadata to be associated to the project. | [optional] 
-**Quotas** | Pointer to [**ProjectResources**](ProjectResources.md) |  | [optional] 
+**Quotas** | Pointer to [**ProjectResources**](ProjectResources.md) | The global project resource quotas (0 for unlimited). | [optional] 
 **PrivateSubnets** | Pointer to [**[]RegionSubnet**](RegionSubnet.md) | The assigned project VPC private subnets IDs (read-only). | [optional] 
 **ReservedVrrpIds** | Pointer to **[]int32** | The list of VRRP IDs used by -as-a-service resources within the project virtual network (read-only). Should your application use VRRP for service redundancy, you should use different IDs to prevent issues.. | [optional] 
 **Teams** | **[]string** | A list of user teams allowed to administrate the project (i.e. capable of managing internal resources). | 

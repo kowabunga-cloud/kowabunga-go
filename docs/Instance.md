@@ -11,6 +11,7 @@ Name | Type | Description | Notes
 **Vcpus** | **int64** | The virtual machine instance number of vCPUs. | 
 **Adapters** | Pointer to **[]string** | a list of existing network adapters to be connected to the instance. | [optional] 
 **Volumes** | Pointer to **[]string** | volumes list of existing storage volumes (i.e. disks) to be connected to the instance. | [optional] 
+**Uefi** | Pointer to **bool** | enable UEFI secure firmware (vs. legacy BIOS). | [optional] [default to true]
 
 ## Methods
 
@@ -190,6 +191,31 @@ SetVolumes sets Volumes field to given value.
 `func (o *Instance) HasVolumes() bool`
 
 HasVolumes returns a boolean if a field has been set.
+
+### GetUefi
+
+`func (o *Instance) GetUefi() bool`
+
+GetUefi returns the Uefi field if non-nil, zero value otherwise.
+
+### GetUefiOk
+
+`func (o *Instance) GetUefiOk() (*bool, bool)`
+
+GetUefiOk returns a tuple with the Uefi field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetUefi
+
+`func (o *Instance) SetUefi(v bool)`
+
+SetUefi sets Uefi field to given value.
+
+### HasUefi
+
+`func (o *Instance) HasUefi() bool`
+
+HasUefi returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

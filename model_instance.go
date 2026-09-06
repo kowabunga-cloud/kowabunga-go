@@ -3,7 +3,7 @@ Kowabunga API
 
 Kvm Orchestrator With A BUNch of Goods Added
 
-API version: 0.53.2
+API version: 0.54.0
 Contact: maintainers@kowabunga.cloud
 */
 
@@ -36,6 +36,8 @@ type Instance struct {
 	Adapters []string `json:"adapters,omitempty"`
 	// volumes list of existing storage volumes (i.e. disks) to be connected to the instance.
 	Volumes []string `json:"volumes,omitempty"`
+	// enable UEFI secure firmware (vs. legacy BIOS).
+	Uefi *bool `json:"uefi,omitempty"`
 }
 
 type _Instance Instance
@@ -49,6 +51,8 @@ func NewInstance(name string, memory int64, vcpus int64) *Instance {
 	this.Name = name
 	this.Memory = memory
 	this.Vcpus = vcpus
+	var uefi bool = true
+	this.Uefi = &uefi
 	return &this
 }
 
@@ -57,6 +61,8 @@ func NewInstance(name string, memory int64, vcpus int64) *Instance {
 // but it doesn't guarantee that properties required by API are set
 func NewInstanceWithDefaults() *Instance {
 	this := Instance{}
+	var uefi bool = true
+	this.Uefi = &uefi
 	return &this
 }
 
@@ -260,6 +266,38 @@ func (o *Instance) SetVolumes(v []string) {
 	o.Volumes = v
 }
 
+// GetUefi returns the Uefi field value if set, zero value otherwise.
+func (o *Instance) GetUefi() bool {
+	if o == nil || IsNil(o.Uefi) {
+		var ret bool
+		return ret
+	}
+	return *o.Uefi
+}
+
+// GetUefiOk returns a tuple with the Uefi field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Instance) GetUefiOk() (*bool, bool) {
+	if o == nil || IsNil(o.Uefi) {
+		return nil, false
+	}
+	return o.Uefi, true
+}
+
+// HasUefi returns a boolean if a field has been set.
+func (o *Instance) HasUefi() bool {
+	if o != nil && !IsNil(o.Uefi) {
+		return true
+	}
+
+	return false
+}
+
+// SetUefi gets a reference to the given bool and assigns it to the Uefi field.
+func (o *Instance) SetUefi(v bool) {
+	o.Uefi = &v
+}
+
 func (o Instance) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -284,6 +322,9 @@ func (o Instance) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.Volumes) {
 		toSerialize["volumes"] = o.Volumes
+	}
+	if !IsNil(o.Uefi) {
+		toSerialize["uefi"] = o.Uefi
 	}
 	return toSerialize, nil
 }

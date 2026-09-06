@@ -3,7 +3,7 @@ Kowabunga API
 
 Kvm Orchestrator With A BUNch of Goods Added
 
-API version: 0.53.2
+API version: 0.54.0
 Contact: maintainers@kowabunga.cloud
 */
 
@@ -38,6 +38,8 @@ type Kompute struct {
 	DataDisk *int64 `json:"data_disk,omitempty"`
 	// The Kompute assigned private IPv4 address (read-only).
 	Ip *string `json:"ip,omitempty"`
+	// enable UEFI secure firmware (vs. legacy BIOS).
+	Uefi *bool `json:"uefi,omitempty"`
 }
 
 type _Kompute Kompute
@@ -54,6 +56,8 @@ func NewKompute(name string, memory int64, vcpus int64, disk int64) *Kompute {
 	this.Disk = disk
 	var dataDisk int64 = 0
 	this.DataDisk = &dataDisk
+	var uefi bool = true
+	this.Uefi = &uefi
 	return &this
 }
 
@@ -64,6 +68,8 @@ func NewKomputeWithDefaults() *Kompute {
 	this := Kompute{}
 	var dataDisk int64 = 0
 	this.DataDisk = &dataDisk
+	var uefi bool = true
+	this.Uefi = &uefi
 	return &this
 }
 
@@ -291,6 +297,38 @@ func (o *Kompute) SetIp(v string) {
 	o.Ip = &v
 }
 
+// GetUefi returns the Uefi field value if set, zero value otherwise.
+func (o *Kompute) GetUefi() bool {
+	if o == nil || IsNil(o.Uefi) {
+		var ret bool
+		return ret
+	}
+	return *o.Uefi
+}
+
+// GetUefiOk returns a tuple with the Uefi field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Kompute) GetUefiOk() (*bool, bool) {
+	if o == nil || IsNil(o.Uefi) {
+		return nil, false
+	}
+	return o.Uefi, true
+}
+
+// HasUefi returns a boolean if a field has been set.
+func (o *Kompute) HasUefi() bool {
+	if o != nil && !IsNil(o.Uefi) {
+		return true
+	}
+
+	return false
+}
+
+// SetUefi gets a reference to the given bool and assigns it to the Uefi field.
+func (o *Kompute) SetUefi(v bool) {
+	o.Uefi = &v
+}
+
 func (o Kompute) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -316,6 +354,9 @@ func (o Kompute) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.Ip) {
 		toSerialize["ip"] = o.Ip
+	}
+	if !IsNil(o.Uefi) {
+		toSerialize["uefi"] = o.Uefi
 	}
 	return toSerialize, nil
 }
