@@ -4,8 +4,10 @@ All URIs are relative to *https://your_kowabunga_kahuna_server/api/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**CommitKomputeKMotion**](KomputeAPI.md#CommitKomputeKMotion) | **Patch** /kompute/{komputeId}/kmotion/commit | 
 [**DeleteKompute**](KomputeAPI.md#DeleteKompute) | **Delete** /kompute/{komputeId} | 
 [**ListKomputes**](KomputeAPI.md#ListKomputes) | **Get** /kompute | 
+[**PlanKomputeKMotion**](KomputeAPI.md#PlanKomputeKMotion) | **Post** /kompute/{komputeId}/kmotion/plan | 
 [**ReadKompute**](KomputeAPI.md#ReadKompute) | **Get** /kompute/{komputeId} | 
 [**ReadKomputeState**](KomputeAPI.md#ReadKomputeState) | **Get** /kompute/{komputeId}/state | 
 [**RebootKompute**](KomputeAPI.md#RebootKompute) | **Patch** /kompute/{komputeId}/reboot | 
@@ -17,6 +19,76 @@ Method | HTTP request | Description
 [**SuspendKompute**](KomputeAPI.md#SuspendKompute) | **Patch** /kompute/{komputeId}/suspend | 
 [**UpdateKompute**](KomputeAPI.md#UpdateKompute) | **Put** /kompute/{komputeId} | 
 
+
+
+## CommitKomputeKMotion
+
+> CommitKomputeKMotion(ctx, komputeId).KMotionCommitRequest(kMotionCommitRequest).Execute()
+
+
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	kowabunga "github.com/kowabunga-cloud/kowabunga-go"
+)
+
+func main() {
+	komputeId := "komputeId_example" // string | The ID of the Kompute.
+	kMotionCommitRequest := *kowabunga.NewKMotionCommitRequest("Plan_example") // KMotionCommitRequest | KMotionCommitRequest payload.
+
+	configuration := kowabunga.NewConfiguration()
+	apiClient := kowabunga.NewAPIClient(configuration)
+	r, err := apiClient.KomputeAPI.CommitKomputeKMotion(context.Background(), komputeId).KMotionCommitRequest(kMotionCommitRequest).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `KomputeAPI.CommitKomputeKMotion``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**komputeId** | **string** | The ID of the Kompute. | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCommitKomputeKMotionRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **kMotionCommitRequest** | [**KMotionCommitRequest**](KMotionCommitRequest.md) | KMotionCommitRequest payload. | 
+
+### Return type
+
+ (empty response body)
+
+### Authorization
+
+[ApiKeyAuth](../README.md#ApiKeyAuth), [BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
 
 
 ## DeleteKompute
@@ -141,6 +213,78 @@ Other parameters are passed through a pointer to a apiListKomputesRequest struct
 ### HTTP request headers
 
 - **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## PlanKomputeKMotion
+
+> KMotionPlan PlanKomputeKMotion(ctx, komputeId).KMotionPlanRequest(kMotionPlanRequest).Execute()
+
+
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	kowabunga "github.com/kowabunga-cloud/kowabunga-go"
+)
+
+func main() {
+	komputeId := "komputeId_example" // string | The ID of the Kompute.
+	kMotionPlanRequest := *kowabunga.NewKMotionPlanRequest() // KMotionPlanRequest | KMotionPlanRequest payload.
+
+	configuration := kowabunga.NewConfiguration()
+	apiClient := kowabunga.NewAPIClient(configuration)
+	resp, r, err := apiClient.KomputeAPI.PlanKomputeKMotion(context.Background(), komputeId).KMotionPlanRequest(kMotionPlanRequest).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `KomputeAPI.PlanKomputeKMotion``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `PlanKomputeKMotion`: KMotionPlan
+	fmt.Fprintf(os.Stdout, "Response from `KomputeAPI.PlanKomputeKMotion`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**komputeId** | **string** | The ID of the Kompute. | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiPlanKomputeKMotionRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **kMotionPlanRequest** | [**KMotionPlanRequest**](KMotionPlanRequest.md) | KMotionPlanRequest payload. | 
+
+### Return type
+
+[**KMotionPlan**](KMotionPlan.md)
+
+### Authorization
+
+[ApiKeyAuth](../README.md#ApiKeyAuth), [BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)

@@ -4,8 +4,10 @@ All URIs are relative to *https://your_kowabunga_kahuna_server/api/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**CommitInstanceKMotion**](InstanceAPI.md#CommitInstanceKMotion) | **Patch** /instance/{instanceId}/kmotion/commit | 
 [**DeleteInstance**](InstanceAPI.md#DeleteInstance) | **Delete** /instance/{instanceId} | 
 [**ListInstances**](InstanceAPI.md#ListInstances) | **Get** /instance | 
+[**PlanInstanceKMotion**](InstanceAPI.md#PlanInstanceKMotion) | **Post** /instance/{instanceId}/kmotion/plan | 
 [**ReadInstance**](InstanceAPI.md#ReadInstance) | **Get** /instance/{instanceId} | 
 [**ReadInstanceRemoteConnection**](InstanceAPI.md#ReadInstanceRemoteConnection) | **Get** /instance/{instanceId}/connect | 
 [**ReadInstanceState**](InstanceAPI.md#ReadInstanceState) | **Get** /instance/{instanceId}/state | 
@@ -18,6 +20,76 @@ Method | HTTP request | Description
 [**SuspendInstance**](InstanceAPI.md#SuspendInstance) | **Patch** /instance/{instanceId}/suspend | 
 [**UpdateInstance**](InstanceAPI.md#UpdateInstance) | **Put** /instance/{instanceId} | 
 
+
+
+## CommitInstanceKMotion
+
+> CommitInstanceKMotion(ctx, instanceId).KMotionCommitRequest(kMotionCommitRequest).Execute()
+
+
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	kowabunga "github.com/kowabunga-cloud/kowabunga-go"
+)
+
+func main() {
+	instanceId := "instanceId_example" // string | The ID of the virtual machine instance.
+	kMotionCommitRequest := *kowabunga.NewKMotionCommitRequest("Plan_example") // KMotionCommitRequest | KMotionCommitRequest payload.
+
+	configuration := kowabunga.NewConfiguration()
+	apiClient := kowabunga.NewAPIClient(configuration)
+	r, err := apiClient.InstanceAPI.CommitInstanceKMotion(context.Background(), instanceId).KMotionCommitRequest(kMotionCommitRequest).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `InstanceAPI.CommitInstanceKMotion``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**instanceId** | **string** | The ID of the virtual machine instance. | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCommitInstanceKMotionRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **kMotionCommitRequest** | [**KMotionCommitRequest**](KMotionCommitRequest.md) | KMotionCommitRequest payload. | 
+
+### Return type
+
+ (empty response body)
+
+### Authorization
+
+[ApiKeyAuth](../README.md#ApiKeyAuth), [BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
 
 
 ## DeleteInstance
@@ -142,6 +214,78 @@ Other parameters are passed through a pointer to a apiListInstancesRequest struc
 ### HTTP request headers
 
 - **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## PlanInstanceKMotion
+
+> KMotionPlan PlanInstanceKMotion(ctx, instanceId).KMotionPlanRequest(kMotionPlanRequest).Execute()
+
+
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	kowabunga "github.com/kowabunga-cloud/kowabunga-go"
+)
+
+func main() {
+	instanceId := "instanceId_example" // string | The ID of the virtual machine instance.
+	kMotionPlanRequest := *kowabunga.NewKMotionPlanRequest() // KMotionPlanRequest | KMotionPlanRequest payload.
+
+	configuration := kowabunga.NewConfiguration()
+	apiClient := kowabunga.NewAPIClient(configuration)
+	resp, r, err := apiClient.InstanceAPI.PlanInstanceKMotion(context.Background(), instanceId).KMotionPlanRequest(kMotionPlanRequest).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `InstanceAPI.PlanInstanceKMotion``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `PlanInstanceKMotion`: KMotionPlan
+	fmt.Fprintf(os.Stdout, "Response from `InstanceAPI.PlanInstanceKMotion`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**instanceId** | **string** | The ID of the virtual machine instance. | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiPlanInstanceKMotionRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **kMotionPlanRequest** | [**KMotionPlanRequest**](KMotionPlanRequest.md) | KMotionPlanRequest payload. | 
+
+### Return type
+
+[**KMotionPlan**](KMotionPlan.md)
+
+### Authorization
+
+[ApiKeyAuth](../README.md#ApiKeyAuth), [BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)

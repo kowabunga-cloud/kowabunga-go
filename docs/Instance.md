@@ -11,7 +11,9 @@ Name | Type | Description | Notes
 **Vcpus** | **int64** | The virtual machine instance number of vCPUs. | 
 **Adapters** | Pointer to **[]string** | a list of existing network adapters to be connected to the instance. | [optional] 
 **Volumes** | Pointer to **[]string** | volumes list of existing storage volumes (i.e. disks) to be connected to the instance. | [optional] 
+**Kwarantines** | Pointer to **[]string** | An optional list of existing Kwarantine anti-affinity group IDs. Only considered at instance creation time, to elect an initial host consistent with the referenced groups policies and register the instance as one of their members. Read-only afterwards, always reflecting current membership, which should be managed going forward via the Kwarantine webservices. | [optional] 
 **Uefi** | Pointer to **bool** | enable UEFI secure firmware (vs. legacy BIOS). | [optional] [default to true]
+**KmotionEnabled** | Pointer to **bool** | Whether kMotion (live/cold host migration) is enabled for the virtual machine instance. When disabled, the instance remains bound to its original hosting node. | [optional] [default to true]
 
 ## Methods
 
@@ -192,6 +194,31 @@ SetVolumes sets Volumes field to given value.
 
 HasVolumes returns a boolean if a field has been set.
 
+### GetKwarantines
+
+`func (o *Instance) GetKwarantines() []string`
+
+GetKwarantines returns the Kwarantines field if non-nil, zero value otherwise.
+
+### GetKwarantinesOk
+
+`func (o *Instance) GetKwarantinesOk() (*[]string, bool)`
+
+GetKwarantinesOk returns a tuple with the Kwarantines field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetKwarantines
+
+`func (o *Instance) SetKwarantines(v []string)`
+
+SetKwarantines sets Kwarantines field to given value.
+
+### HasKwarantines
+
+`func (o *Instance) HasKwarantines() bool`
+
+HasKwarantines returns a boolean if a field has been set.
+
 ### GetUefi
 
 `func (o *Instance) GetUefi() bool`
@@ -216,6 +243,31 @@ SetUefi sets Uefi field to given value.
 `func (o *Instance) HasUefi() bool`
 
 HasUefi returns a boolean if a field has been set.
+
+### GetKmotionEnabled
+
+`func (o *Instance) GetKmotionEnabled() bool`
+
+GetKmotionEnabled returns the KmotionEnabled field if non-nil, zero value otherwise.
+
+### GetKmotionEnabledOk
+
+`func (o *Instance) GetKmotionEnabledOk() (*bool, bool)`
+
+GetKmotionEnabledOk returns a tuple with the KmotionEnabled field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetKmotionEnabled
+
+`func (o *Instance) SetKmotionEnabled(v bool)`
+
+SetKmotionEnabled sets KmotionEnabled field to given value.
+
+### HasKmotionEnabled
+
+`func (o *Instance) HasKmotionEnabled() bool`
+
+HasKmotionEnabled returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

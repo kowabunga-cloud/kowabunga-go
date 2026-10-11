@@ -3,7 +3,7 @@ Kowabunga API
 
 Kvm Orchestrator With A BUNch of Goods Added
 
-API version: 0.54.0
+API version: 0.57.1
 Contact: maintainers@kowabunga.cloud
 */
 
@@ -38,6 +38,8 @@ type Kaktus struct {
 	OvercommitMemoryRatio *int64 `json:"overcommit_memory_ratio,omitempty"`
 	// a list of existing remote agents managing the Kaktus node.
 	Agents []string `json:"agents"`
+	// Whether the Kaktus node is under maintenance. A node under maintenance keeps running its existing instances but is excluded from scheduling of newly created workloads.
+	Maintenance *bool `json:"maintenance,omitempty"`
 }
 
 type _Kaktus Kaktus
@@ -54,6 +56,8 @@ func NewKaktus(name string, agents []string) *Kaktus {
 	var overcommitMemoryRatio int64 = 2
 	this.OvercommitMemoryRatio = &overcommitMemoryRatio
 	this.Agents = agents
+	var maintenance bool = false
+	this.Maintenance = &maintenance
 	return &this
 }
 
@@ -66,6 +70,8 @@ func NewKaktusWithDefaults() *Kaktus {
 	this.OvercommitCpuRatio = &overcommitCpuRatio
 	var overcommitMemoryRatio int64 = 2
 	this.OvercommitMemoryRatio = &overcommitMemoryRatio
+	var maintenance bool = false
+	this.Maintenance = &maintenance
 	return &this
 }
 
@@ -309,6 +315,38 @@ func (o *Kaktus) SetAgents(v []string) {
 	o.Agents = v
 }
 
+// GetMaintenance returns the Maintenance field value if set, zero value otherwise.
+func (o *Kaktus) GetMaintenance() bool {
+	if o == nil || IsNil(o.Maintenance) {
+		var ret bool
+		return ret
+	}
+	return *o.Maintenance
+}
+
+// GetMaintenanceOk returns a tuple with the Maintenance field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Kaktus) GetMaintenanceOk() (*bool, bool) {
+	if o == nil || IsNil(o.Maintenance) {
+		return nil, false
+	}
+	return o.Maintenance, true
+}
+
+// HasMaintenance returns a boolean if a field has been set.
+func (o *Kaktus) HasMaintenance() bool {
+	if o != nil && !IsNil(o.Maintenance) {
+		return true
+	}
+
+	return false
+}
+
+// SetMaintenance gets a reference to the given bool and assigns it to the Maintenance field.
+func (o *Kaktus) SetMaintenance(v bool) {
+	o.Maintenance = &v
+}
+
 func (o Kaktus) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -339,6 +377,9 @@ func (o Kaktus) ToMap() (map[string]interface{}, error) {
 		toSerialize["overcommit_memory_ratio"] = o.OvercommitMemoryRatio
 	}
 	toSerialize["agents"] = o.Agents
+	if !IsNil(o.Maintenance) {
+		toSerialize["maintenance"] = o.Maintenance
+	}
 	return toSerialize, nil
 }
 

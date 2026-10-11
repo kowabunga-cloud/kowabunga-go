@@ -3,7 +3,7 @@ Kowabunga API
 
 Kvm Orchestrator With A BUNch of Goods Added
 
-API version: 0.54.0
+API version: 0.57.1
 Contact: maintainers@kowabunga.cloud
 */
 
@@ -36,8 +36,12 @@ type Instance struct {
 	Adapters []string `json:"adapters,omitempty"`
 	// volumes list of existing storage volumes (i.e. disks) to be connected to the instance.
 	Volumes []string `json:"volumes,omitempty"`
+	// An optional list of existing Kwarantine anti-affinity group IDs. Only considered at instance creation time, to elect an initial host consistent with the referenced groups policies and register the instance as one of their members. Read-only afterwards, always reflecting current membership, which should be managed going forward via the Kwarantine webservices.
+	Kwarantines []string `json:"kwarantines,omitempty"`
 	// enable UEFI secure firmware (vs. legacy BIOS).
 	Uefi *bool `json:"uefi,omitempty"`
+	// Whether kMotion (live/cold host migration) is enabled for the virtual machine instance. When disabled, the instance remains bound to its original hosting node.
+	KmotionEnabled *bool `json:"kmotion_enabled,omitempty"`
 }
 
 type _Instance Instance
@@ -53,6 +57,8 @@ func NewInstance(name string, memory int64, vcpus int64) *Instance {
 	this.Vcpus = vcpus
 	var uefi bool = true
 	this.Uefi = &uefi
+	var kmotionEnabled bool = true
+	this.KmotionEnabled = &kmotionEnabled
 	return &this
 }
 
@@ -63,6 +69,8 @@ func NewInstanceWithDefaults() *Instance {
 	this := Instance{}
 	var uefi bool = true
 	this.Uefi = &uefi
+	var kmotionEnabled bool = true
+	this.KmotionEnabled = &kmotionEnabled
 	return &this
 }
 
@@ -266,6 +274,38 @@ func (o *Instance) SetVolumes(v []string) {
 	o.Volumes = v
 }
 
+// GetKwarantines returns the Kwarantines field value if set, zero value otherwise.
+func (o *Instance) GetKwarantines() []string {
+	if o == nil || IsNil(o.Kwarantines) {
+		var ret []string
+		return ret
+	}
+	return o.Kwarantines
+}
+
+// GetKwarantinesOk returns a tuple with the Kwarantines field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Instance) GetKwarantinesOk() ([]string, bool) {
+	if o == nil || IsNil(o.Kwarantines) {
+		return nil, false
+	}
+	return o.Kwarantines, true
+}
+
+// HasKwarantines returns a boolean if a field has been set.
+func (o *Instance) HasKwarantines() bool {
+	if o != nil && !IsNil(o.Kwarantines) {
+		return true
+	}
+
+	return false
+}
+
+// SetKwarantines gets a reference to the given []string and assigns it to the Kwarantines field.
+func (o *Instance) SetKwarantines(v []string) {
+	o.Kwarantines = v
+}
+
 // GetUefi returns the Uefi field value if set, zero value otherwise.
 func (o *Instance) GetUefi() bool {
 	if o == nil || IsNil(o.Uefi) {
@@ -298,6 +338,38 @@ func (o *Instance) SetUefi(v bool) {
 	o.Uefi = &v
 }
 
+// GetKmotionEnabled returns the KmotionEnabled field value if set, zero value otherwise.
+func (o *Instance) GetKmotionEnabled() bool {
+	if o == nil || IsNil(o.KmotionEnabled) {
+		var ret bool
+		return ret
+	}
+	return *o.KmotionEnabled
+}
+
+// GetKmotionEnabledOk returns a tuple with the KmotionEnabled field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Instance) GetKmotionEnabledOk() (*bool, bool) {
+	if o == nil || IsNil(o.KmotionEnabled) {
+		return nil, false
+	}
+	return o.KmotionEnabled, true
+}
+
+// HasKmotionEnabled returns a boolean if a field has been set.
+func (o *Instance) HasKmotionEnabled() bool {
+	if o != nil && !IsNil(o.KmotionEnabled) {
+		return true
+	}
+
+	return false
+}
+
+// SetKmotionEnabled gets a reference to the given bool and assigns it to the KmotionEnabled field.
+func (o *Instance) SetKmotionEnabled(v bool) {
+	o.KmotionEnabled = &v
+}
+
 func (o Instance) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -323,8 +395,14 @@ func (o Instance) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Volumes) {
 		toSerialize["volumes"] = o.Volumes
 	}
+	if !IsNil(o.Kwarantines) {
+		toSerialize["kwarantines"] = o.Kwarantines
+	}
 	if !IsNil(o.Uefi) {
 		toSerialize["uefi"] = o.Uefi
+	}
+	if !IsNil(o.KmotionEnabled) {
+		toSerialize["kmotion_enabled"] = o.KmotionEnabled
 	}
 	return toSerialize, nil
 }

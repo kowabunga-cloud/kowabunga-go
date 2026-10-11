@@ -48,6 +48,35 @@ func Test_kowabunga_ProjectAPIService(t *testing.T) {
 
 	})
 
+	t.Run("Test ProjectAPIService CreateProjectKwarantine", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var projectId string
+
+		resp, httpRes, err := apiClient.ProjectAPI.CreateProjectKwarantine(context.Background(), projectId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test ProjectAPIService CreateProjectRegionInstance", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var projectId string
+		var regionId string
+
+		resp, httpRes, err := apiClient.ProjectAPI.CreateProjectRegionInstance(context.Background(), projectId, regionId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 	t.Run("Test ProjectAPIService CreateProjectRegionKawaii", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
@@ -56,6 +85,21 @@ func Test_kowabunga_ProjectAPIService(t *testing.T) {
 		var regionId string
 
 		resp, httpRes, err := apiClient.ProjectAPI.CreateProjectRegionKawaii(context.Background(), projectId, regionId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test ProjectAPIService CreateProjectRegionKompute", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var projectId string
+		var regionId string
+
+		resp, httpRes, err := apiClient.ProjectAPI.CreateProjectRegionKompute(context.Background(), projectId, regionId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -180,6 +224,35 @@ func Test_kowabunga_ProjectAPIService(t *testing.T) {
 
 	})
 
+	t.Run("Test ProjectAPIService ListProjectKwarantines", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var projectId string
+
+		resp, httpRes, err := apiClient.ProjectAPI.ListProjectKwarantines(context.Background(), projectId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test ProjectAPIService ListProjectRegionInstances", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var projectId string
+		var regionId string
+
+		resp, httpRes, err := apiClient.ProjectAPI.ListProjectRegionInstances(context.Background(), projectId, regionId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 	t.Run("Test ProjectAPIService ListProjectRegionKawaiis", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
@@ -188,6 +261,21 @@ func Test_kowabunga_ProjectAPIService(t *testing.T) {
 		var regionId string
 
 		resp, httpRes, err := apiClient.ProjectAPI.ListProjectRegionKawaiis(context.Background(), projectId, regionId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test ProjectAPIService ListProjectRegionKomputes", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var projectId string
+		var regionId string
+
+		resp, httpRes, err := apiClient.ProjectAPI.ListProjectRegionKomputes(context.Background(), projectId, regionId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)

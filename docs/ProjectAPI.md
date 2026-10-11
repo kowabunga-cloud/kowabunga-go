@@ -6,7 +6,10 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**CreateProject**](ProjectAPI.md#CreateProject) | **Post** /project | 
 [**CreateProjectDnsRecord**](ProjectAPI.md#CreateProjectDnsRecord) | **Post** /project/{projectId}/record | 
+[**CreateProjectKwarantine**](ProjectAPI.md#CreateProjectKwarantine) | **Post** /project/{projectId}/kwarantine | 
+[**CreateProjectRegionInstance**](ProjectAPI.md#CreateProjectRegionInstance) | **Post** /project/{projectId}/region/{regionId}/instance | 
 [**CreateProjectRegionKawaii**](ProjectAPI.md#CreateProjectRegionKawaii) | **Post** /project/{projectId}/region/{regionId}/kawaii | 
+[**CreateProjectRegionKompute**](ProjectAPI.md#CreateProjectRegionKompute) | **Post** /project/{projectId}/region/{regionId}/kompute | 
 [**CreateProjectRegionKonvey**](ProjectAPI.md#CreateProjectRegionKonvey) | **Post** /project/{projectId}/region/{regionId}/konvey | 
 [**CreateProjectRegionKylo**](ProjectAPI.md#CreateProjectRegionKylo) | **Post** /project/{projectId}/region/{regionId}/kylo | 
 [**CreateProjectRegionVolume**](ProjectAPI.md#CreateProjectRegionVolume) | **Post** /project/{projectId}/region/{regionId}/volume | 
@@ -15,7 +18,10 @@ Method | HTTP request | Description
 [**CreateProjectZoneKonvey**](ProjectAPI.md#CreateProjectZoneKonvey) | **Post** /project/{projectId}/zone/{zoneId}/konvey | 
 [**DeleteProject**](ProjectAPI.md#DeleteProject) | **Delete** /project/{projectId} | 
 [**ListProjectDnsRecords**](ProjectAPI.md#ListProjectDnsRecords) | **Get** /project/{projectId}/records | 
+[**ListProjectKwarantines**](ProjectAPI.md#ListProjectKwarantines) | **Get** /project/{projectId}/kwarantines | 
+[**ListProjectRegionInstances**](ProjectAPI.md#ListProjectRegionInstances) | **Get** /project/{projectId}/region/{regionId}/instances | 
 [**ListProjectRegionKawaiis**](ProjectAPI.md#ListProjectRegionKawaiis) | **Get** /project/{projectId}/region/{regionId}/kawaiis | 
+[**ListProjectRegionKomputes**](ProjectAPI.md#ListProjectRegionKomputes) | **Get** /project/{projectId}/region/{regionId}/komputes | 
 [**ListProjectRegionKonveys**](ProjectAPI.md#ListProjectRegionKonveys) | **Get** /project/{projectId}/region/{regionId}/konveys | 
 [**ListProjectRegionKylos**](ProjectAPI.md#ListProjectRegionKylos) | **Get** /project/{projectId}/region/{regionId}/kylo | 
 [**ListProjectRegionVolumes**](ProjectAPI.md#ListProjectRegionVolumes) | **Get** /project/{projectId}/region/{regionId}/volumes | 
@@ -170,6 +176,153 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## CreateProjectKwarantine
+
+> Kwarantine CreateProjectKwarantine(ctx, projectId).Kwarantine(kwarantine).Execute()
+
+
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	kowabunga "github.com/kowabunga-cloud/kowabunga-go"
+)
+
+func main() {
+	projectId := "projectId_example" // string | The ID of the project.
+	kwarantine := *kowabunga.NewKwarantine("Name_example") // Kwarantine | Kwarantine payload.
+
+	configuration := kowabunga.NewConfiguration()
+	apiClient := kowabunga.NewAPIClient(configuration)
+	resp, r, err := apiClient.ProjectAPI.CreateProjectKwarantine(context.Background(), projectId).Kwarantine(kwarantine).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `ProjectAPI.CreateProjectKwarantine``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `CreateProjectKwarantine`: Kwarantine
+	fmt.Fprintf(os.Stdout, "Response from `ProjectAPI.CreateProjectKwarantine`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**projectId** | **string** | The ID of the project. | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreateProjectKwarantineRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **kwarantine** | [**Kwarantine**](Kwarantine.md) | Kwarantine payload. | 
+
+### Return type
+
+[**Kwarantine**](Kwarantine.md)
+
+### Authorization
+
+[ApiKeyAuth](../README.md#ApiKeyAuth), [BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## CreateProjectRegionInstance
+
+> Instance CreateProjectRegionInstance(ctx, projectId, regionId).Instance(instance).Execute()
+
+
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	kowabunga "github.com/kowabunga-cloud/kowabunga-go"
+)
+
+func main() {
+	projectId := "projectId_example" // string | The ID of the project.
+	regionId := "regionId_example" // string | The ID of the region.
+	instance := *kowabunga.NewInstance("Name_example", int64(123), int64(123)) // Instance | Instance payload.
+
+	configuration := kowabunga.NewConfiguration()
+	apiClient := kowabunga.NewAPIClient(configuration)
+	resp, r, err := apiClient.ProjectAPI.CreateProjectRegionInstance(context.Background(), projectId, regionId).Instance(instance).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `ProjectAPI.CreateProjectRegionInstance``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `CreateProjectRegionInstance`: Instance
+	fmt.Fprintf(os.Stdout, "Response from `ProjectAPI.CreateProjectRegionInstance`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**projectId** | **string** | The ID of the project. | 
+**regionId** | **string** | The ID of the region. | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreateProjectRegionInstanceRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+ **instance** | [**Instance**](Instance.md) | Instance payload. | 
+
+### Return type
+
+[**Instance**](Instance.md)
+
+### Authorization
+
+[ApiKeyAuth](../README.md#ApiKeyAuth), [BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## CreateProjectRegionKawaii
 
 > Kawaii CreateProjectRegionKawaii(ctx, projectId, regionId).Kawaii(kawaii).Execute()
@@ -230,6 +383,87 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**Kawaii**](Kawaii.md)
+
+### Authorization
+
+[ApiKeyAuth](../README.md#ApiKeyAuth), [BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## CreateProjectRegionKompute
+
+> Kompute CreateProjectRegionKompute(ctx, projectId, regionId).Kompute(kompute).PoolId(poolId).TemplateId(templateId).Public(public).Execute()
+
+
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	kowabunga "github.com/kowabunga-cloud/kowabunga-go"
+)
+
+func main() {
+	projectId := "projectId_example" // string | The ID of the project.
+	regionId := "regionId_example" // string | The ID of the region.
+	kompute := *kowabunga.NewKompute("Name_example", int64(123), int64(123), int64(123)) // Kompute | Kompute payload.
+	poolId := "poolId_example" // string | Storage pool ID (optional, region's default if unspecified). (optional)
+	templateId := "templateId_example" // string | Template to clone the storage volume from (optional, region's default if unspecified). (optional)
+	public := true // bool | Should Kompute be exposed over public Internet ? (a public IPv4 address will then be auto-assigned, default to false). (optional)
+
+	configuration := kowabunga.NewConfiguration()
+	apiClient := kowabunga.NewAPIClient(configuration)
+	resp, r, err := apiClient.ProjectAPI.CreateProjectRegionKompute(context.Background(), projectId, regionId).Kompute(kompute).PoolId(poolId).TemplateId(templateId).Public(public).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `ProjectAPI.CreateProjectRegionKompute``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `CreateProjectRegionKompute`: Kompute
+	fmt.Fprintf(os.Stdout, "Response from `ProjectAPI.CreateProjectRegionKompute`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**projectId** | **string** | The ID of the project. | 
+**regionId** | **string** | The ID of the region. | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreateProjectRegionKomputeRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+ **kompute** | [**Kompute**](Kompute.md) | Kompute payload. | 
+ **poolId** | **string** | Storage pool ID (optional, region&#39;s default if unspecified). | 
+ **templateId** | **string** | Template to clone the storage volume from (optional, region&#39;s default if unspecified). | 
+ **public** | **bool** | Should Kompute be exposed over public Internet ? (a public IPv4 address will then be auto-assigned, default to false). | 
+
+### Return type
+
+[**Kompute**](Kompute.md)
 
 ### Authorization
 
@@ -845,6 +1079,149 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## ListProjectKwarantines
+
+> []string ListProjectKwarantines(ctx, projectId).Execute()
+
+
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	kowabunga "github.com/kowabunga-cloud/kowabunga-go"
+)
+
+func main() {
+	projectId := "projectId_example" // string | The ID of the project.
+
+	configuration := kowabunga.NewConfiguration()
+	apiClient := kowabunga.NewAPIClient(configuration)
+	resp, r, err := apiClient.ProjectAPI.ListProjectKwarantines(context.Background(), projectId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `ProjectAPI.ListProjectKwarantines``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `ListProjectKwarantines`: []string
+	fmt.Fprintf(os.Stdout, "Response from `ProjectAPI.ListProjectKwarantines`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**projectId** | **string** | The ID of the project. | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiListProjectKwarantinesRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+**[]string**
+
+### Authorization
+
+[ApiKeyAuth](../README.md#ApiKeyAuth), [BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## ListProjectRegionInstances
+
+> []string ListProjectRegionInstances(ctx, projectId, regionId).Execute()
+
+
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	kowabunga "github.com/kowabunga-cloud/kowabunga-go"
+)
+
+func main() {
+	projectId := "projectId_example" // string | The ID of the project.
+	regionId := "regionId_example" // string | The ID of the region.
+
+	configuration := kowabunga.NewConfiguration()
+	apiClient := kowabunga.NewAPIClient(configuration)
+	resp, r, err := apiClient.ProjectAPI.ListProjectRegionInstances(context.Background(), projectId, regionId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `ProjectAPI.ListProjectRegionInstances``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `ListProjectRegionInstances`: []string
+	fmt.Fprintf(os.Stdout, "Response from `ProjectAPI.ListProjectRegionInstances`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**projectId** | **string** | The ID of the project. | 
+**regionId** | **string** | The ID of the region. | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiListProjectRegionInstancesRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+
+### Return type
+
+**[]string**
+
+### Authorization
+
+[ApiKeyAuth](../README.md#ApiKeyAuth), [BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## ListProjectRegionKawaiis
 
 > []string ListProjectRegionKawaiis(ctx, projectId, regionId).Execute()
@@ -893,6 +1270,79 @@ Name | Type | Description  | Notes
 ### Other Parameters
 
 Other parameters are passed through a pointer to a apiListProjectRegionKawaiisRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+
+### Return type
+
+**[]string**
+
+### Authorization
+
+[ApiKeyAuth](../README.md#ApiKeyAuth), [BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## ListProjectRegionKomputes
+
+> []string ListProjectRegionKomputes(ctx, projectId, regionId).Execute()
+
+
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	kowabunga "github.com/kowabunga-cloud/kowabunga-go"
+)
+
+func main() {
+	projectId := "projectId_example" // string | The ID of the project.
+	regionId := "regionId_example" // string | The ID of the region.
+
+	configuration := kowabunga.NewConfiguration()
+	apiClient := kowabunga.NewAPIClient(configuration)
+	resp, r, err := apiClient.ProjectAPI.ListProjectRegionKomputes(context.Background(), projectId, regionId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `ProjectAPI.ListProjectRegionKomputes``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `ListProjectRegionKomputes`: []string
+	fmt.Fprintf(os.Stdout, "Response from `ProjectAPI.ListProjectRegionKomputes`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**projectId** | **string** | The ID of the project. | 
+**regionId** | **string** | The ID of the region. | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiListProjectRegionKomputesRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes

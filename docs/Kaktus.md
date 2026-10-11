@@ -12,6 +12,7 @@ Name | Type | Description | Notes
 **OvercommitCpuRatio** | Pointer to **int64** | The Kaktus node CPU resource over-commit ratio. Overcommitting CPU resources for VMs means allocating more virtual CPUs (vCPUs) to the virtual machines (VMs) than the physical cores available on the node. This can help optimize the utilization of the node CPU and increase the density of VMs per node. | [optional] [default to 3]
 **OvercommitMemoryRatio** | Pointer to **int64** | The Kaktus node memory resource over-commit ratio. Memory overcommitment is a concept in computing that covers the assignment of more memory to virtual computing devices (or processes) than the physical machine they are hosted, or running on, actually has. | [optional] [default to 2]
 **Agents** | **[]string** | a list of existing remote agents managing the Kaktus node. | 
+**Maintenance** | Pointer to **bool** | Whether the Kaktus node is under maintenance. A node under maintenance keeps running its existing instances but is excluded from scheduling of newly created workloads. | [optional] [default to false]
 
 ## Methods
 
@@ -221,6 +222,31 @@ and a boolean to check if the value has been set.
 
 SetAgents sets Agents field to given value.
 
+
+### GetMaintenance
+
+`func (o *Kaktus) GetMaintenance() bool`
+
+GetMaintenance returns the Maintenance field if non-nil, zero value otherwise.
+
+### GetMaintenanceOk
+
+`func (o *Kaktus) GetMaintenanceOk() (*bool, bool)`
+
+GetMaintenanceOk returns a tuple with the Maintenance field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetMaintenance
+
+`func (o *Kaktus) SetMaintenance(v bool)`
+
+SetMaintenance sets Maintenance field to given value.
+
+### HasMaintenance
+
+`func (o *Kaktus) HasMaintenance() bool`
+
+HasMaintenance returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

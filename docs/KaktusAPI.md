@@ -5,6 +5,8 @@ All URIs are relative to *https://your_kowabunga_kahuna_server/api/v1*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**DeleteKaktus**](KaktusAPI.md#DeleteKaktus) | **Delete** /kaktus/{kaktusId} | 
+[**DisableKaktusMaintenance**](KaktusAPI.md#DisableKaktusMaintenance) | **Patch** /kaktus/{kaktusId}/maintenance/disable | 
+[**EnableKaktusMaintenance**](KaktusAPI.md#EnableKaktusMaintenance) | **Patch** /kaktus/{kaktusId}/maintenance/enable | 
 [**ListKaktusInstances**](KaktusAPI.md#ListKaktusInstances) | **Get** /kaktus/{kaktusId}/instances | 
 [**ListKaktuss**](KaktusAPI.md#ListKaktuss) | **Get** /kaktus | 
 [**ReadKaktus**](KaktusAPI.md#ReadKaktus) | **Get** /kaktus/{kaktusId} | 
@@ -57,6 +59,142 @@ Name | Type | Description  | Notes
 ### Other Parameters
 
 Other parameters are passed through a pointer to a apiDeleteKaktusRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+ (empty response body)
+
+### Authorization
+
+[ApiKeyAuth](../README.md#ApiKeyAuth), [BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## DisableKaktusMaintenance
+
+> DisableKaktusMaintenance(ctx, kaktusId).Execute()
+
+
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	kowabunga "github.com/kowabunga-cloud/kowabunga-go"
+)
+
+func main() {
+	kaktusId := "kaktusId_example" // string | The ID of the Kaktus computing node.
+
+	configuration := kowabunga.NewConfiguration()
+	apiClient := kowabunga.NewAPIClient(configuration)
+	r, err := apiClient.KaktusAPI.DisableKaktusMaintenance(context.Background(), kaktusId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `KaktusAPI.DisableKaktusMaintenance``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**kaktusId** | **string** | The ID of the Kaktus computing node. | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiDisableKaktusMaintenanceRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+ (empty response body)
+
+### Authorization
+
+[ApiKeyAuth](../README.md#ApiKeyAuth), [BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## EnableKaktusMaintenance
+
+> EnableKaktusMaintenance(ctx, kaktusId).Execute()
+
+
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	kowabunga "github.com/kowabunga-cloud/kowabunga-go"
+)
+
+func main() {
+	kaktusId := "kaktusId_example" // string | The ID of the Kaktus computing node.
+
+	configuration := kowabunga.NewConfiguration()
+	apiClient := kowabunga.NewAPIClient(configuration)
+	r, err := apiClient.KaktusAPI.EnableKaktusMaintenance(context.Background(), kaktusId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `KaktusAPI.EnableKaktusMaintenance``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**kaktusId** | **string** | The ID of the Kaktus computing node. | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiEnableKaktusMaintenanceRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes

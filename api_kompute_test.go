@@ -22,6 +22,19 @@ func Test_kowabunga_KomputeAPIService(t *testing.T) {
 	configuration := NewConfiguration()
 	apiClient := NewAPIClient(configuration)
 
+	t.Run("Test KomputeAPIService CommitKomputeKMotion", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var komputeId string
+
+		httpRes, err := apiClient.KomputeAPI.CommitKomputeKMotion(context.Background(), komputeId).Execute()
+
+		require.Nil(t, err)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 	t.Run("Test KomputeAPIService DeleteKompute", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
@@ -40,6 +53,20 @@ func Test_kowabunga_KomputeAPIService(t *testing.T) {
 		t.Skip("skip test")  // remove to run test
 
 		resp, httpRes, err := apiClient.KomputeAPI.ListKomputes(context.Background()).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test KomputeAPIService PlanKomputeKMotion", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var komputeId string
+
+		resp, httpRes, err := apiClient.KomputeAPI.PlanKomputeKMotion(context.Background(), komputeId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)

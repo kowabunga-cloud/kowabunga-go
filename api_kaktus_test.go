@@ -35,6 +35,32 @@ func Test_kowabunga_KaktusAPIService(t *testing.T) {
 
 	})
 
+	t.Run("Test KaktusAPIService DisableKaktusMaintenance", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var kaktusId string
+
+		httpRes, err := apiClient.KaktusAPI.DisableKaktusMaintenance(context.Background(), kaktusId).Execute()
+
+		require.Nil(t, err)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test KaktusAPIService EnableKaktusMaintenance", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var kaktusId string
+
+		httpRes, err := apiClient.KaktusAPI.EnableKaktusMaintenance(context.Background(), kaktusId).Execute()
+
+		require.Nil(t, err)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 	t.Run("Test KaktusAPIService ListKaktusInstances", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
