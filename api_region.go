@@ -3,7 +3,7 @@ Kowabunga API
 
 Kvm Orchestrator With A BUNch of Goods Added
 
-API version: 0.57.1
+API version: 0.58.0
 Contact: maintainers@kowabunga.cloud
 */
 
@@ -23,211 +23,6 @@ import (
 
 // RegionAPIService RegionAPI service
 type RegionAPIService service
-
-type ApiCreateKiwiRequest struct {
-	ctx context.Context
-	ApiService *RegionAPIService
-	regionId string
-	kiwi *Kiwi
-}
-
-// Kiwi payload.
-func (r ApiCreateKiwiRequest) Kiwi(kiwi Kiwi) ApiCreateKiwiRequest {
-	r.kiwi = &kiwi
-	return r
-}
-
-func (r ApiCreateKiwiRequest) Execute() (*Kiwi, *http.Response, error) {
-	return r.ApiService.CreateKiwiExecute(r)
-}
-
-/*
-CreateKiwi Method for CreateKiwi
-
-Creates a new Kiwi (Kowabunga Inner Wan Interface) provides edge-network services..
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param regionId The ID of the region.
- @return ApiCreateKiwiRequest
-*/
-func (a *RegionAPIService) CreateKiwi(ctx context.Context, regionId string) ApiCreateKiwiRequest {
-	return ApiCreateKiwiRequest{
-		ApiService: a,
-		ctx: ctx,
-		regionId: regionId,
-	}
-}
-
-// Execute executes the request
-//  @return Kiwi
-func (a *RegionAPIService) CreateKiwiExecute(r ApiCreateKiwiRequest) (*Kiwi, *http.Response, error) {
-	var (
-		localVarHTTPMethod   = http.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *Kiwi
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "RegionAPIService.CreateKiwi")
-	if err != nil {
-		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/region/{regionId}/kiwi"
-	localVarPath = strings.Replace(localVarPath, "{"+"regionId"+"}", url.PathEscape(parameterValueToString(r.regionId, "regionId")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-	if r.kiwi == nil {
-		return localVarReturnValue, nil, reportError("kiwi is required and must be specified")
-	}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	// body params
-	localVarPostBody = r.kiwi
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if apiKey, ok := auth["ApiKeyAuth"]; ok {
-				var key string
-				if apiKey.Prefix != "" {
-					key = apiKey.Prefix + " " + apiKey.Key
-				} else {
-					key = apiKey.Key
-				}
-				localVarHeaderParams["X-API-Key"] = key
-			}
-		}
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v ApiErrorBadRequest
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 401 {
-			var v ApiErrorUnauthorized
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 403 {
-			var v ApiErrorForbidden
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 404 {
-			var v ApiErrorNotFound
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 409 {
-			var v ApiErrorConflict
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 422 {
-			var v ApiErrorUnprocessableEntity
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 507 {
-			var v ApiErrorInsufficientResource
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
 
 type ApiCreateRegionRequest struct {
 	ctx context.Context
@@ -363,6 +158,17 @@ func (a *RegionAPIService) CreateRegionExecute(r ApiCreateRegionRequest) (*Regio
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ApiErrorForbidden
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ApiErrorInternalServerError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -577,6 +383,17 @@ func (a *RegionAPIService) CreateRegionDnsRecordExecute(r ApiCreateRegionDnsReco
 					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ApiErrorInternalServerError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v ApiErrorNotFound
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -635,7 +452,223 @@ func (a *RegionAPIService) CreateRegionDnsRecordExecute(r ApiCreateRegionDnsReco
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiCreateStorageNFSRequest struct {
+type ApiCreateRegionKiwiRequest struct {
+	ctx context.Context
+	ApiService *RegionAPIService
+	regionId string
+	kiwi *Kiwi
+}
+
+// Kiwi payload.
+func (r ApiCreateRegionKiwiRequest) Kiwi(kiwi Kiwi) ApiCreateRegionKiwiRequest {
+	r.kiwi = &kiwi
+	return r
+}
+
+func (r ApiCreateRegionKiwiRequest) Execute() (*Kiwi, *http.Response, error) {
+	return r.ApiService.CreateRegionKiwiExecute(r)
+}
+
+/*
+CreateRegionKiwi Method for CreateRegionKiwi
+
+Creates a new Kiwi (Kowabunga Inner Wan Interface) provides edge-network services..
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param regionId The ID of the region.
+ @return ApiCreateRegionKiwiRequest
+*/
+func (a *RegionAPIService) CreateRegionKiwi(ctx context.Context, regionId string) ApiCreateRegionKiwiRequest {
+	return ApiCreateRegionKiwiRequest{
+		ApiService: a,
+		ctx: ctx,
+		regionId: regionId,
+	}
+}
+
+// Execute executes the request
+//  @return Kiwi
+func (a *RegionAPIService) CreateRegionKiwiExecute(r ApiCreateRegionKiwiRequest) (*Kiwi, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *Kiwi
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "RegionAPIService.CreateRegionKiwi")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/region/{regionId}/kiwi"
+	localVarPath = strings.Replace(localVarPath, "{"+"regionId"+"}", url.PathEscape(parameterValueToString(r.regionId, "regionId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.kiwi == nil {
+		return localVarReturnValue, nil, reportError("kiwi is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.kiwi
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if apiKey, ok := auth["ApiKeyAuth"]; ok {
+				var key string
+				if apiKey.Prefix != "" {
+					key = apiKey.Prefix + " " + apiKey.Key
+				} else {
+					key = apiKey.Key
+				}
+				localVarHeaderParams["X-API-Key"] = key
+			}
+		}
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v ApiErrorBadRequest
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v ApiErrorUnauthorized
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v ApiErrorForbidden
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ApiErrorInternalServerError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v ApiErrorNotFound
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 409 {
+			var v ApiErrorConflict
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 422 {
+			var v ApiErrorUnprocessableEntity
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 507 {
+			var v ApiErrorInsufficientResource
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiCreateRegionStorageNFSRequest struct {
 	ctx context.Context
 	ApiService *RegionAPIService
 	regionId string
@@ -644,32 +677,32 @@ type ApiCreateStorageNFSRequest struct {
 }
 
 // StorageNFS payload.
-func (r ApiCreateStorageNFSRequest) StorageNFS(storageNFS StorageNFS) ApiCreateStorageNFSRequest {
+func (r ApiCreateRegionStorageNFSRequest) StorageNFS(storageNFS StorageNFS) ApiCreateRegionStorageNFSRequest {
 	r.storageNFS = &storageNFS
 	return r
 }
 
 // Storage pool ID (optional, region&#39;s default if unspecified).
-func (r ApiCreateStorageNFSRequest) PoolId(poolId string) ApiCreateStorageNFSRequest {
+func (r ApiCreateRegionStorageNFSRequest) PoolId(poolId string) ApiCreateRegionStorageNFSRequest {
 	r.poolId = &poolId
 	return r
 }
 
-func (r ApiCreateStorageNFSRequest) Execute() (*StorageNFS, *http.Response, error) {
-	return r.ApiService.CreateStorageNFSExecute(r)
+func (r ApiCreateRegionStorageNFSRequest) Execute() (*StorageNFS, *http.Response, error) {
+	return r.ApiService.CreateRegionStorageNFSExecute(r)
 }
 
 /*
-CreateStorageNFS Method for CreateStorageNFS
+CreateRegionStorageNFS Method for CreateRegionStorageNFS
 
 Creates a new NFS storage.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param regionId The ID of the region.
- @return ApiCreateStorageNFSRequest
+ @return ApiCreateRegionStorageNFSRequest
 */
-func (a *RegionAPIService) CreateStorageNFS(ctx context.Context, regionId string) ApiCreateStorageNFSRequest {
-	return ApiCreateStorageNFSRequest{
+func (a *RegionAPIService) CreateRegionStorageNFS(ctx context.Context, regionId string) ApiCreateRegionStorageNFSRequest {
+	return ApiCreateRegionStorageNFSRequest{
 		ApiService: a,
 		ctx: ctx,
 		regionId: regionId,
@@ -678,7 +711,7 @@ func (a *RegionAPIService) CreateStorageNFS(ctx context.Context, regionId string
 
 // Execute executes the request
 //  @return StorageNFS
-func (a *RegionAPIService) CreateStorageNFSExecute(r ApiCreateStorageNFSRequest) (*StorageNFS, *http.Response, error) {
+func (a *RegionAPIService) CreateRegionStorageNFSExecute(r ApiCreateRegionStorageNFSRequest) (*StorageNFS, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -686,7 +719,7 @@ func (a *RegionAPIService) CreateStorageNFSExecute(r ApiCreateStorageNFSRequest)
 		localVarReturnValue  *StorageNFS
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "RegionAPIService.CreateStorageNFS")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "RegionAPIService.CreateRegionStorageNFS")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -792,6 +825,17 @@ func (a *RegionAPIService) CreateStorageNFSExecute(r ApiCreateStorageNFSRequest)
 					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ApiErrorInternalServerError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v ApiErrorNotFound
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -850,7 +894,7 @@ func (a *RegionAPIService) CreateStorageNFSExecute(r ApiCreateStorageNFSRequest)
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiCreateStoragePoolRequest struct {
+type ApiCreateRegionStoragePoolRequest struct {
 	ctx context.Context
 	ApiService *RegionAPIService
 	regionId string
@@ -858,26 +902,26 @@ type ApiCreateStoragePoolRequest struct {
 }
 
 // StoragePool payload.
-func (r ApiCreateStoragePoolRequest) StoragePool(storagePool StoragePool) ApiCreateStoragePoolRequest {
+func (r ApiCreateRegionStoragePoolRequest) StoragePool(storagePool StoragePool) ApiCreateRegionStoragePoolRequest {
 	r.storagePool = &storagePool
 	return r
 }
 
-func (r ApiCreateStoragePoolRequest) Execute() (*StoragePool, *http.Response, error) {
-	return r.ApiService.CreateStoragePoolExecute(r)
+func (r ApiCreateRegionStoragePoolRequest) Execute() (*StoragePool, *http.Response, error) {
+	return r.ApiService.CreateRegionStoragePoolExecute(r)
 }
 
 /*
-CreateStoragePool Method for CreateStoragePool
+CreateRegionStoragePool Method for CreateRegionStoragePool
 
 Creates a new storage pool.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param regionId The ID of the region.
- @return ApiCreateStoragePoolRequest
+ @return ApiCreateRegionStoragePoolRequest
 */
-func (a *RegionAPIService) CreateStoragePool(ctx context.Context, regionId string) ApiCreateStoragePoolRequest {
-	return ApiCreateStoragePoolRequest{
+func (a *RegionAPIService) CreateRegionStoragePool(ctx context.Context, regionId string) ApiCreateRegionStoragePoolRequest {
+	return ApiCreateRegionStoragePoolRequest{
 		ApiService: a,
 		ctx: ctx,
 		regionId: regionId,
@@ -886,7 +930,7 @@ func (a *RegionAPIService) CreateStoragePool(ctx context.Context, regionId strin
 
 // Execute executes the request
 //  @return StoragePool
-func (a *RegionAPIService) CreateStoragePoolExecute(r ApiCreateStoragePoolRequest) (*StoragePool, *http.Response, error) {
+func (a *RegionAPIService) CreateRegionStoragePoolExecute(r ApiCreateRegionStoragePoolRequest) (*StoragePool, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -894,7 +938,7 @@ func (a *RegionAPIService) CreateStoragePoolExecute(r ApiCreateStoragePoolReques
 		localVarReturnValue  *StoragePool
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "RegionAPIService.CreateStoragePool")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "RegionAPIService.CreateRegionStoragePool")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -997,6 +1041,17 @@ func (a *RegionAPIService) CreateStoragePoolExecute(r ApiCreateStoragePoolReques
 					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ApiErrorInternalServerError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v ApiErrorNotFound
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -1055,7 +1110,7 @@ func (a *RegionAPIService) CreateStoragePoolExecute(r ApiCreateStoragePoolReques
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiCreateVNetRequest struct {
+type ApiCreateRegionVNetRequest struct {
 	ctx context.Context
 	ApiService *RegionAPIService
 	regionId string
@@ -1063,26 +1118,26 @@ type ApiCreateVNetRequest struct {
 }
 
 // VNet payload.
-func (r ApiCreateVNetRequest) VNet(vNet VNet) ApiCreateVNetRequest {
+func (r ApiCreateRegionVNetRequest) VNet(vNet VNet) ApiCreateRegionVNetRequest {
 	r.vNet = &vNet
 	return r
 }
 
-func (r ApiCreateVNetRequest) Execute() (*VNet, *http.Response, error) {
-	return r.ApiService.CreateVNetExecute(r)
+func (r ApiCreateRegionVNetRequest) Execute() (*VNet, *http.Response, error) {
+	return r.ApiService.CreateRegionVNetExecute(r)
 }
 
 /*
-CreateVNet Method for CreateVNet
+CreateRegionVNet Method for CreateRegionVNet
 
 Creates a new virtual network.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param regionId The ID of the region.
- @return ApiCreateVNetRequest
+ @return ApiCreateRegionVNetRequest
 */
-func (a *RegionAPIService) CreateVNet(ctx context.Context, regionId string) ApiCreateVNetRequest {
-	return ApiCreateVNetRequest{
+func (a *RegionAPIService) CreateRegionVNet(ctx context.Context, regionId string) ApiCreateRegionVNetRequest {
+	return ApiCreateRegionVNetRequest{
 		ApiService: a,
 		ctx: ctx,
 		regionId: regionId,
@@ -1091,7 +1146,7 @@ func (a *RegionAPIService) CreateVNet(ctx context.Context, regionId string) ApiC
 
 // Execute executes the request
 //  @return VNet
-func (a *RegionAPIService) CreateVNetExecute(r ApiCreateVNetRequest) (*VNet, *http.Response, error) {
+func (a *RegionAPIService) CreateRegionVNetExecute(r ApiCreateRegionVNetRequest) (*VNet, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -1099,7 +1154,7 @@ func (a *RegionAPIService) CreateVNetExecute(r ApiCreateVNetRequest) (*VNet, *ht
 		localVarReturnValue  *VNet
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "RegionAPIService.CreateVNet")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "RegionAPIService.CreateRegionVNet")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -1202,6 +1257,17 @@ func (a *RegionAPIService) CreateVNetExecute(r ApiCreateVNetRequest) (*VNet, *ht
 					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ApiErrorInternalServerError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v ApiErrorNotFound
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -1260,7 +1326,7 @@ func (a *RegionAPIService) CreateVNetExecute(r ApiCreateVNetRequest) (*VNet, *ht
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiCreateZoneRequest struct {
+type ApiCreateRegionZoneRequest struct {
 	ctx context.Context
 	ApiService *RegionAPIService
 	regionId string
@@ -1268,26 +1334,26 @@ type ApiCreateZoneRequest struct {
 }
 
 // Zone payload.
-func (r ApiCreateZoneRequest) Zone(zone Zone) ApiCreateZoneRequest {
+func (r ApiCreateRegionZoneRequest) Zone(zone Zone) ApiCreateRegionZoneRequest {
 	r.zone = &zone
 	return r
 }
 
-func (r ApiCreateZoneRequest) Execute() (*Zone, *http.Response, error) {
-	return r.ApiService.CreateZoneExecute(r)
+func (r ApiCreateRegionZoneRequest) Execute() (*Zone, *http.Response, error) {
+	return r.ApiService.CreateRegionZoneExecute(r)
 }
 
 /*
-CreateZone Method for CreateZone
+CreateRegionZone Method for CreateRegionZone
 
 Creates a new availability zone.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param regionId The ID of the region.
- @return ApiCreateZoneRequest
+ @return ApiCreateRegionZoneRequest
 */
-func (a *RegionAPIService) CreateZone(ctx context.Context, regionId string) ApiCreateZoneRequest {
-	return ApiCreateZoneRequest{
+func (a *RegionAPIService) CreateRegionZone(ctx context.Context, regionId string) ApiCreateRegionZoneRequest {
+	return ApiCreateRegionZoneRequest{
 		ApiService: a,
 		ctx: ctx,
 		regionId: regionId,
@@ -1296,7 +1362,7 @@ func (a *RegionAPIService) CreateZone(ctx context.Context, regionId string) ApiC
 
 // Execute executes the request
 //  @return Zone
-func (a *RegionAPIService) CreateZoneExecute(r ApiCreateZoneRequest) (*Zone, *http.Response, error) {
+func (a *RegionAPIService) CreateRegionZoneExecute(r ApiCreateRegionZoneRequest) (*Zone, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -1304,7 +1370,7 @@ func (a *RegionAPIService) CreateZoneExecute(r ApiCreateZoneRequest) (*Zone, *ht
 		localVarReturnValue  *Zone
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "RegionAPIService.CreateZone")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "RegionAPIService.CreateRegionZone")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -1398,6 +1464,17 @@ func (a *RegionAPIService) CreateZoneExecute(r ApiCreateZoneRequest) (*Zone, *ht
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ApiErrorForbidden
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ApiErrorInternalServerError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1587,6 +1664,17 @@ func (a *RegionAPIService) DeleteRegionExecute(r ApiDeleteRegionRequest) (*http.
 					newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ApiErrorInternalServerError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v ApiErrorNotFound
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -1749,6 +1837,17 @@ func (a *RegionAPIService) ListRegionDnsRecordsExecute(r ApiListRegionDnsRecords
 					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ApiErrorInternalServerError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v ApiErrorNotFound
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -1898,6 +1997,17 @@ func (a *RegionAPIService) ListRegionKiwisExecute(r ApiListRegionKiwisRequest) (
 					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ApiErrorInternalServerError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v ApiErrorNotFound
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -1923,34 +2033,27 @@ func (a *RegionAPIService) ListRegionKiwisExecute(r ApiListRegionKiwisRequest) (
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiListRegionStorageNFSsRequest struct {
+type ApiListRegionStorageNFSesRequest struct {
 	ctx context.Context
 	ApiService *RegionAPIService
 	regionId string
-	poolId *string
 }
 
-// Storage pool ID (optional, region&#39;s default if unspecified).
-func (r ApiListRegionStorageNFSsRequest) PoolId(poolId string) ApiListRegionStorageNFSsRequest {
-	r.poolId = &poolId
-	return r
-}
-
-func (r ApiListRegionStorageNFSsRequest) Execute() ([]string, *http.Response, error) {
-	return r.ApiService.ListRegionStorageNFSsExecute(r)
+func (r ApiListRegionStorageNFSesRequest) Execute() ([]string, *http.Response, error) {
+	return r.ApiService.ListRegionStorageNFSesExecute(r)
 }
 
 /*
-ListRegionStorageNFSs Method for ListRegionStorageNFSs
+ListRegionStorageNFSes Method for ListRegionStorageNFSes
 
 Returns the IDs of NFS storage objects.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param regionId The ID of the region.
- @return ApiListRegionStorageNFSsRequest
+ @return ApiListRegionStorageNFSesRequest
 */
-func (a *RegionAPIService) ListRegionStorageNFSs(ctx context.Context, regionId string) ApiListRegionStorageNFSsRequest {
-	return ApiListRegionStorageNFSsRequest{
+func (a *RegionAPIService) ListRegionStorageNFSes(ctx context.Context, regionId string) ApiListRegionStorageNFSesRequest {
+	return ApiListRegionStorageNFSesRequest{
 		ApiService: a,
 		ctx: ctx,
 		regionId: regionId,
@@ -1959,7 +2062,7 @@ func (a *RegionAPIService) ListRegionStorageNFSs(ctx context.Context, regionId s
 
 // Execute executes the request
 //  @return []string
-func (a *RegionAPIService) ListRegionStorageNFSsExecute(r ApiListRegionStorageNFSsRequest) ([]string, *http.Response, error) {
+func (a *RegionAPIService) ListRegionStorageNFSesExecute(r ApiListRegionStorageNFSesRequest) ([]string, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -1967,21 +2070,18 @@ func (a *RegionAPIService) ListRegionStorageNFSsExecute(r ApiListRegionStorageNF
 		localVarReturnValue  []string
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "RegionAPIService.ListRegionStorageNFSs")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "RegionAPIService.ListRegionStorageNFSes")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/region/{regionId}/nfs"
+	localVarPath := localBasePath + "/region/{regionId}/nfses"
 	localVarPath = strings.Replace(localVarPath, "{"+"regionId"+"}", url.PathEscape(parameterValueToString(r.regionId, "regionId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
-	if r.poolId != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "poolId", r.poolId, "form", "")
-	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -2048,6 +2148,17 @@ func (a *RegionAPIService) ListRegionStorageNFSsExecute(r ApiListRegionStorageNF
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ApiErrorForbidden
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ApiErrorInternalServerError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -2206,6 +2317,17 @@ func (a *RegionAPIService) ListRegionStoragePoolsExecute(r ApiListRegionStorageP
 					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ApiErrorInternalServerError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v ApiErrorNotFound
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -2346,6 +2468,17 @@ func (a *RegionAPIService) ListRegionVNetsExecute(r ApiListRegionVNetsRequest) (
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ApiErrorForbidden
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ApiErrorInternalServerError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -2504,6 +2637,17 @@ func (a *RegionAPIService) ListRegionZonesExecute(r ApiListRegionZonesRequest) (
 					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ApiErrorInternalServerError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v ApiErrorNotFound
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -2647,6 +2791,17 @@ func (a *RegionAPIService) ListRegionsExecute(r ApiListRegionsRequest) ([]string
 			}
 					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ApiErrorInternalServerError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -2778,6 +2933,17 @@ func (a *RegionAPIService) ReadRegionExecute(r ApiReadRegionRequest) (*Region, *
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ApiErrorForbidden
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ApiErrorInternalServerError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -2929,6 +3095,17 @@ func (a *RegionAPIService) SetRegionDefaultStorageNFSExecute(r ApiSetRegionDefau
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ApiErrorForbidden
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ApiErrorInternalServerError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -3091,6 +3268,17 @@ func (a *RegionAPIService) SetRegionDefaultStoragePoolExecute(r ApiSetRegionDefa
 					newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ApiErrorInternalServerError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v ApiErrorNotFound
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -3122,12 +3310,12 @@ type ApiUpdateRegionRequest struct {
 	ctx context.Context
 	ApiService *RegionAPIService
 	regionId string
-	region *Region
+	regionUpdate *RegionUpdate
 }
 
-// Region payload.
-func (r ApiUpdateRegionRequest) Region(region Region) ApiUpdateRegionRequest {
-	r.region = &region
+// RegionUpdate payload.
+func (r ApiUpdateRegionRequest) RegionUpdate(regionUpdate RegionUpdate) ApiUpdateRegionRequest {
+	r.regionUpdate = &regionUpdate
 	return r
 }
 
@@ -3173,8 +3361,8 @@ func (a *RegionAPIService) UpdateRegionExecute(r ApiUpdateRegionRequest) (*Regio
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.region == nil {
-		return localVarReturnValue, nil, reportError("region is required and must be specified")
+	if r.regionUpdate == nil {
+		return localVarReturnValue, nil, reportError("regionUpdate is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -3195,7 +3383,7 @@ func (a *RegionAPIService) UpdateRegionExecute(r ApiUpdateRegionRequest) (*Regio
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.region
+	localVarPostBody = r.regionUpdate
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -3256,6 +3444,17 @@ func (a *RegionAPIService) UpdateRegionExecute(r ApiUpdateRegionRequest) (*Regio
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ApiErrorForbidden
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ApiErrorInternalServerError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()

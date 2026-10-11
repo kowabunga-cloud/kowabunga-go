@@ -4,7 +4,7 @@ All URIs are relative to *https://your_kowabunga_kahuna_server/api/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**CreateSubnet**](VnetAPI.md#CreateSubnet) | **Post** /vnet/{vnetId}/subnet | 
+[**CreateVNetSubnet**](VnetAPI.md#CreateVNetSubnet) | **Post** /vnet/{vnetId}/subnet | 
 [**DeleteVNet**](VnetAPI.md#DeleteVNet) | **Delete** /vnet/{vnetId} | 
 [**ListVNetSubnets**](VnetAPI.md#ListVNetSubnets) | **Get** /vnet/{vnetId}/subnets | 
 [**ListVNets**](VnetAPI.md#ListVNets) | **Get** /vnet | 
@@ -14,9 +14,9 @@ Method | HTTP request | Description
 
 
 
-## CreateSubnet
+## CreateVNetSubnet
 
-> Subnet CreateSubnet(ctx, vnetId).Subnet(subnet).Execute()
+> Subnet CreateVNetSubnet(ctx, vnetId).Subnet(subnet).Execute()
 
 
 
@@ -40,13 +40,13 @@ func main() {
 
 	configuration := kowabunga.NewConfiguration()
 	apiClient := kowabunga.NewAPIClient(configuration)
-	resp, r, err := apiClient.VnetAPI.CreateSubnet(context.Background(), vnetId).Subnet(subnet).Execute()
+	resp, r, err := apiClient.VnetAPI.CreateVNetSubnet(context.Background(), vnetId).Subnet(subnet).Execute()
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `VnetAPI.CreateSubnet``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `VnetAPI.CreateVNetSubnet``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `CreateSubnet`: Subnet
-	fmt.Fprintf(os.Stdout, "Response from `VnetAPI.CreateSubnet`: %v\n", resp)
+	// response from `CreateVNetSubnet`: Subnet
+	fmt.Fprintf(os.Stdout, "Response from `VnetAPI.CreateVNetSubnet`: %v\n", resp)
 }
 ```
 
@@ -60,7 +60,7 @@ Name | Type | Description  | Notes
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiCreateSubnetRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiCreateVNetSubnetRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -428,7 +428,7 @@ Name | Type | Description  | Notes
 
 ## UpdateVNet
 
-> VNet UpdateVNet(ctx, vnetId).VNet(vNet).Execute()
+> VNet UpdateVNet(ctx, vnetId).VNetUpdate(vNetUpdate).Execute()
 
 
 
@@ -448,11 +448,11 @@ import (
 
 func main() {
 	vnetId := "vnetId_example" // string | The ID of the virtual network.
-	vNet := *kowabunga.NewVNet("Name_example", "Interface_example") // VNet | VNet payload.
+	vNetUpdate := *kowabunga.NewVNetUpdate() // VNetUpdate | VNetUpdate payload.
 
 	configuration := kowabunga.NewConfiguration()
 	apiClient := kowabunga.NewAPIClient(configuration)
-	resp, r, err := apiClient.VnetAPI.UpdateVNet(context.Background(), vnetId).VNet(vNet).Execute()
+	resp, r, err := apiClient.VnetAPI.UpdateVNet(context.Background(), vnetId).VNetUpdate(vNetUpdate).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `VnetAPI.UpdateVNet``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -478,7 +478,7 @@ Other parameters are passed through a pointer to a apiUpdateVNetRequest struct v
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **vNet** | [**VNet**](VNet.md) | VNet payload. | 
+ **vNetUpdate** | [**VNetUpdate**](VNetUpdate.md) | VNetUpdate payload. | 
 
 ### Return type
 

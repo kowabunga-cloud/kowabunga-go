@@ -3,7 +3,7 @@ Kowabunga API
 
 Kvm Orchestrator With A BUNch of Goods Added
 
-API version: 0.57.1
+API version: 0.58.0
 Contact: maintainers@kowabunga.cloud
 */
 
@@ -162,6 +162,17 @@ func (a *KawaiiAPIService) CreateKawaiiIpSecExecute(r ApiCreateKawaiiIpSecReques
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ApiErrorForbidden
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ApiErrorInternalServerError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -351,6 +362,17 @@ func (a *KawaiiAPIService) DeleteKawaiiExecute(r ApiDeleteKawaiiRequest) (*http.
 					newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ApiErrorInternalServerError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v ApiErrorNotFound
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -432,9 +454,9 @@ func (a *KawaiiAPIService) DeleteKawaiiIpSecExecute(r ApiDeleteKawaiiIpSecReques
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/kawaii/{kawaiiId}/ipsec/{KawaiiIpSecId}"
+	localVarPath := localBasePath + "/kawaii/{kawaiiId}/ipsec/{kawaiiIpSecId}"
 	localVarPath = strings.Replace(localVarPath, "{"+"kawaiiId"+"}", url.PathEscape(parameterValueToString(r.kawaiiId, "kawaiiId")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"KawaiiIpSecId"+"}", url.PathEscape(parameterValueToString(r.kawaiiIpSecId, "kawaiiIpSecId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"kawaiiIpSecId"+"}", url.PathEscape(parameterValueToString(r.kawaiiIpSecId, "kawaiiIpSecId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -506,6 +528,17 @@ func (a *KawaiiAPIService) DeleteKawaiiIpSecExecute(r ApiDeleteKawaiiIpSecReques
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ApiErrorForbidden
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ApiErrorInternalServerError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -675,6 +708,17 @@ func (a *KawaiiAPIService) ListKawaiiIpSecsExecute(r ApiListKawaiiIpSecsRequest)
 			}
 					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ApiErrorInternalServerError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -802,6 +846,17 @@ func (a *KawaiiAPIService) ListKawaiisExecute(r ApiListKawaiisRequest) ([]string
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ApiErrorForbidden
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ApiErrorInternalServerError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -949,6 +1004,17 @@ func (a *KawaiiAPIService) ReadKawaiiExecute(r ApiReadKawaiiRequest) (*Kawaii, *
 					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ApiErrorInternalServerError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v ApiErrorNotFound
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -1019,9 +1085,9 @@ func (a *KawaiiAPIService) ReadKawaiiIpSecExecute(r ApiReadKawaiiIpSecRequest) (
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/kawaii/{kawaiiId}/ipsec/{KawaiiIpSecId}"
+	localVarPath := localBasePath + "/kawaii/{kawaiiId}/ipsec/{kawaiiIpSecId}"
 	localVarPath = strings.Replace(localVarPath, "{"+"kawaiiId"+"}", url.PathEscape(parameterValueToString(r.kawaiiId, "kawaiiId")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"KawaiiIpSecId"+"}", url.PathEscape(parameterValueToString(r.kawaiiIpSecId, "kawaiiIpSecId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"kawaiiIpSecId"+"}", url.PathEscape(parameterValueToString(r.kawaiiIpSecId, "kawaiiIpSecId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1102,6 +1168,17 @@ func (a *KawaiiAPIService) ReadKawaiiIpSecExecute(r ApiReadKawaiiIpSecRequest) (
 					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ApiErrorInternalServerError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v ApiErrorNotFound
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -1131,12 +1208,12 @@ type ApiUpdateKawaiiRequest struct {
 	ctx context.Context
 	ApiService *KawaiiAPIService
 	kawaiiId string
-	kawaii *Kawaii
+	kawaiiUpdate *KawaiiUpdate
 }
 
-// Kawaii payload.
-func (r ApiUpdateKawaiiRequest) Kawaii(kawaii Kawaii) ApiUpdateKawaiiRequest {
-	r.kawaii = &kawaii
+// KawaiiUpdate payload.
+func (r ApiUpdateKawaiiRequest) KawaiiUpdate(kawaiiUpdate KawaiiUpdate) ApiUpdateKawaiiRequest {
+	r.kawaiiUpdate = &kawaiiUpdate
 	return r
 }
 
@@ -1182,8 +1259,8 @@ func (a *KawaiiAPIService) UpdateKawaiiExecute(r ApiUpdateKawaiiRequest) (*Kawai
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.kawaii == nil {
-		return localVarReturnValue, nil, reportError("kawaii is required and must be specified")
+	if r.kawaiiUpdate == nil {
+		return localVarReturnValue, nil, reportError("kawaiiUpdate is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -1204,7 +1281,7 @@ func (a *KawaiiAPIService) UpdateKawaiiExecute(r ApiUpdateKawaiiRequest) (*Kawai
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.kawaii
+	localVarPostBody = r.kawaiiUpdate
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -1265,6 +1342,17 @@ func (a *KawaiiAPIService) UpdateKawaiiExecute(r ApiUpdateKawaiiRequest) (*Kawai
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ApiErrorForbidden
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ApiErrorInternalServerError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1326,12 +1414,12 @@ type ApiUpdateKawaiiIpSecRequest struct {
 	ApiService *KawaiiAPIService
 	kawaiiId string
 	kawaiiIpSecId string
-	kawaiiIpSec *KawaiiIpSec
+	kawaiiIpSecUpdate *KawaiiIpSecUpdate
 }
 
-// KawaiiIpSec payload.
-func (r ApiUpdateKawaiiIpSecRequest) KawaiiIpSec(kawaiiIpSec KawaiiIpSec) ApiUpdateKawaiiIpSecRequest {
-	r.kawaiiIpSec = &kawaiiIpSec
+// KawaiiIpSecUpdate payload.
+func (r ApiUpdateKawaiiIpSecRequest) KawaiiIpSecUpdate(kawaiiIpSecUpdate KawaiiIpSecUpdate) ApiUpdateKawaiiIpSecRequest {
+	r.kawaiiIpSecUpdate = &kawaiiIpSecUpdate
 	return r
 }
 
@@ -1373,15 +1461,15 @@ func (a *KawaiiAPIService) UpdateKawaiiIpSecExecute(r ApiUpdateKawaiiIpSecReques
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/kawaii/{kawaiiId}/ipsec/{KawaiiIpSecId}"
+	localVarPath := localBasePath + "/kawaii/{kawaiiId}/ipsec/{kawaiiIpSecId}"
 	localVarPath = strings.Replace(localVarPath, "{"+"kawaiiId"+"}", url.PathEscape(parameterValueToString(r.kawaiiId, "kawaiiId")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"KawaiiIpSecId"+"}", url.PathEscape(parameterValueToString(r.kawaiiIpSecId, "kawaiiIpSecId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"kawaiiIpSecId"+"}", url.PathEscape(parameterValueToString(r.kawaiiIpSecId, "kawaiiIpSecId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.kawaiiIpSec == nil {
-		return localVarReturnValue, nil, reportError("kawaiiIpSec is required and must be specified")
+	if r.kawaiiIpSecUpdate == nil {
+		return localVarReturnValue, nil, reportError("kawaiiIpSecUpdate is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -1402,7 +1490,7 @@ func (a *KawaiiAPIService) UpdateKawaiiIpSecExecute(r ApiUpdateKawaiiIpSecReques
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.kawaiiIpSec
+	localVarPostBody = r.kawaiiIpSecUpdate
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -1463,6 +1551,17 @@ func (a *KawaiiAPIService) UpdateKawaiiIpSecExecute(r ApiUpdateKawaiiIpSecReques
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ApiErrorForbidden
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ApiErrorInternalServerError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()

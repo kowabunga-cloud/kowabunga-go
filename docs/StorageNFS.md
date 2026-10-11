@@ -4,19 +4,19 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | Pointer to **string** | The NFS storage ID (auto-generated). | [optional] 
+**Id** | Pointer to **string** | The NFS storage ID (auto-generated) (read-only). | [optional] [readonly] 
 **Name** | **string** | The NFS storage name. | 
 **Description** | Pointer to **string** | The NFS storage description. | [optional] 
 **Endpoint** | **string** | The associated NFS endpoint FQDN. | 
 **Fs** | Pointer to **string** | The underlying associated Ceph volume name. | [optional] [default to "nfs"]
-**Backends** | Pointer to **[]string** | List of NFS Ganesha API server IP addresses. | [optional] 
-**Port** | Pointer to **int64** | NFS Ganesha API server port (default 54934). | [optional] [default to 54934]
+**Backends** | **[]string** | List of NFS Ganesha API server IP addresses. | 
+**Port** | Pointer to **int32** | NFS Ganesha API server port. | [optional] [default to 54934]
 
 ## Methods
 
 ### NewStorageNFS
 
-`func NewStorageNFS(name string, endpoint string, ) *StorageNFS`
+`func NewStorageNFS(name string, endpoint string, backends []string, ) *StorageNFS`
 
 NewStorageNFS instantiates a new StorageNFS object
 This constructor will assign default values to properties that have it defined,
@@ -165,28 +165,23 @@ and a boolean to check if the value has been set.
 
 SetBackends sets Backends field to given value.
 
-### HasBackends
-
-`func (o *StorageNFS) HasBackends() bool`
-
-HasBackends returns a boolean if a field has been set.
 
 ### GetPort
 
-`func (o *StorageNFS) GetPort() int64`
+`func (o *StorageNFS) GetPort() int32`
 
 GetPort returns the Port field if non-nil, zero value otherwise.
 
 ### GetPortOk
 
-`func (o *StorageNFS) GetPortOk() (*int64, bool)`
+`func (o *StorageNFS) GetPortOk() (*int32, bool)`
 
 GetPortOk returns a tuple with the Port field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetPort
 
-`func (o *StorageNFS) SetPort(v int64)`
+`func (o *StorageNFS) SetPort(v int32)`
 
 SetPort sets Port field to given value.
 

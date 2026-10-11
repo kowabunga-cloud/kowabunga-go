@@ -3,7 +3,7 @@ Kowabunga API
 
 Kvm Orchestrator With A BUNch of Goods Added
 
-API version: 0.57.1
+API version: 0.58.0
 Contact: maintainers@kowabunga.cloud
 */
 
@@ -22,13 +22,13 @@ var _ MappedNullable = &Agent{}
 
 // Agent A Kowabunga remote agent.
 type Agent struct {
-	// The Kowabunga remote agent ID (auto-generated).
+	// The Kowabunga remote agent ID (auto-generated) (read-only).
 	Id *string `json:"id,omitempty"`
 	// The Kowabunga remote agent name.
 	Name string `json:"name"`
 	// The Kowabunga remote agent description.
 	Description *string `json:"description,omitempty"`
-	// The Kowabunga agent type.
+	// The Kowabunga agent type. Can only be set at creation time, ignored on updates.
 	Type string `json:"type"`
 }
 

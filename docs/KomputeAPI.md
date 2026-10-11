@@ -910,7 +910,7 @@ Name | Type | Description  | Notes
 
 ## UpdateKompute
 
-> Kompute UpdateKompute(ctx, komputeId).Kompute(kompute).Execute()
+> Kompute UpdateKompute(ctx, komputeId).KomputeUpdate(komputeUpdate).Execute()
 
 
 
@@ -930,11 +930,11 @@ import (
 
 func main() {
 	komputeId := "komputeId_example" // string | The ID of the Kompute.
-	kompute := *kowabunga.NewKompute("Name_example", int64(123), int64(123), int64(123)) // Kompute | Kompute payload.
+	komputeUpdate := *kowabunga.NewKomputeUpdate() // KomputeUpdate | KomputeUpdate payload.
 
 	configuration := kowabunga.NewConfiguration()
 	apiClient := kowabunga.NewAPIClient(configuration)
-	resp, r, err := apiClient.KomputeAPI.UpdateKompute(context.Background(), komputeId).Kompute(kompute).Execute()
+	resp, r, err := apiClient.KomputeAPI.UpdateKompute(context.Background(), komputeId).KomputeUpdate(komputeUpdate).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `KomputeAPI.UpdateKompute``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -960,7 +960,7 @@ Other parameters are passed through a pointer to a apiUpdateKomputeRequest struc
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **kompute** | [**Kompute**](Kompute.md) | Kompute payload. | 
+ **komputeUpdate** | [**KomputeUpdate**](KomputeUpdate.md) | KomputeUpdate payload. | 
 
 ### Return type
 

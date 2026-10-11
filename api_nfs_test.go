@@ -49,11 +49,11 @@ func Test_kowabunga_NfsAPIService(t *testing.T) {
 
 	})
 
-	t.Run("Test NfsAPIService ListStorageNFSs", func(t *testing.T) {
+	t.Run("Test NfsAPIService ListStorageNFSes", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		resp, httpRes, err := apiClient.NfsAPI.ListStorageNFSs(context.Background()).Execute()
+		resp, httpRes, err := apiClient.NfsAPI.ListStorageNFSes(context.Background()).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)

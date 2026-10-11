@@ -10,7 +10,7 @@ Method | HTTP request | Description
 [**Login**](UserAPI.md#Login) | **Post** /login | 
 [**Logout**](UserAPI.md#Logout) | **Post** /logout | 
 [**ReadUser**](UserAPI.md#ReadUser) | **Get** /user/{userId} | 
-[**ResetPassword**](UserAPI.md#ResetPassword) | **Put** /resetPassword | 
+[**ResetPassword**](UserAPI.md#ResetPassword) | **Post** /resetPassword | 
 [**ResetUserPassword**](UserAPI.md#ResetUserPassword) | **Patch** /user/{userId}/resetPassword | 
 [**SetUserApiToken**](UserAPI.md#SetUserApiToken) | **Patch** /user/{userId}/token | 
 [**SetUserPassword**](UserAPI.md#SetUserPassword) | **Put** /user/{userId}/password | 
@@ -267,7 +267,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[ApiKeyAuth](../README.md#ApiKeyAuth), [BearerAuth](../README.md#BearerAuth)
+No authorization required
 
 ### HTTP request headers
 
@@ -460,7 +460,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[ApiKeyAuth](../README.md#ApiKeyAuth), [BearerAuth](../README.md#BearerAuth)
+No authorization required
 
 ### HTTP request headers
 
@@ -542,7 +542,7 @@ Name | Type | Description  | Notes
 
 ## SetUserApiToken
 
-> SetUserApiToken(ctx, userId).Expire(expire).ExpirationDate(expirationDate).Execute()
+> ApiToken SetUserApiToken(ctx, userId).Expire(expire).ExpirationDate(expirationDate).Execute()
 
 
 
@@ -563,16 +563,18 @@ import (
 
 func main() {
 	userId := "userId_example" // string | The ID of the Kowabunga user.
-	expire := true // bool | Whether or not the token should expire. (optional)
+	expire := true // bool | Whether or not the token should expire. (optional) (default to false)
 	expirationDate := time.Now() // string | Token's expiration date (YYYY-MM-DD format). (optional)
 
 	configuration := kowabunga.NewConfiguration()
 	apiClient := kowabunga.NewAPIClient(configuration)
-	r, err := apiClient.UserAPI.SetUserApiToken(context.Background(), userId).Expire(expire).ExpirationDate(expirationDate).Execute()
+	resp, r, err := apiClient.UserAPI.SetUserApiToken(context.Background(), userId).Expire(expire).ExpirationDate(expirationDate).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `UserAPI.SetUserApiToken``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
+	// response from `SetUserApiToken`: ApiToken
+	fmt.Fprintf(os.Stdout, "Response from `UserAPI.SetUserApiToken`: %v\n", resp)
 }
 ```
 
@@ -592,12 +594,12 @@ Other parameters are passed through a pointer to a apiSetUserApiTokenRequest str
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **expire** | **bool** | Whether or not the token should expire. | 
+ **expire** | **bool** | Whether or not the token should expire. | [default to false]
  **expirationDate** | **string** | Token&#39;s expiration date (YYYY-MM-DD format). | 
 
 ### Return type
 
- (empty response body)
+[**ApiToken**](ApiToken.md)
 
 ### Authorization
 
@@ -685,7 +687,7 @@ Name | Type | Description  | Notes
 
 ## UpdateUser
 
-> User UpdateUser(ctx, userId).User(user).Execute()
+> User UpdateUser(ctx, userId).UserUpdate(userUpdate).Execute()
 
 
 
@@ -705,11 +707,11 @@ import (
 
 func main() {
 	userId := "userId_example" // string | The ID of the Kowabunga user.
-	user := *kowabunga.NewUser("Name_example", "Email_example", "Role_example") // User | User payload.
+	userUpdate := *kowabunga.NewUserUpdate() // UserUpdate | UserUpdate payload.
 
 	configuration := kowabunga.NewConfiguration()
 	apiClient := kowabunga.NewAPIClient(configuration)
-	resp, r, err := apiClient.UserAPI.UpdateUser(context.Background(), userId).User(user).Execute()
+	resp, r, err := apiClient.UserAPI.UpdateUser(context.Background(), userId).UserUpdate(userUpdate).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `UserAPI.UpdateUser``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -735,7 +737,7 @@ Other parameters are passed through a pointer to a apiUpdateUserRequest struct v
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **user** | [**User**](User.md) | User payload. | 
+ **userUpdate** | [**UserUpdate**](UserUpdate.md) | UserUpdate payload. | 
 
 ### Return type
 

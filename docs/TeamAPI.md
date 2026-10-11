@@ -279,7 +279,7 @@ Name | Type | Description  | Notes
 
 ## UpdateTeam
 
-> Team UpdateTeam(ctx, teamId).Team(team).Execute()
+> Team UpdateTeam(ctx, teamId).TeamUpdate(teamUpdate).Execute()
 
 
 
@@ -299,11 +299,11 @@ import (
 
 func main() {
 	teamId := "teamId_example" // string | The ID of the Kowabunga users team.
-	team := *kowabunga.NewTeam("Name_example", []string{"Users_example"}) // Team | Team payload.
+	teamUpdate := *kowabunga.NewTeamUpdate() // TeamUpdate | TeamUpdate payload.
 
 	configuration := kowabunga.NewConfiguration()
 	apiClient := kowabunga.NewAPIClient(configuration)
-	resp, r, err := apiClient.TeamAPI.UpdateTeam(context.Background(), teamId).Team(team).Execute()
+	resp, r, err := apiClient.TeamAPI.UpdateTeam(context.Background(), teamId).TeamUpdate(teamUpdate).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `TeamAPI.UpdateTeam``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -329,7 +329,7 @@ Other parameters are passed through a pointer to a apiUpdateTeamRequest struct v
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **team** | [**Team**](Team.md) | Team payload. | 
+ **teamUpdate** | [**TeamUpdate**](TeamUpdate.md) | TeamUpdate payload. | 
 
 ### Return type
 

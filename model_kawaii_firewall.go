@@ -3,7 +3,7 @@ Kowabunga API
 
 Kvm Orchestrator With A BUNch of Goods Added
 
-API version: 0.57.1
+API version: 0.58.0
 Contact: maintainers@kowabunga.cloud
 */
 
@@ -24,7 +24,7 @@ type KawaiiFirewall struct {
 	Ingress []KawaiiFirewallIngressRule `json:"ingress,omitempty"`
 	// The default public traffic egress policy.
 	EgressPolicy *string `json:"egress_policy,omitempty"`
-	// The Kawaii public firewall list of egress rules. Kawaii default policy is to accept all outgoing traffic, including ICMP. Specified ruleset will be explicitly dropped if egress_policy is set to accept, and explicitly accepted if egress policy is set to drop..
+	// The Kawaii public firewall list of egress rules. Kawaii default policy is to accept all outgoing traffic, including ICMP. Specified ruleset will be explicitly dropped if egress_policy is set to accept, and explicitly accepted if egress policy is set to drop.
 	Egress []KawaiiFirewallEgressRule `json:"egress,omitempty"`
 }
 

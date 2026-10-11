@@ -212,7 +212,7 @@ Name | Type | Description  | Notes
 
 ## UpdateApiToken
 
-> ApiToken UpdateApiToken(ctx, tokenId).ApiToken(apiToken).Execute()
+> ApiToken UpdateApiToken(ctx, tokenId).ApiTokenUpdate(apiTokenUpdate).Execute()
 
 
 
@@ -232,11 +232,11 @@ import (
 
 func main() {
 	tokenId := "tokenId_example" // string | The ID of the server-to-server authentication security token.
-	apiToken := *kowabunga.NewApiToken("Name_example", false) // ApiToken | ApiToken payload.
+	apiTokenUpdate := *kowabunga.NewApiTokenUpdate() // ApiTokenUpdate | ApiTokenUpdate payload.
 
 	configuration := kowabunga.NewConfiguration()
 	apiClient := kowabunga.NewAPIClient(configuration)
-	resp, r, err := apiClient.TokenAPI.UpdateApiToken(context.Background(), tokenId).ApiToken(apiToken).Execute()
+	resp, r, err := apiClient.TokenAPI.UpdateApiToken(context.Background(), tokenId).ApiTokenUpdate(apiTokenUpdate).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `TokenAPI.UpdateApiToken``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -262,7 +262,7 @@ Other parameters are passed through a pointer to a apiUpdateApiTokenRequest stru
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **apiToken** | [**ApiToken**](ApiToken.md) | ApiToken payload. | 
+ **apiTokenUpdate** | [**ApiTokenUpdate**](ApiTokenUpdate.md) | ApiTokenUpdate payload. | 
 
 ### Return type
 

@@ -4,10 +4,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | Pointer to **string** | The Kowabunga remote agent ID (auto-generated). | [optional] 
+**Id** | Pointer to **string** | The Kowabunga remote agent ID (auto-generated) (read-only). | [optional] [readonly] 
 **Name** | **string** | The Kowabunga remote agent name. | 
 **Description** | Pointer to **string** | The Kowabunga remote agent description. | [optional] 
-**Type** | **string** | The Kowabunga agent type. | 
+**Type** | **string** | The Kowabunga agent type. Can only be set at creation time, ignored on updates. | 
 
 ## Methods
 

@@ -3,7 +3,7 @@ Kowabunga API
 
 Kvm Orchestrator With A BUNch of Goods Added
 
-API version: 0.57.1
+API version: 0.58.0
 Contact: maintainers@kowabunga.cloud
 */
 
@@ -29,11 +29,11 @@ type KaktusCPU struct {
 	// The Kaktus computing node CPU vendor.
 	Vendor string `json:"vendor"`
 	// The Kaktus computing node CPU number of sockets.
-	Sockets int64 `json:"sockets"`
+	Sockets int32 `json:"sockets"`
 	// The Kaktus computing node CPU number of cores.
-	Cores int64 `json:"cores"`
+	Cores int32 `json:"cores"`
 	// The Kaktus computing node CPU number of threads.
-	Threads int64 `json:"threads"`
+	Threads int32 `json:"threads"`
 }
 
 type _KaktusCPU KaktusCPU
@@ -42,7 +42,7 @@ type _KaktusCPU KaktusCPU
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewKaktusCPU(arch string, model string, vendor string, sockets int64, cores int64, threads int64) *KaktusCPU {
+func NewKaktusCPU(arch string, model string, vendor string, sockets int32, cores int32, threads int32) *KaktusCPU {
 	this := KaktusCPU{}
 	this.Arch = arch
 	this.Model = model
@@ -134,9 +134,9 @@ func (o *KaktusCPU) SetVendor(v string) {
 }
 
 // GetSockets returns the Sockets field value
-func (o *KaktusCPU) GetSockets() int64 {
+func (o *KaktusCPU) GetSockets() int32 {
 	if o == nil {
-		var ret int64
+		var ret int32
 		return ret
 	}
 
@@ -145,7 +145,7 @@ func (o *KaktusCPU) GetSockets() int64 {
 
 // GetSocketsOk returns a tuple with the Sockets field value
 // and a boolean to check if the value has been set.
-func (o *KaktusCPU) GetSocketsOk() (*int64, bool) {
+func (o *KaktusCPU) GetSocketsOk() (*int32, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -153,14 +153,14 @@ func (o *KaktusCPU) GetSocketsOk() (*int64, bool) {
 }
 
 // SetSockets sets field value
-func (o *KaktusCPU) SetSockets(v int64) {
+func (o *KaktusCPU) SetSockets(v int32) {
 	o.Sockets = v
 }
 
 // GetCores returns the Cores field value
-func (o *KaktusCPU) GetCores() int64 {
+func (o *KaktusCPU) GetCores() int32 {
 	if o == nil {
-		var ret int64
+		var ret int32
 		return ret
 	}
 
@@ -169,7 +169,7 @@ func (o *KaktusCPU) GetCores() int64 {
 
 // GetCoresOk returns a tuple with the Cores field value
 // and a boolean to check if the value has been set.
-func (o *KaktusCPU) GetCoresOk() (*int64, bool) {
+func (o *KaktusCPU) GetCoresOk() (*int32, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -177,14 +177,14 @@ func (o *KaktusCPU) GetCoresOk() (*int64, bool) {
 }
 
 // SetCores sets field value
-func (o *KaktusCPU) SetCores(v int64) {
+func (o *KaktusCPU) SetCores(v int32) {
 	o.Cores = v
 }
 
 // GetThreads returns the Threads field value
-func (o *KaktusCPU) GetThreads() int64 {
+func (o *KaktusCPU) GetThreads() int32 {
 	if o == nil {
-		var ret int64
+		var ret int32
 		return ret
 	}
 
@@ -193,7 +193,7 @@ func (o *KaktusCPU) GetThreads() int64 {
 
 // GetThreadsOk returns a tuple with the Threads field value
 // and a boolean to check if the value has been set.
-func (o *KaktusCPU) GetThreadsOk() (*int64, bool) {
+func (o *KaktusCPU) GetThreadsOk() (*int32, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -201,7 +201,7 @@ func (o *KaktusCPU) GetThreadsOk() (*int64, bool) {
 }
 
 // SetThreads sets field value
-func (o *KaktusCPU) SetThreads(v int64) {
+func (o *KaktusCPU) SetThreads(v int32) {
 	o.Threads = v
 }
 

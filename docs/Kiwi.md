@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | Pointer to **string** | The Kiwi (Kowabunga Inner Wan Interface) provides edge-network services. ID (auto-generated). | [optional] 
+**Id** | Pointer to **string** | The Kiwi (Kowabunga Inner Wan Interface) provides edge-network services. ID (auto-generated) (read-only). | [optional] [readonly] 
 **Name** | **string** | The Kiwi (Kowabunga Inner Wan Interface) provides edge-network services. name. | 
 **Description** | Pointer to **string** | The Kiwi (Kowabunga Inner Wan Interface) provides edge-network services. description. | [optional] 
 **Agents** | Pointer to **[]string** | a list of existing remote agents managing the network gateway. | [optional] 

@@ -212,7 +212,7 @@ Name | Type | Description  | Notes
 
 ## UpdateKylo
 
-> Kylo UpdateKylo(ctx, kyloId).Kylo(kylo).Execute()
+> Kylo UpdateKylo(ctx, kyloId).KyloUpdate(kyloUpdate).Execute()
 
 
 
@@ -232,11 +232,11 @@ import (
 
 func main() {
 	kyloId := "kyloId_example" // string | The ID of the Kylo.
-	kylo := *kowabunga.NewKylo("Name_example") // Kylo | Kylo payload.
+	kyloUpdate := *kowabunga.NewKyloUpdate() // KyloUpdate | KyloUpdate payload.
 
 	configuration := kowabunga.NewConfiguration()
 	apiClient := kowabunga.NewAPIClient(configuration)
-	resp, r, err := apiClient.KyloAPI.UpdateKylo(context.Background(), kyloId).Kylo(kylo).Execute()
+	resp, r, err := apiClient.KyloAPI.UpdateKylo(context.Background(), kyloId).KyloUpdate(kyloUpdate).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `KyloAPI.UpdateKylo``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -262,7 +262,7 @@ Other parameters are passed through a pointer to a apiUpdateKyloRequest struct v
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **kylo** | [**Kylo**](Kylo.md) | Kylo payload. | 
+ **kyloUpdate** | [**KyloUpdate**](KyloUpdate.md) | KyloUpdate payload. | 
 
 ### Return type
 

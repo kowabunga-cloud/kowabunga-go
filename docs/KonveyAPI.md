@@ -212,7 +212,7 @@ Name | Type | Description  | Notes
 
 ## UpdateKonvey
 
-> Konvey UpdateKonvey(ctx, konveyId).Konvey(konvey).Execute()
+> Konvey UpdateKonvey(ctx, konveyId).KonveyUpdate(konveyUpdate).Execute()
 
 
 
@@ -232,11 +232,11 @@ import (
 
 func main() {
 	konveyId := "konveyId_example" // string | The ID of the Konvey (Kowabunga Network Load-Balancer).
-	konvey := *kowabunga.NewKonvey([]openapiclient.KonveyEndpoint{*openapiclient.NewKonveyEndpoint("Name_example", int64(123), "Protocol_example", *openapiclient.NewKonveyBackends([]string{"Hosts_example"}, int64(123)))}) // Konvey | Konvey payload.
+	konveyUpdate := *kowabunga.NewKonveyUpdate() // KonveyUpdate | KonveyUpdate payload.
 
 	configuration := kowabunga.NewConfiguration()
 	apiClient := kowabunga.NewAPIClient(configuration)
-	resp, r, err := apiClient.KonveyAPI.UpdateKonvey(context.Background(), konveyId).Konvey(konvey).Execute()
+	resp, r, err := apiClient.KonveyAPI.UpdateKonvey(context.Background(), konveyId).KonveyUpdate(konveyUpdate).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `KonveyAPI.UpdateKonvey``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -262,7 +262,7 @@ Other parameters are passed through a pointer to a apiUpdateKonveyRequest struct
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **konvey** | [**Konvey**](Konvey.md) | Konvey payload. | 
+ **konveyUpdate** | [**KonveyUpdate**](KonveyUpdate.md) | KonveyUpdate payload. | 
 
 ### Return type
 

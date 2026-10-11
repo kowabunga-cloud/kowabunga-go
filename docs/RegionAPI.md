@@ -4,17 +4,17 @@ All URIs are relative to *https://your_kowabunga_kahuna_server/api/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**CreateKiwi**](RegionAPI.md#CreateKiwi) | **Post** /region/{regionId}/kiwi | 
 [**CreateRegion**](RegionAPI.md#CreateRegion) | **Post** /region | 
 [**CreateRegionDnsRecord**](RegionAPI.md#CreateRegionDnsRecord) | **Post** /region/{regionId}/record | 
-[**CreateStorageNFS**](RegionAPI.md#CreateStorageNFS) | **Post** /region/{regionId}/nfs | 
-[**CreateStoragePool**](RegionAPI.md#CreateStoragePool) | **Post** /region/{regionId}/pool | 
-[**CreateVNet**](RegionAPI.md#CreateVNet) | **Post** /region/{regionId}/vnet | 
-[**CreateZone**](RegionAPI.md#CreateZone) | **Post** /region/{regionId}/zone | 
+[**CreateRegionKiwi**](RegionAPI.md#CreateRegionKiwi) | **Post** /region/{regionId}/kiwi | 
+[**CreateRegionStorageNFS**](RegionAPI.md#CreateRegionStorageNFS) | **Post** /region/{regionId}/nfs | 
+[**CreateRegionStoragePool**](RegionAPI.md#CreateRegionStoragePool) | **Post** /region/{regionId}/pool | 
+[**CreateRegionVNet**](RegionAPI.md#CreateRegionVNet) | **Post** /region/{regionId}/vnet | 
+[**CreateRegionZone**](RegionAPI.md#CreateRegionZone) | **Post** /region/{regionId}/zone | 
 [**DeleteRegion**](RegionAPI.md#DeleteRegion) | **Delete** /region/{regionId} | 
 [**ListRegionDnsRecords**](RegionAPI.md#ListRegionDnsRecords) | **Get** /region/{regionId}/records | 
 [**ListRegionKiwis**](RegionAPI.md#ListRegionKiwis) | **Get** /region/{regionId}/kiwis | 
-[**ListRegionStorageNFSs**](RegionAPI.md#ListRegionStorageNFSs) | **Get** /region/{regionId}/nfs | 
+[**ListRegionStorageNFSes**](RegionAPI.md#ListRegionStorageNFSes) | **Get** /region/{regionId}/nfses | 
 [**ListRegionStoragePools**](RegionAPI.md#ListRegionStoragePools) | **Get** /region/{regionId}/pools | 
 [**ListRegionVNets**](RegionAPI.md#ListRegionVNets) | **Get** /region/{regionId}/vnets | 
 [**ListRegionZones**](RegionAPI.md#ListRegionZones) | **Get** /region/{regionId}/zones | 
@@ -24,78 +24,6 @@ Method | HTTP request | Description
 [**SetRegionDefaultStoragePool**](RegionAPI.md#SetRegionDefaultStoragePool) | **Patch** /region/{regionId}/pool/{poolId}/default | 
 [**UpdateRegion**](RegionAPI.md#UpdateRegion) | **Put** /region/{regionId} | 
 
-
-
-## CreateKiwi
-
-> Kiwi CreateKiwi(ctx, regionId).Kiwi(kiwi).Execute()
-
-
-
-
-
-### Example
-
-```go
-package main
-
-import (
-	"context"
-	"fmt"
-	"os"
-	kowabunga "github.com/kowabunga-cloud/kowabunga-go"
-)
-
-func main() {
-	regionId := "regionId_example" // string | The ID of the region.
-	kiwi := *kowabunga.NewKiwi("Name_example") // Kiwi | Kiwi payload.
-
-	configuration := kowabunga.NewConfiguration()
-	apiClient := kowabunga.NewAPIClient(configuration)
-	resp, r, err := apiClient.RegionAPI.CreateKiwi(context.Background(), regionId).Kiwi(kiwi).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `RegionAPI.CreateKiwi``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `CreateKiwi`: Kiwi
-	fmt.Fprintf(os.Stdout, "Response from `RegionAPI.CreateKiwi`: %v\n", resp)
-}
-```
-
-### Path Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**regionId** | **string** | The ID of the region. | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiCreateKiwiRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
- **kiwi** | [**Kiwi**](Kiwi.md) | Kiwi payload. | 
-
-### Return type
-
-[**Kiwi**](Kiwi.md)
-
-### Authorization
-
-[ApiKeyAuth](../README.md#ApiKeyAuth), [BearerAuth](../README.md#BearerAuth)
-
-### HTTP request headers
-
-- **Content-Type**: application/json
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
 
 
 ## CreateRegion
@@ -236,9 +164,9 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## CreateStorageNFS
+## CreateRegionKiwi
 
-> StorageNFS CreateStorageNFS(ctx, regionId).StorageNFS(storageNFS).PoolId(poolId).Execute()
+> Kiwi CreateRegionKiwi(ctx, regionId).Kiwi(kiwi).Execute()
 
 
 
@@ -258,18 +186,17 @@ import (
 
 func main() {
 	regionId := "regionId_example" // string | The ID of the region.
-	storageNFS := *kowabunga.NewStorageNFS("Name_example", "Endpoint_example") // StorageNFS | StorageNFS payload.
-	poolId := "poolId_example" // string | Storage pool ID (optional, region's default if unspecified). (optional)
+	kiwi := *kowabunga.NewKiwi("Name_example") // Kiwi | Kiwi payload.
 
 	configuration := kowabunga.NewConfiguration()
 	apiClient := kowabunga.NewAPIClient(configuration)
-	resp, r, err := apiClient.RegionAPI.CreateStorageNFS(context.Background(), regionId).StorageNFS(storageNFS).PoolId(poolId).Execute()
+	resp, r, err := apiClient.RegionAPI.CreateRegionKiwi(context.Background(), regionId).Kiwi(kiwi).Execute()
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `RegionAPI.CreateStorageNFS``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `RegionAPI.CreateRegionKiwi``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `CreateStorageNFS`: StorageNFS
-	fmt.Fprintf(os.Stdout, "Response from `RegionAPI.CreateStorageNFS`: %v\n", resp)
+	// response from `CreateRegionKiwi`: Kiwi
+	fmt.Fprintf(os.Stdout, "Response from `RegionAPI.CreateRegionKiwi`: %v\n", resp)
 }
 ```
 
@@ -283,7 +210,80 @@ Name | Type | Description  | Notes
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiCreateStorageNFSRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiCreateRegionKiwiRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **kiwi** | [**Kiwi**](Kiwi.md) | Kiwi payload. | 
+
+### Return type
+
+[**Kiwi**](Kiwi.md)
+
+### Authorization
+
+[ApiKeyAuth](../README.md#ApiKeyAuth), [BearerAuth](../README.md#BearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## CreateRegionStorageNFS
+
+> StorageNFS CreateRegionStorageNFS(ctx, regionId).StorageNFS(storageNFS).PoolId(poolId).Execute()
+
+
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	kowabunga "github.com/kowabunga-cloud/kowabunga-go"
+)
+
+func main() {
+	regionId := "regionId_example" // string | The ID of the region.
+	storageNFS := *kowabunga.NewStorageNFS("Name_example", "Endpoint_example", []string{"Backends_example"}) // StorageNFS | StorageNFS payload.
+	poolId := "poolId_example" // string | Storage pool ID (optional, region's default if unspecified). (optional)
+
+	configuration := kowabunga.NewConfiguration()
+	apiClient := kowabunga.NewAPIClient(configuration)
+	resp, r, err := apiClient.RegionAPI.CreateRegionStorageNFS(context.Background(), regionId).StorageNFS(storageNFS).PoolId(poolId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `RegionAPI.CreateRegionStorageNFS``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `CreateRegionStorageNFS`: StorageNFS
+	fmt.Fprintf(os.Stdout, "Response from `RegionAPI.CreateRegionStorageNFS`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**regionId** | **string** | The ID of the region. | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreateRegionStorageNFSRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -310,9 +310,9 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## CreateStoragePool
+## CreateRegionStoragePool
 
-> StoragePool CreateStoragePool(ctx, regionId).StoragePool(storagePool).Execute()
+> StoragePool CreateRegionStoragePool(ctx, regionId).StoragePool(storagePool).Execute()
 
 
 
@@ -336,13 +336,13 @@ func main() {
 
 	configuration := kowabunga.NewConfiguration()
 	apiClient := kowabunga.NewAPIClient(configuration)
-	resp, r, err := apiClient.RegionAPI.CreateStoragePool(context.Background(), regionId).StoragePool(storagePool).Execute()
+	resp, r, err := apiClient.RegionAPI.CreateRegionStoragePool(context.Background(), regionId).StoragePool(storagePool).Execute()
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `RegionAPI.CreateStoragePool``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `RegionAPI.CreateRegionStoragePool``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `CreateStoragePool`: StoragePool
-	fmt.Fprintf(os.Stdout, "Response from `RegionAPI.CreateStoragePool`: %v\n", resp)
+	// response from `CreateRegionStoragePool`: StoragePool
+	fmt.Fprintf(os.Stdout, "Response from `RegionAPI.CreateRegionStoragePool`: %v\n", resp)
 }
 ```
 
@@ -356,7 +356,7 @@ Name | Type | Description  | Notes
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiCreateStoragePoolRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiCreateRegionStoragePoolRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -382,9 +382,9 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## CreateVNet
+## CreateRegionVNet
 
-> VNet CreateVNet(ctx, regionId).VNet(vNet).Execute()
+> VNet CreateRegionVNet(ctx, regionId).VNet(vNet).Execute()
 
 
 
@@ -408,13 +408,13 @@ func main() {
 
 	configuration := kowabunga.NewConfiguration()
 	apiClient := kowabunga.NewAPIClient(configuration)
-	resp, r, err := apiClient.RegionAPI.CreateVNet(context.Background(), regionId).VNet(vNet).Execute()
+	resp, r, err := apiClient.RegionAPI.CreateRegionVNet(context.Background(), regionId).VNet(vNet).Execute()
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `RegionAPI.CreateVNet``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `RegionAPI.CreateRegionVNet``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `CreateVNet`: VNet
-	fmt.Fprintf(os.Stdout, "Response from `RegionAPI.CreateVNet`: %v\n", resp)
+	// response from `CreateRegionVNet`: VNet
+	fmt.Fprintf(os.Stdout, "Response from `RegionAPI.CreateRegionVNet`: %v\n", resp)
 }
 ```
 
@@ -428,7 +428,7 @@ Name | Type | Description  | Notes
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiCreateVNetRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiCreateRegionVNetRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -454,9 +454,9 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## CreateZone
+## CreateRegionZone
 
-> Zone CreateZone(ctx, regionId).Zone(zone).Execute()
+> Zone CreateRegionZone(ctx, regionId).Zone(zone).Execute()
 
 
 
@@ -480,13 +480,13 @@ func main() {
 
 	configuration := kowabunga.NewConfiguration()
 	apiClient := kowabunga.NewAPIClient(configuration)
-	resp, r, err := apiClient.RegionAPI.CreateZone(context.Background(), regionId).Zone(zone).Execute()
+	resp, r, err := apiClient.RegionAPI.CreateRegionZone(context.Background(), regionId).Zone(zone).Execute()
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `RegionAPI.CreateZone``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `RegionAPI.CreateRegionZone``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `CreateZone`: Zone
-	fmt.Fprintf(os.Stdout, "Response from `RegionAPI.CreateZone`: %v\n", resp)
+	// response from `CreateRegionZone`: Zone
+	fmt.Fprintf(os.Stdout, "Response from `RegionAPI.CreateRegionZone`: %v\n", resp)
 }
 ```
 
@@ -500,7 +500,7 @@ Name | Type | Description  | Notes
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiCreateZoneRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiCreateRegionZoneRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -734,9 +734,9 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## ListRegionStorageNFSs
+## ListRegionStorageNFSes
 
-> []string ListRegionStorageNFSs(ctx, regionId).PoolId(poolId).Execute()
+> []string ListRegionStorageNFSes(ctx, regionId).Execute()
 
 
 
@@ -756,17 +756,16 @@ import (
 
 func main() {
 	regionId := "regionId_example" // string | The ID of the region.
-	poolId := "poolId_example" // string | Storage pool ID (optional, region's default if unspecified). (optional)
 
 	configuration := kowabunga.NewConfiguration()
 	apiClient := kowabunga.NewAPIClient(configuration)
-	resp, r, err := apiClient.RegionAPI.ListRegionStorageNFSs(context.Background(), regionId).PoolId(poolId).Execute()
+	resp, r, err := apiClient.RegionAPI.ListRegionStorageNFSes(context.Background(), regionId).Execute()
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `RegionAPI.ListRegionStorageNFSs``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `RegionAPI.ListRegionStorageNFSes``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `ListRegionStorageNFSs`: []string
-	fmt.Fprintf(os.Stdout, "Response from `RegionAPI.ListRegionStorageNFSs`: %v\n", resp)
+	// response from `ListRegionStorageNFSes`: []string
+	fmt.Fprintf(os.Stdout, "Response from `RegionAPI.ListRegionStorageNFSes`: %v\n", resp)
 }
 ```
 
@@ -780,13 +779,12 @@ Name | Type | Description  | Notes
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiListRegionStorageNFSsRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiListRegionStorageNFSesRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **poolId** | **string** | Storage pool ID (optional, region&#39;s default if unspecified). | 
 
 ### Return type
 
@@ -1291,7 +1289,7 @@ Name | Type | Description  | Notes
 
 ## UpdateRegion
 
-> Region UpdateRegion(ctx, regionId).Region(region).Execute()
+> Region UpdateRegion(ctx, regionId).RegionUpdate(regionUpdate).Execute()
 
 
 
@@ -1311,11 +1309,11 @@ import (
 
 func main() {
 	regionId := "regionId_example" // string | The ID of the region.
-	region := *kowabunga.NewRegion("Name_example", "Domain_example") // Region | Region payload.
+	regionUpdate := *kowabunga.NewRegionUpdate() // RegionUpdate | RegionUpdate payload.
 
 	configuration := kowabunga.NewConfiguration()
 	apiClient := kowabunga.NewAPIClient(configuration)
-	resp, r, err := apiClient.RegionAPI.UpdateRegion(context.Background(), regionId).Region(region).Execute()
+	resp, r, err := apiClient.RegionAPI.UpdateRegion(context.Background(), regionId).RegionUpdate(regionUpdate).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `RegionAPI.UpdateRegion``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1341,7 +1339,7 @@ Other parameters are passed through a pointer to a apiUpdateRegionRequest struct
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **region** | [**Region**](Region.md) | Region payload. | 
+ **regionUpdate** | [**RegionUpdate**](RegionUpdate.md) | RegionUpdate payload. | 
 
 ### Return type
 

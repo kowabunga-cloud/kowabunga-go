@@ -23,7 +23,7 @@ Method | HTTP request | Description
 [**ListProjectRegionKawaiis**](ProjectAPI.md#ListProjectRegionKawaiis) | **Get** /project/{projectId}/region/{regionId}/kawaiis | 
 [**ListProjectRegionKomputes**](ProjectAPI.md#ListProjectRegionKomputes) | **Get** /project/{projectId}/region/{regionId}/komputes | 
 [**ListProjectRegionKonveys**](ProjectAPI.md#ListProjectRegionKonveys) | **Get** /project/{projectId}/region/{regionId}/konveys | 
-[**ListProjectRegionKylos**](ProjectAPI.md#ListProjectRegionKylos) | **Get** /project/{projectId}/region/{regionId}/kylo | 
+[**ListProjectRegionKylos**](ProjectAPI.md#ListProjectRegionKylos) | **Get** /project/{projectId}/region/{regionId}/kylos | 
 [**ListProjectRegionVolumes**](ProjectAPI.md#ListProjectRegionVolumes) | **Get** /project/{projectId}/region/{regionId}/volumes | 
 [**ListProjectZoneInstances**](ProjectAPI.md#ListProjectZoneInstances) | **Get** /project/{projectId}/zone/{zoneId}/instances | 
 [**ListProjectZoneKomputes**](ProjectAPI.md#ListProjectZoneKomputes) | **Get** /project/{projectId}/zone/{zoneId}/komputes | 
@@ -58,7 +58,7 @@ import (
 
 func main() {
 	project := *kowabunga.NewProject("Name_example", []string{"Teams_example"}, []string{"Regions_example"}) // Project | Project payload.
-	subnetSize := int32(56) // int32 | The minimum VPC subnet size to be affected to the project. WARNING, this cannot be changed later. (optional)
+	subnetSize := int32(56) // int32 | The minimum VPC subnet size (CIDR prefix length) to be assigned to the project. WARNING, this cannot be changed later. (optional) (default to 26)
 
 	configuration := kowabunga.NewConfiguration()
 	apiClient := kowabunga.NewAPIClient(configuration)
@@ -84,7 +84,7 @@ Other parameters are passed through a pointer to a apiCreateProjectRequest struc
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **project** | [**Project**](Project.md) | Project payload. | 
- **subnetSize** | **int32** | The minimum VPC subnet size to be affected to the project. WARNING, this cannot be changed later. | 
+ **subnetSize** | **int32** | The minimum VPC subnet size (CIDR prefix length) to be assigned to the project. WARNING, this cannot be changed later. | [default to 26]
 
 ### Return type
 
@@ -271,7 +271,7 @@ import (
 func main() {
 	projectId := "projectId_example" // string | The ID of the project.
 	regionId := "regionId_example" // string | The ID of the region.
-	instance := *kowabunga.NewInstance("Name_example", int64(123), int64(123)) // Instance | Instance payload.
+	instance := *kowabunga.NewInstance("Name_example", int64(123), int32(123)) // Instance | Instance payload.
 
 	configuration := kowabunga.NewConfiguration()
 	apiClient := kowabunga.NewAPIClient(configuration)
@@ -421,10 +421,10 @@ import (
 func main() {
 	projectId := "projectId_example" // string | The ID of the project.
 	regionId := "regionId_example" // string | The ID of the region.
-	kompute := *kowabunga.NewKompute("Name_example", int64(123), int64(123), int64(123)) // Kompute | Kompute payload.
+	kompute := *kowabunga.NewKompute("Name_example", int64(123), int32(123), int64(123)) // Kompute | Kompute payload.
 	poolId := "poolId_example" // string | Storage pool ID (optional, region's default if unspecified). (optional)
 	templateId := "templateId_example" // string | Template to clone the storage volume from (optional, region's default if unspecified). (optional)
-	public := true // bool | Should Kompute be exposed over public Internet ? (a public IPv4 address will then be auto-assigned, default to false). (optional)
+	public := true // bool | Whether the Kompute should be exposed over public Internet (a public IPv4 address will then be auto-assigned). (optional) (default to false)
 
 	configuration := kowabunga.NewConfiguration()
 	apiClient := kowabunga.NewAPIClient(configuration)
@@ -459,7 +459,7 @@ Name | Type | Description  | Notes
  **kompute** | [**Kompute**](Kompute.md) | Kompute payload. | 
  **poolId** | **string** | Storage pool ID (optional, region&#39;s default if unspecified). | 
  **templateId** | **string** | Template to clone the storage volume from (optional, region&#39;s default if unspecified). | 
- **public** | **bool** | Should Kompute be exposed over public Internet ? (a public IPv4 address will then be auto-assigned, default to false). | 
+ **public** | **bool** | Whether the Kompute should be exposed over public Internet (a public IPv4 address will then be auto-assigned). | [default to false]
 
 ### Return type
 
@@ -502,7 +502,7 @@ import (
 func main() {
 	projectId := "projectId_example" // string | The ID of the project.
 	regionId := "regionId_example" // string | The ID of the region.
-	konvey := *kowabunga.NewKonvey([]openapiclient.KonveyEndpoint{*openapiclient.NewKonveyEndpoint("Name_example", int64(123), "Protocol_example", *openapiclient.NewKonveyBackends([]string{"Hosts_example"}, int64(123)))}) // Konvey | Konvey payload.
+	konvey := *kowabunga.NewKonvey([]openapiclient.KonveyEndpoint{*openapiclient.NewKonveyEndpoint("Name_example", int32(123), "Protocol_example", *openapiclient.NewKonveyBackends([]string{"Hosts_example"}, int32(123)))}) // Konvey | Konvey payload.
 
 	configuration := kowabunga.NewConfiguration()
 	apiClient := kowabunga.NewAPIClient(configuration)
@@ -733,7 +733,7 @@ import (
 func main() {
 	projectId := "projectId_example" // string | The ID of the project.
 	zoneId := "zoneId_example" // string | The ID of the availability zone.
-	instance := *kowabunga.NewInstance("Name_example", int64(123), int64(123)) // Instance | Instance payload.
+	instance := *kowabunga.NewInstance("Name_example", int64(123), int32(123)) // Instance | Instance payload.
 
 	configuration := kowabunga.NewConfiguration()
 	apiClient := kowabunga.NewAPIClient(configuration)
@@ -808,10 +808,10 @@ import (
 func main() {
 	projectId := "projectId_example" // string | The ID of the project.
 	zoneId := "zoneId_example" // string | The ID of the availability zone.
-	kompute := *kowabunga.NewKompute("Name_example", int64(123), int64(123), int64(123)) // Kompute | Kompute payload.
+	kompute := *kowabunga.NewKompute("Name_example", int64(123), int32(123), int64(123)) // Kompute | Kompute payload.
 	poolId := "poolId_example" // string | Storage pool ID (optional, region's default if unspecified). (optional)
 	templateId := "templateId_example" // string | Template to clone the storage volume from (optional, region's default if unspecified). (optional)
-	public := true // bool | Should Kompute be exposed over public Internet ? (a public IPv4 address will then be auto-assigned, default to false). (optional)
+	public := true // bool | Whether the Kompute should be exposed over public Internet (a public IPv4 address will then be auto-assigned). (optional) (default to false)
 
 	configuration := kowabunga.NewConfiguration()
 	apiClient := kowabunga.NewAPIClient(configuration)
@@ -846,7 +846,7 @@ Name | Type | Description  | Notes
  **kompute** | [**Kompute**](Kompute.md) | Kompute payload. | 
  **poolId** | **string** | Storage pool ID (optional, region&#39;s default if unspecified). | 
  **templateId** | **string** | Template to clone the storage volume from (optional, region&#39;s default if unspecified). | 
- **public** | **bool** | Should Kompute be exposed over public Internet ? (a public IPv4 address will then be auto-assigned, default to false). | 
+ **public** | **bool** | Whether the Kompute should be exposed over public Internet (a public IPv4 address will then be auto-assigned). | [default to false]
 
 ### Return type
 
@@ -889,7 +889,7 @@ import (
 func main() {
 	projectId := "projectId_example" // string | The ID of the project.
 	zoneId := "zoneId_example" // string | The ID of the availability zone.
-	konvey := *kowabunga.NewKonvey([]openapiclient.KonveyEndpoint{*openapiclient.NewKonveyEndpoint("Name_example", int64(123), "Protocol_example", *openapiclient.NewKonveyBackends([]string{"Hosts_example"}, int64(123)))}) // Konvey | Konvey payload.
+	konvey := *kowabunga.NewKonvey([]openapiclient.KonveyEndpoint{*openapiclient.NewKonveyEndpoint("Name_example", int32(123), "Protocol_example", *openapiclient.NewKonveyBackends([]string{"Hosts_example"}, int32(123)))}) // Konvey | Konvey payload.
 
 	configuration := kowabunga.NewConfiguration()
 	apiClient := kowabunga.NewAPIClient(configuration)
@@ -1810,7 +1810,7 @@ Name | Type | Description  | Notes
 
 ## ListProjects
 
-> []string ListProjects(ctx).SubnetSize(subnetSize).Execute()
+> []string ListProjects(ctx).Execute()
 
 
 
@@ -1829,11 +1829,10 @@ import (
 )
 
 func main() {
-	subnetSize := int32(56) // int32 | The minimum VPC subnet size to be affected to the project. WARNING, this cannot be changed later. (optional)
 
 	configuration := kowabunga.NewConfiguration()
 	apiClient := kowabunga.NewAPIClient(configuration)
-	resp, r, err := apiClient.ProjectAPI.ListProjects(context.Background()).SubnetSize(subnetSize).Execute()
+	resp, r, err := apiClient.ProjectAPI.ListProjects(context.Background()).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ProjectAPI.ListProjects``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1845,16 +1844,12 @@ func main() {
 
 ### Path Parameters
 
-
+This endpoint does not need any parameter.
 
 ### Other Parameters
 
 Other parameters are passed through a pointer to a apiListProjectsRequest struct via the builder pattern
 
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **subnetSize** | **int32** | The minimum VPC subnet size to be affected to the project. WARNING, this cannot be changed later. | 
 
 ### Return type
 
@@ -2086,7 +2081,7 @@ Name | Type | Description  | Notes
 
 ## UpdateProject
 
-> Project UpdateProject(ctx, projectId).Project(project).Execute()
+> Project UpdateProject(ctx, projectId).ProjectUpdate(projectUpdate).Execute()
 
 
 
@@ -2106,11 +2101,11 @@ import (
 
 func main() {
 	projectId := "projectId_example" // string | The ID of the project.
-	project := *kowabunga.NewProject("Name_example", []string{"Teams_example"}, []string{"Regions_example"}) // Project | Project payload.
+	projectUpdate := *kowabunga.NewProjectUpdate() // ProjectUpdate | ProjectUpdate payload.
 
 	configuration := kowabunga.NewConfiguration()
 	apiClient := kowabunga.NewAPIClient(configuration)
-	resp, r, err := apiClient.ProjectAPI.UpdateProject(context.Background(), projectId).Project(project).Execute()
+	resp, r, err := apiClient.ProjectAPI.UpdateProject(context.Background(), projectId).ProjectUpdate(projectUpdate).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ProjectAPI.UpdateProject``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -2136,7 +2131,7 @@ Other parameters are passed through a pointer to a apiUpdateProjectRequest struc
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **project** | [**Project**](Project.md) | Project payload. | 
+ **projectUpdate** | [**ProjectUpdate**](ProjectUpdate.md) | ProjectUpdate payload. | 
 
 ### Return type
 

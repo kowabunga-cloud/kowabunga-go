@@ -5,8 +5,8 @@ All URIs are relative to *https://your_kowabunga_kahuna_server/api/v1*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**DeleteStorageNFS**](NfsAPI.md#DeleteStorageNFS) | **Delete** /nfs/{nfsId} | 
-[**ListStorageNFSKylos**](NfsAPI.md#ListStorageNFSKylos) | **Get** /nfs/{nfsId}/kylo | 
-[**ListStorageNFSs**](NfsAPI.md#ListStorageNFSs) | **Get** /nfs | 
+[**ListStorageNFSKylos**](NfsAPI.md#ListStorageNFSKylos) | **Get** /nfs/{nfsId}/kylos | 
+[**ListStorageNFSes**](NfsAPI.md#ListStorageNFSes) | **Get** /nfs | 
 [**ReadStorageNFS**](NfsAPI.md#ReadStorageNFS) | **Get** /nfs/{nfsId} | 
 [**UpdateStorageNFS**](NfsAPI.md#UpdateStorageNFS) | **Put** /nfs/{nfsId} | 
 
@@ -150,9 +150,9 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## ListStorageNFSs
+## ListStorageNFSes
 
-> []string ListStorageNFSs(ctx).Execute()
+> []string ListStorageNFSes(ctx).Execute()
 
 
 
@@ -174,13 +174,13 @@ func main() {
 
 	configuration := kowabunga.NewConfiguration()
 	apiClient := kowabunga.NewAPIClient(configuration)
-	resp, r, err := apiClient.NfsAPI.ListStorageNFSs(context.Background()).Execute()
+	resp, r, err := apiClient.NfsAPI.ListStorageNFSes(context.Background()).Execute()
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `NfsAPI.ListStorageNFSs``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `NfsAPI.ListStorageNFSes``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `ListStorageNFSs`: []string
-	fmt.Fprintf(os.Stdout, "Response from `NfsAPI.ListStorageNFSs`: %v\n", resp)
+	// response from `ListStorageNFSes`: []string
+	fmt.Fprintf(os.Stdout, "Response from `NfsAPI.ListStorageNFSes`: %v\n", resp)
 }
 ```
 
@@ -190,7 +190,7 @@ This endpoint does not need any parameter.
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiListStorageNFSsRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiListStorageNFSesRequest struct via the builder pattern
 
 
 ### Return type
@@ -283,7 +283,7 @@ Name | Type | Description  | Notes
 
 ## UpdateStorageNFS
 
-> StorageNFS UpdateStorageNFS(ctx, nfsId).StorageNFS(storageNFS).Execute()
+> StorageNFS UpdateStorageNFS(ctx, nfsId).StorageNFSUpdate(storageNFSUpdate).Execute()
 
 
 
@@ -303,11 +303,11 @@ import (
 
 func main() {
 	nfsId := "nfsId_example" // string | The ID of the NFS storage.
-	storageNFS := *kowabunga.NewStorageNFS("Name_example", "Endpoint_example") // StorageNFS | StorageNFS payload.
+	storageNFSUpdate := *kowabunga.NewStorageNFSUpdate() // StorageNFSUpdate | StorageNFSUpdate payload.
 
 	configuration := kowabunga.NewConfiguration()
 	apiClient := kowabunga.NewAPIClient(configuration)
-	resp, r, err := apiClient.NfsAPI.UpdateStorageNFS(context.Background(), nfsId).StorageNFS(storageNFS).Execute()
+	resp, r, err := apiClient.NfsAPI.UpdateStorageNFS(context.Background(), nfsId).StorageNFSUpdate(storageNFSUpdate).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `NfsAPI.UpdateStorageNFS``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -333,7 +333,7 @@ Other parameters are passed through a pointer to a apiUpdateStorageNFSRequest st
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **storageNFS** | [**StorageNFS**](StorageNFS.md) | StorageNFS payload. | 
+ **storageNFSUpdate** | [**StorageNFSUpdate**](StorageNFSUpdate.md) | StorageNFSUpdate payload. | 
 
 ### Return type
 

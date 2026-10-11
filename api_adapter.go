@@ -3,7 +3,7 @@ Kowabunga API
 
 Kvm Orchestrator With A BUNch of Goods Added
 
-API version: 0.57.1
+API version: 0.58.0
 Contact: maintainers@kowabunga.cloud
 */
 
@@ -137,6 +137,17 @@ func (a *AdapterAPIService) DeleteAdapterExecute(r ApiDeleteAdapterRequest) (*ht
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ApiErrorForbidden
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ApiErrorInternalServerError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -302,6 +313,17 @@ func (a *AdapterAPIService) ListAdaptersExecute(r ApiListAdaptersRequest) ([]str
 			}
 					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ApiErrorInternalServerError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -442,6 +464,17 @@ func (a *AdapterAPIService) ReadAdapterExecute(r ApiReadAdapterRequest) (*Adapte
 					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ApiErrorInternalServerError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v ApiErrorNotFound
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -471,12 +504,12 @@ type ApiUpdateAdapterRequest struct {
 	ctx context.Context
 	ApiService *AdapterAPIService
 	adapterId string
-	adapter *Adapter
+	adapterUpdate *AdapterUpdate
 }
 
-// Adapter payload.
-func (r ApiUpdateAdapterRequest) Adapter(adapter Adapter) ApiUpdateAdapterRequest {
-	r.adapter = &adapter
+// AdapterUpdate payload.
+func (r ApiUpdateAdapterRequest) AdapterUpdate(adapterUpdate AdapterUpdate) ApiUpdateAdapterRequest {
+	r.adapterUpdate = &adapterUpdate
 	return r
 }
 
@@ -522,8 +555,8 @@ func (a *AdapterAPIService) UpdateAdapterExecute(r ApiUpdateAdapterRequest) (*Ad
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.adapter == nil {
-		return localVarReturnValue, nil, reportError("adapter is required and must be specified")
+	if r.adapterUpdate == nil {
+		return localVarReturnValue, nil, reportError("adapterUpdate is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -544,7 +577,7 @@ func (a *AdapterAPIService) UpdateAdapterExecute(r ApiUpdateAdapterRequest) (*Ad
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.adapter
+	localVarPostBody = r.adapterUpdate
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -605,6 +638,17 @@ func (a *AdapterAPIService) UpdateAdapterExecute(r ApiUpdateAdapterRequest) (*Ad
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ApiErrorForbidden
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ApiErrorInternalServerError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()

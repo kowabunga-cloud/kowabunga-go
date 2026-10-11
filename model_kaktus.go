@@ -3,7 +3,7 @@ Kowabunga API
 
 Kvm Orchestrator With A BUNch of Goods Added
 
-API version: 0.57.1
+API version: 0.58.0
 Contact: maintainers@kowabunga.cloud
 */
 
@@ -22,7 +22,7 @@ var _ MappedNullable = &Kaktus{}
 
 // Kaktus A Kaktus (Kowabunga Affordable KVM and Tight Underneath Storage) is an hyper-converged infrastructure (HCI) bare-metal node offering computing and distributed storage capabilites.
 type Kaktus struct {
-	// The Kaktus computing node ID (auto-generated).
+	// The Kaktus computing node ID (auto-generated) (read-only).
 	Id *string `json:"id,omitempty"`
 	// The Kaktus computing node name.
 	Name string `json:"name"`
@@ -38,7 +38,7 @@ type Kaktus struct {
 	OvercommitMemoryRatio *int64 `json:"overcommit_memory_ratio,omitempty"`
 	// a list of existing remote agents managing the Kaktus node.
 	Agents []string `json:"agents"`
-	// Whether the Kaktus node is under maintenance. A node under maintenance keeps running its existing instances but is excluded from scheduling of newly created workloads.
+	// Whether the Kaktus node is under maintenance. A node under maintenance keeps running its existing instances but is excluded from scheduling of newly created workloads. Use the maintenance enable/disable operations to change it (read-only).
 	Maintenance *bool `json:"maintenance,omitempty"`
 }
 
@@ -56,8 +56,6 @@ func NewKaktus(name string, agents []string) *Kaktus {
 	var overcommitMemoryRatio int64 = 2
 	this.OvercommitMemoryRatio = &overcommitMemoryRatio
 	this.Agents = agents
-	var maintenance bool = false
-	this.Maintenance = &maintenance
 	return &this
 }
 
@@ -70,8 +68,6 @@ func NewKaktusWithDefaults() *Kaktus {
 	this.OvercommitCpuRatio = &overcommitCpuRatio
 	var overcommitMemoryRatio int64 = 2
 	this.OvercommitMemoryRatio = &overcommitMemoryRatio
-	var maintenance bool = false
-	this.Maintenance = &maintenance
 	return &this
 }
 

@@ -3,7 +3,7 @@ Kowabunga API
 
 Kvm Orchestrator With A BUNch of Goods Added
 
-API version: 0.57.1
+API version: 0.58.0
 Contact: maintainers@kowabunga.cloud
 */
 
@@ -22,15 +22,15 @@ var _ MappedNullable = &Konvey{}
 
 // Konvey A Kowabunga Konvey is a layer-4 network load-balancer used to distribute service requests to associated backend instances.
 type Konvey struct {
-	// The Konvey (Kowabunga Network Load-Balancer) ID (auto-generated).
+	// The Konvey (Kowabunga Network Load-Balancer) ID (auto-generated) (read-only).
 	Id *string `json:"id,omitempty"`
-	// The Konvey (Kowabunga Network Load-Balancer) name.
+	// The Konvey (Kowabunga Network Load-Balancer) name, prefixed with konvey- (project name if unspecified).
 	Name *string `json:"name,omitempty"`
 	// The Konvey (Kowabunga Network Load-Balancer) description.
 	Description *string `json:"description,omitempty"`
 	// The Konvey (Kowabunga Network Load-Balancer) assigned private virtual IP address (read-only).
 	Vip *string `json:"vip,omitempty"`
-	// Whether Konvey (Kowabunga Network Load-Balancer) must be deployed in a highly-available replicated state to support service failover.
+	// Whether Konvey (Kowabunga Network Load-Balancer) must be deployed in a highly-available replicated state to support service failover. Can only be set at creation time, ignored on updates.
 	Failover *bool `json:"failover,omitempty"`
 	// The Konvey (Kowabunga Network Load-Balancer) list of load-balanced endpoints.
 	Endpoints []KonveyEndpoint `json:"endpoints"`

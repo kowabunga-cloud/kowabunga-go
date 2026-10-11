@@ -4,11 +4,11 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | Pointer to **string** | The image template ID (auto-generated). | [optional] 
+**Id** | Pointer to **string** | The image template ID (auto-generated) (read-only). | [optional] [readonly] 
 **Name** | **string** | The image template name. | 
 **Description** | Pointer to **string** | The image template description. | [optional] 
-**Os** | Pointer to **string** | Type of operating system if OS kind (useful to determine cloud-init parameters for instance). | [optional] [default to "linux"]
-**Source** | **string** | HTTP(s) source URL of the KVM-ready OS image. | 
+**Os** | Pointer to **string** | Type of operating system (useful to determine cloud-init parameters for instance). Can only be set at creation time, ignored on updates. | [optional] [default to "linux"]
+**Source** | **string** | HTTP(s) source URL of the KVM-ready OS image. Can only be set at creation time, ignored on updates. | 
 
 ## Methods
 

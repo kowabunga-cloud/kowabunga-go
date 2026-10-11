@@ -3,7 +3,7 @@ Kowabunga API
 
 Kvm Orchestrator With A BUNch of Goods Added
 
-API version: 0.57.1
+API version: 0.58.0
 Contact: maintainers@kowabunga.cloud
 */
 
@@ -158,6 +158,17 @@ func (a *AgentAPIService) CreateAgentExecute(r ApiCreateAgentRequest) (*Agent, *
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ApiErrorForbidden
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ApiErrorInternalServerError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -347,6 +358,17 @@ func (a *AgentAPIService) DeleteAgentExecute(r ApiDeleteAgentRequest) (*http.Res
 					newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ApiErrorInternalServerError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v ApiErrorNotFound
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -503,6 +525,17 @@ func (a *AgentAPIService) ListAgentsExecute(r ApiListAgentsRequest) ([]string, *
 			}
 					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ApiErrorInternalServerError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -643,6 +676,17 @@ func (a *AgentAPIService) ReadAgentExecute(r ApiReadAgentRequest) (*Agent, *http
 					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ApiErrorInternalServerError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v ApiErrorNotFound
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -695,7 +739,7 @@ func (r ApiSetAgentApiTokenRequest) Execute() (*ApiToken, *http.Response, error)
 /*
 SetAgentApiToken Method for SetAgentApiToken
 
-Performs a Kowabunga remote agent setting of API token (will replace any existing one).
+Performs a Kowabunga remote agent setting of API token (will replace any existing one, disconnecting the agent; the generated API key is only sent once, by email, to administrators).
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param agentId The ID of the Kowabunga remote agent.
@@ -733,9 +777,13 @@ func (a *AgentAPIService) SetAgentApiTokenExecute(r ApiSetAgentApiTokenRequest) 
 
 	if r.expire != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "expire", r.expire, "form", "")
+	} else {
+		var defaultValue bool = false
+		parameterAddToHeaderOrQuery(localVarQueryParams, "expire", defaultValue, "form", "")
+		r.expire = &defaultValue
 	}
 	if r.expirationDate != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "expiration_date", r.expirationDate, "form", "")
+		parameterAddToHeaderOrQuery(localVarQueryParams, "expirationDate", r.expirationDate, "form", "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -812,6 +860,17 @@ func (a *AgentAPIService) SetAgentApiTokenExecute(r ApiSetAgentApiTokenRequest) 
 					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ApiErrorInternalServerError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v ApiErrorNotFound
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -852,12 +911,12 @@ type ApiUpdateAgentRequest struct {
 	ctx context.Context
 	ApiService *AgentAPIService
 	agentId string
-	agent *Agent
+	agentUpdate *AgentUpdate
 }
 
-// Agent payload.
-func (r ApiUpdateAgentRequest) Agent(agent Agent) ApiUpdateAgentRequest {
-	r.agent = &agent
+// AgentUpdate payload.
+func (r ApiUpdateAgentRequest) AgentUpdate(agentUpdate AgentUpdate) ApiUpdateAgentRequest {
+	r.agentUpdate = &agentUpdate
 	return r
 }
 
@@ -903,8 +962,8 @@ func (a *AgentAPIService) UpdateAgentExecute(r ApiUpdateAgentRequest) (*Agent, *
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.agent == nil {
-		return localVarReturnValue, nil, reportError("agent is required and must be specified")
+	if r.agentUpdate == nil {
+		return localVarReturnValue, nil, reportError("agentUpdate is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -925,7 +984,7 @@ func (a *AgentAPIService) UpdateAgentExecute(r ApiUpdateAgentRequest) (*Agent, *
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.agent
+	localVarPostBody = r.agentUpdate
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -986,6 +1045,17 @@ func (a *AgentAPIService) UpdateAgentExecute(r ApiUpdateAgentRequest) (*Agent, *
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ApiErrorForbidden
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ApiErrorInternalServerError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()

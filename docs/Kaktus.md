@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | Pointer to **string** | The Kaktus computing node ID (auto-generated). | [optional] 
+**Id** | Pointer to **string** | The Kaktus computing node ID (auto-generated) (read-only). | [optional] [readonly] 
 **Name** | **string** | The Kaktus computing node name. | 
 **Description** | Pointer to **string** | The Kaktus computing node description. | [optional] 
 **CpuCost** | Pointer to [**Cost**](Cost.md) | Cost associated to the Kaktus node&#39;s CPU resources. | [optional] 
@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 **OvercommitCpuRatio** | Pointer to **int64** | The Kaktus node CPU resource over-commit ratio. Overcommitting CPU resources for VMs means allocating more virtual CPUs (vCPUs) to the virtual machines (VMs) than the physical cores available on the node. This can help optimize the utilization of the node CPU and increase the density of VMs per node. | [optional] [default to 3]
 **OvercommitMemoryRatio** | Pointer to **int64** | The Kaktus node memory resource over-commit ratio. Memory overcommitment is a concept in computing that covers the assignment of more memory to virtual computing devices (or processes) than the physical machine they are hosted, or running on, actually has. | [optional] [default to 2]
 **Agents** | **[]string** | a list of existing remote agents managing the Kaktus node. | 
-**Maintenance** | Pointer to **bool** | Whether the Kaktus node is under maintenance. A node under maintenance keeps running its existing instances but is excluded from scheduling of newly created workloads. | [optional] [default to false]
+**Maintenance** | Pointer to **bool** | Whether the Kaktus node is under maintenance. A node under maintenance keeps running its existing instances but is excluded from scheduling of newly created workloads. Use the maintenance enable/disable operations to change it (read-only). | [optional] [readonly] 
 
 ## Methods
 

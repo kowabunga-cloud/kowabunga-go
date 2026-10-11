@@ -4,15 +4,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Zone** | **string** | The Kawaii zone name (read-only). | 
-**Public** | **string** | The Kawaii zone gateway public virtual IP (read-only). | 
-**Private** | **string** | The Kawaii zone gateway private virtual IP (read-only). | 
+**Zone** | **string** | The Kawaii zone name (read-only). | [readonly] 
+**Public** | Pointer to **string** | The Kawaii zone gateway public virtual IP (unset for VPC peered subnets) (read-only). | [optional] [readonly] 
+**Private** | **string** | The Kawaii zone gateway private virtual IP (read-only). | [readonly] 
 
 ## Methods
 
 ### NewKawaiiNetIpZone
 
-`func NewKawaiiNetIpZone(zone string, public string, private string, ) *KawaiiNetIpZone`
+`func NewKawaiiNetIpZone(zone string, private string, ) *KawaiiNetIpZone`
 
 NewKawaiiNetIpZone instantiates a new KawaiiNetIpZone object
 This constructor will assign default values to properties that have it defined,
@@ -66,6 +66,11 @@ and a boolean to check if the value has been set.
 
 SetPublic sets Public field to given value.
 
+### HasPublic
+
+`func (o *KawaiiNetIpZone) HasPublic() bool`
+
+HasPublic returns a boolean if a field has been set.
 
 ### GetPrivate
 

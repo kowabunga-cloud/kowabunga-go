@@ -4,12 +4,12 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | Pointer to **string** | The storage pool ID (auto-generated). | [optional] 
+**Id** | Pointer to **string** | The storage pool ID (auto-generated) (read-only). | [optional] [readonly] 
 **Name** | **string** | The storage pool name. | 
 **Description** | Pointer to **string** | The storage pool description. | [optional] 
 **Pool** | **string** | Ceph pool name. | 
 **CephAddress** | Pointer to **string** | Ceph Monitor(s) address or FQDN. | [optional] [default to "localhost"]
-**CephPort** | Pointer to **int64** | Ceph Monitor(s) port (default 3300). | [optional] [default to 3300]
+**CephPort** | Pointer to **int32** | Ceph Monitor(s) port. | [optional] [default to 3300]
 **CephSecretUuid** | Pointer to **string** | The libvirt secret UUID for CephX authentication. | [optional] 
 **Cost** | Pointer to [**Cost**](Cost.md) | Cost associated to the storage pool. | [optional] 
 **Agents** | **[]string** | a list of existing remote agents managing the storage pool. | 
@@ -150,20 +150,20 @@ HasCephAddress returns a boolean if a field has been set.
 
 ### GetCephPort
 
-`func (o *StoragePool) GetCephPort() int64`
+`func (o *StoragePool) GetCephPort() int32`
 
 GetCephPort returns the CephPort field if non-nil, zero value otherwise.
 
 ### GetCephPortOk
 
-`func (o *StoragePool) GetCephPortOk() (*int64, bool)`
+`func (o *StoragePool) GetCephPortOk() (*int32, bool)`
 
 GetCephPortOk returns a tuple with the CephPort field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetCephPort
 
-`func (o *StoragePool) SetCephPort(v int64)`
+`func (o *StoragePool) SetCephPort(v int32)`
 
 SetCephPort sets CephPort field to given value.
 

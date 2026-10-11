@@ -3,7 +3,7 @@ Kowabunga API
 
 Kvm Orchestrator With A BUNch of Goods Added
 
-API version: 0.57.1
+API version: 0.58.0
 Contact: maintainers@kowabunga.cloud
 */
 
@@ -22,9 +22,9 @@ var _ MappedNullable = &KawaiiVpcForwardRule{}
 
 // KawaiiVpcForwardRule A Kawaii VPC firewall forwarding rule.
 type KawaiiVpcForwardRule struct {
-	// The transport layer protocol to forward public traffic to.
+	// The transport layer protocol to forward VPC traffic to.
 	Protocol *string `json:"protocol,omitempty"`
-	// The port (or list of ports) to forward public traffic from. Ranges are accepted. Format is a-b,c-d (e.g. 443; 22,80,443; 80,443,3000-3005).
+	// The port (or list of ports) to forward VPC traffic from. Ranges are accepted. Format is a-b,c-d (e.g. 443; 22,80,443; 80,443,3000-3005).
 	Ports string `json:"ports"`
 }
 

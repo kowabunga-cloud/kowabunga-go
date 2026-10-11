@@ -3,7 +3,7 @@ Kowabunga API
 
 Kvm Orchestrator With A BUNch of Goods Added
 
-API version: 0.57.1
+API version: 0.58.0
 Contact: maintainers@kowabunga.cloud
 */
 
@@ -22,7 +22,7 @@ var _ MappedNullable = &Team{}
 
 // Team A Kowabunga users team.
 type Team struct {
-	// The Kowabunga users team ID (auto-generated).
+	// The Kowabunga users team ID (auto-generated) (read-only).
 	Id *string `json:"id,omitempty"`
 	// The Kowabunga users team name.
 	Name string `json:"name"`

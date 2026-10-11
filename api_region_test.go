@@ -22,20 +22,6 @@ func Test_kowabunga_RegionAPIService(t *testing.T) {
 	configuration := NewConfiguration()
 	apiClient := NewAPIClient(configuration)
 
-	t.Run("Test RegionAPIService CreateKiwi", func(t *testing.T) {
-
-		t.Skip("skip test")  // remove to run test
-
-		var regionId string
-
-		resp, httpRes, err := apiClient.RegionAPI.CreateKiwi(context.Background(), regionId).Execute()
-
-		require.Nil(t, err)
-		require.NotNil(t, resp)
-		assert.Equal(t, 200, httpRes.StatusCode)
-
-	})
-
 	t.Run("Test RegionAPIService CreateRegion", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
@@ -62,13 +48,13 @@ func Test_kowabunga_RegionAPIService(t *testing.T) {
 
 	})
 
-	t.Run("Test RegionAPIService CreateStorageNFS", func(t *testing.T) {
+	t.Run("Test RegionAPIService CreateRegionKiwi", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
 		var regionId string
 
-		resp, httpRes, err := apiClient.RegionAPI.CreateStorageNFS(context.Background(), regionId).Execute()
+		resp, httpRes, err := apiClient.RegionAPI.CreateRegionKiwi(context.Background(), regionId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -76,13 +62,13 @@ func Test_kowabunga_RegionAPIService(t *testing.T) {
 
 	})
 
-	t.Run("Test RegionAPIService CreateStoragePool", func(t *testing.T) {
+	t.Run("Test RegionAPIService CreateRegionStorageNFS", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
 		var regionId string
 
-		resp, httpRes, err := apiClient.RegionAPI.CreateStoragePool(context.Background(), regionId).Execute()
+		resp, httpRes, err := apiClient.RegionAPI.CreateRegionStorageNFS(context.Background(), regionId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -90,13 +76,13 @@ func Test_kowabunga_RegionAPIService(t *testing.T) {
 
 	})
 
-	t.Run("Test RegionAPIService CreateVNet", func(t *testing.T) {
+	t.Run("Test RegionAPIService CreateRegionStoragePool", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
 		var regionId string
 
-		resp, httpRes, err := apiClient.RegionAPI.CreateVNet(context.Background(), regionId).Execute()
+		resp, httpRes, err := apiClient.RegionAPI.CreateRegionStoragePool(context.Background(), regionId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -104,13 +90,27 @@ func Test_kowabunga_RegionAPIService(t *testing.T) {
 
 	})
 
-	t.Run("Test RegionAPIService CreateZone", func(t *testing.T) {
+	t.Run("Test RegionAPIService CreateRegionVNet", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
 		var regionId string
 
-		resp, httpRes, err := apiClient.RegionAPI.CreateZone(context.Background(), regionId).Execute()
+		resp, httpRes, err := apiClient.RegionAPI.CreateRegionVNet(context.Background(), regionId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test RegionAPIService CreateRegionZone", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var regionId string
+
+		resp, httpRes, err := apiClient.RegionAPI.CreateRegionZone(context.Background(), regionId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -159,13 +159,13 @@ func Test_kowabunga_RegionAPIService(t *testing.T) {
 
 	})
 
-	t.Run("Test RegionAPIService ListRegionStorageNFSs", func(t *testing.T) {
+	t.Run("Test RegionAPIService ListRegionStorageNFSes", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
 		var regionId string
 
-		resp, httpRes, err := apiClient.RegionAPI.ListRegionStorageNFSs(context.Background(), regionId).Execute()
+		resp, httpRes, err := apiClient.RegionAPI.ListRegionStorageNFSes(context.Background(), regionId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)

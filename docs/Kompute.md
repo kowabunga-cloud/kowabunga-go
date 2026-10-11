@@ -4,23 +4,23 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | Pointer to **string** | The Kompute ID (auto-generated). | [optional] 
+**Id** | Pointer to **string** | The Kompute ID (auto-generated) (read-only). | [optional] [readonly] 
 **Name** | **string** | The Kompute name. | 
 **Description** | Pointer to **string** | The Kompute description. | [optional] 
 **Memory** | **int64** | The Kompute memory size (in bytes). | 
-**Vcpus** | **int64** | The Kompute number of vCPUs. | 
+**Vcpus** | **int32** | The Kompute number of vCPUs. | 
 **Disk** | **int64** | The Kompute OS disk size (in bytes). | 
 **DataDisk** | Pointer to **int64** | The Kompute extra data disk size (in bytes). If unspecified, no extra data disk will be assigned. | [optional] [default to 0]
-**Ip** | Pointer to **string** | The Kompute assigned private IPv4 address (read-only). | [optional] 
-**Kwarantines** | Pointer to **[]string** | An optional list of existing Kwarantine anti-affinity group IDs. Only considered at Kompute creation time, to elect an initial host consistent with the referenced groups policies and register the Kompute as one of their members. Read-only afterwards, always reflecting current membership, which should be managed going forward via the Kwarantine webservices. | [optional] 
-**Uefi** | Pointer to **bool** | enable UEFI secure firmware (vs. legacy BIOS). | [optional] [default to true]
+**Ip** | Pointer to **string** | The Kompute assigned private IPv4 address (read-only). | [optional] [readonly] 
+**Kwarantines** | Pointer to **[]string** | An optional list of existing Kwarantine anti-affinity group IDs. Only considered at Kompute creation time, to elect an initial host consistent with the referenced groups policies and register the Kompute as one of their members. Read-only afterwards, always reflecting current membership, which should be managed going forward via the Kwarantine webservices. Can only be set at creation time, ignored on updates. | [optional] 
+**Uefi** | Pointer to **bool** | Enable UEFI secure firmware (vs. legacy BIOS). Can only be set at creation time, ignored on updates. | [optional] [default to true]
 **KmotionEnabled** | Pointer to **bool** | Whether kMotion (live/cold host migration) is enabled for the Kompute. When disabled, the instance remains bound to its original hosting node. | [optional] [default to true]
 
 ## Methods
 
 ### NewKompute
 
-`func NewKompute(name string, memory int64, vcpus int64, disk int64, ) *Kompute`
+`func NewKompute(name string, memory int64, vcpus int32, disk int64, ) *Kompute`
 
 NewKompute instantiates a new Kompute object
 This constructor will assign default values to properties that have it defined,
@@ -127,20 +127,20 @@ SetMemory sets Memory field to given value.
 
 ### GetVcpus
 
-`func (o *Kompute) GetVcpus() int64`
+`func (o *Kompute) GetVcpus() int32`
 
 GetVcpus returns the Vcpus field if non-nil, zero value otherwise.
 
 ### GetVcpusOk
 
-`func (o *Kompute) GetVcpusOk() (*int64, bool)`
+`func (o *Kompute) GetVcpusOk() (*int32, bool)`
 
 GetVcpusOk returns a tuple with the Vcpus field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetVcpus
 
-`func (o *Kompute) SetVcpus(v int64)`
+`func (o *Kompute) SetVcpus(v int32)`
 
 SetVcpus sets Vcpus field to given value.
 

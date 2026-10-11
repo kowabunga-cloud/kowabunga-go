@@ -4,7 +4,7 @@ All URIs are relative to *https://your_kowabunga_kahuna_server/api/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**CreateTemplate**](PoolAPI.md#CreateTemplate) | **Post** /pool/{poolId}/template | 
+[**CreateStoragePoolTemplate**](PoolAPI.md#CreateStoragePoolTemplate) | **Post** /pool/{poolId}/template | 
 [**DeleteStoragePool**](PoolAPI.md#DeleteStoragePool) | **Delete** /pool/{poolId} | 
 [**ListStoragePoolTemplates**](PoolAPI.md#ListStoragePoolTemplates) | **Get** /pool/{poolId}/templates | 
 [**ListStoragePoolVolumes**](PoolAPI.md#ListStoragePoolVolumes) | **Get** /pool/{poolId}/volumes | 
@@ -15,9 +15,9 @@ Method | HTTP request | Description
 
 
 
-## CreateTemplate
+## CreateStoragePoolTemplate
 
-> Template CreateTemplate(ctx, poolId).Template(template).Execute()
+> Template CreateStoragePoolTemplate(ctx, poolId).Template(template).Execute()
 
 
 
@@ -41,13 +41,13 @@ func main() {
 
 	configuration := kowabunga.NewConfiguration()
 	apiClient := kowabunga.NewAPIClient(configuration)
-	resp, r, err := apiClient.PoolAPI.CreateTemplate(context.Background(), poolId).Template(template).Execute()
+	resp, r, err := apiClient.PoolAPI.CreateStoragePoolTemplate(context.Background(), poolId).Template(template).Execute()
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `PoolAPI.CreateTemplate``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `PoolAPI.CreateStoragePoolTemplate``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `CreateTemplate`: Template
-	fmt.Fprintf(os.Stdout, "Response from `PoolAPI.CreateTemplate`: %v\n", resp)
+	// response from `CreateStoragePoolTemplate`: Template
+	fmt.Fprintf(os.Stdout, "Response from `PoolAPI.CreateStoragePoolTemplate`: %v\n", resp)
 }
 ```
 
@@ -61,7 +61,7 @@ Name | Type | Description  | Notes
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiCreateTemplateRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiCreateStoragePoolTemplateRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -499,7 +499,7 @@ Name | Type | Description  | Notes
 
 ## UpdateStoragePool
 
-> StoragePool UpdateStoragePool(ctx, poolId).StoragePool(storagePool).Execute()
+> StoragePool UpdateStoragePool(ctx, poolId).StoragePoolUpdate(storagePoolUpdate).Execute()
 
 
 
@@ -519,11 +519,11 @@ import (
 
 func main() {
 	poolId := "poolId_example" // string | The ID of the storage pool.
-	storagePool := *kowabunga.NewStoragePool("Name_example", "Pool_example", []string{"Agents_example"}) // StoragePool | StoragePool payload.
+	storagePoolUpdate := *kowabunga.NewStoragePoolUpdate() // StoragePoolUpdate | StoragePoolUpdate payload.
 
 	configuration := kowabunga.NewConfiguration()
 	apiClient := kowabunga.NewAPIClient(configuration)
-	resp, r, err := apiClient.PoolAPI.UpdateStoragePool(context.Background(), poolId).StoragePool(storagePool).Execute()
+	resp, r, err := apiClient.PoolAPI.UpdateStoragePool(context.Background(), poolId).StoragePoolUpdate(storagePoolUpdate).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `PoolAPI.UpdateStoragePool``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -549,7 +549,7 @@ Other parameters are passed through a pointer to a apiUpdateStoragePoolRequest s
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **storagePool** | [**StoragePool**](StoragePool.md) | StoragePool payload. | 
+ **storagePoolUpdate** | [**StoragePoolUpdate**](StoragePoolUpdate.md) | StoragePoolUpdate payload. | 
 
 ### Return type
 

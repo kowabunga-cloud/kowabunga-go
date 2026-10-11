@@ -3,7 +3,7 @@ Kowabunga API
 
 Kvm Orchestrator With A BUNch of Goods Added
 
-API version: 0.57.1
+API version: 0.58.0
 Contact: maintainers@kowabunga.cloud
 */
 
@@ -22,7 +22,7 @@ var _ MappedNullable = &Kylo{}
 
 // Kylo A Kylo provides an elastic NFS-like remote storage volume.
 type Kylo struct {
-	// The Kylo ID (auto-generated).
+	// The Kylo ID (auto-generated) (read-only).
 	Id *string `json:"id,omitempty"`
 	// The Kylo name.
 	Name string `json:"name"`

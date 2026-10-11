@@ -3,7 +3,7 @@ Kowabunga API
 
 Kvm Orchestrator With A BUNch of Goods Added
 
-API version: 0.57.1
+API version: 0.58.0
 Contact: maintainers@kowabunga.cloud
 */
 
@@ -22,7 +22,7 @@ var _ MappedNullable = &StoragePool{}
 
 // StoragePool A storage pool.
 type StoragePool struct {
-	// The storage pool ID (auto-generated).
+	// The storage pool ID (auto-generated) (read-only).
 	Id *string `json:"id,omitempty"`
 	// The storage pool name.
 	Name string `json:"name"`
@@ -32,8 +32,8 @@ type StoragePool struct {
 	Pool string `json:"pool"`
 	// Ceph Monitor(s) address or FQDN.
 	CephAddress *string `json:"ceph_address,omitempty"`
-	// Ceph Monitor(s) port (default 3300).
-	CephPort *int64 `json:"ceph_port,omitempty"`
+	// Ceph Monitor(s) port.
+	CephPort *int32 `json:"ceph_port,omitempty"`
 	// The libvirt secret UUID for CephX authentication.
 	CephSecretUuid *string `json:"ceph_secret_uuid,omitempty"`
 	// Cost associated to the storage pool.
@@ -54,7 +54,7 @@ func NewStoragePool(name string, pool string, agents []string) *StoragePool {
 	this.Pool = pool
 	var cephAddress string = "localhost"
 	this.CephAddress = &cephAddress
-	var cephPort int64 = 3300
+	var cephPort int32 = 3300
 	this.CephPort = &cephPort
 	this.Agents = agents
 	return &this
@@ -67,7 +67,7 @@ func NewStoragePoolWithDefaults() *StoragePool {
 	this := StoragePool{}
 	var cephAddress string = "localhost"
 	this.CephAddress = &cephAddress
-	var cephPort int64 = 3300
+	var cephPort int32 = 3300
 	this.CephPort = &cephPort
 	return &this
 }
@@ -217,9 +217,9 @@ func (o *StoragePool) SetCephAddress(v string) {
 }
 
 // GetCephPort returns the CephPort field value if set, zero value otherwise.
-func (o *StoragePool) GetCephPort() int64 {
+func (o *StoragePool) GetCephPort() int32 {
 	if o == nil || IsNil(o.CephPort) {
-		var ret int64
+		var ret int32
 		return ret
 	}
 	return *o.CephPort
@@ -227,7 +227,7 @@ func (o *StoragePool) GetCephPort() int64 {
 
 // GetCephPortOk returns a tuple with the CephPort field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *StoragePool) GetCephPortOk() (*int64, bool) {
+func (o *StoragePool) GetCephPortOk() (*int32, bool) {
 	if o == nil || IsNil(o.CephPort) {
 		return nil, false
 	}
@@ -243,8 +243,8 @@ func (o *StoragePool) HasCephPort() bool {
 	return false
 }
 
-// SetCephPort gets a reference to the given int64 and assigns it to the CephPort field.
-func (o *StoragePool) SetCephPort(v int64) {
+// SetCephPort gets a reference to the given int32 and assigns it to the CephPort field.
+func (o *StoragePool) SetCephPort(v int32) {
 	o.CephPort = &v
 }
 

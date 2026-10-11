@@ -4,11 +4,11 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | Pointer to **string** | The storage volume ID (auto-generated). | [optional] 
+**Id** | Pointer to **string** | The storage volume ID (auto-generated) (read-only). | [optional] [readonly] 
 **Name** | **string** | The storage volume name. | 
 **Description** | Pointer to **string** | The storage volume description. | [optional] 
-**Type** | **string** | The storage volume type. | 
-**Size** | **int64** | The storage volume size (in bytes). | 
+**Type** | **string** | The storage volume type. Can only be set at creation time, ignored on updates. | 
+**Size** | **int64** | The storage volume size (in bytes), can only be increased. | 
 
 ## Methods
 

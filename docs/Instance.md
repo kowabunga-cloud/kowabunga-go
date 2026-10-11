@@ -4,22 +4,22 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | Pointer to **string** | The virtual machine instance ID (auto-generated). | [optional] 
+**Id** | Pointer to **string** | The virtual machine instance ID (auto-generated) (read-only). | [optional] [readonly] 
 **Name** | **string** | The virtual machine instance name. | 
 **Description** | Pointer to **string** | The virtual machine instance description. | [optional] 
 **Memory** | **int64** | The virtual machine instance memory size (in bytes). | 
-**Vcpus** | **int64** | The virtual machine instance number of vCPUs. | 
-**Adapters** | Pointer to **[]string** | a list of existing network adapters to be connected to the instance. | [optional] 
-**Volumes** | Pointer to **[]string** | volumes list of existing storage volumes (i.e. disks) to be connected to the instance. | [optional] 
-**Kwarantines** | Pointer to **[]string** | An optional list of existing Kwarantine anti-affinity group IDs. Only considered at instance creation time, to elect an initial host consistent with the referenced groups policies and register the instance as one of their members. Read-only afterwards, always reflecting current membership, which should be managed going forward via the Kwarantine webservices. | [optional] 
-**Uefi** | Pointer to **bool** | enable UEFI secure firmware (vs. legacy BIOS). | [optional] [default to true]
+**Vcpus** | **int32** | The virtual machine instance number of vCPUs. | 
+**Adapters** | Pointer to **[]string** | A list of existing network adapters to be connected to the instance. | [optional] 
+**Volumes** | Pointer to **[]string** | A list of existing storage volumes (i.e. disks) to be connected to the instance. | [optional] 
+**Kwarantines** | Pointer to **[]string** | An optional list of existing Kwarantine anti-affinity group IDs. Only considered at instance creation time, to elect an initial host consistent with the referenced groups policies and register the instance as one of their members. Read-only afterwards, always reflecting current membership, which should be managed going forward via the Kwarantine webservices. Can only be set at creation time, ignored on updates. | [optional] 
+**Uefi** | Pointer to **bool** | Enable UEFI secure firmware (vs. legacy BIOS). Can only be set at creation time, ignored on updates. | [optional] [default to true]
 **KmotionEnabled** | Pointer to **bool** | Whether kMotion (live/cold host migration) is enabled for the virtual machine instance. When disabled, the instance remains bound to its original hosting node. | [optional] [default to true]
 
 ## Methods
 
 ### NewInstance
 
-`func NewInstance(name string, memory int64, vcpus int64, ) *Instance`
+`func NewInstance(name string, memory int64, vcpus int32, ) *Instance`
 
 NewInstance instantiates a new Instance object
 This constructor will assign default values to properties that have it defined,
@@ -126,20 +126,20 @@ SetMemory sets Memory field to given value.
 
 ### GetVcpus
 
-`func (o *Instance) GetVcpus() int64`
+`func (o *Instance) GetVcpus() int32`
 
 GetVcpus returns the Vcpus field if non-nil, zero value otherwise.
 
 ### GetVcpusOk
 
-`func (o *Instance) GetVcpusOk() (*int64, bool)`
+`func (o *Instance) GetVcpusOk() (*int32, bool)`
 
 GetVcpusOk returns a tuple with the Vcpus field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetVcpus
 
-`func (o *Instance) SetVcpus(v int64)`
+`func (o *Instance) SetVcpus(v int32)`
 
 SetVcpus sets Vcpus field to given value.
 

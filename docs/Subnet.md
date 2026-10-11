@@ -4,13 +4,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | Pointer to **string** | The network subnet ID (auto-generated). | [optional] 
+**Id** | Pointer to **string** | The network subnet ID (auto-generated) (read-only). | [optional] [readonly] 
 **Name** | **string** | The network subnet name. | 
 **Description** | Pointer to **string** | The network subnet description. | [optional] 
-**Cidr** | **string** | The network subnet CIDR (e.g. 192.168.0.0/24). | 
+**Cidr** | **string** | The network subnet CIDR (e.g. 192.168.0.0/24). Can only be set at creation time, ignored on updates. | 
 **Gateway** | **string** | The network subnet router/gateway IP address (e.g. 192.168.0.254). | 
 **Dns** | Pointer to **string** | The network subnet DNS server IP address (gateway value if unspecified). | [optional] 
-**ExtraRoutes** | Pointer to **[]string** | The list of extra routes to be access through designated gateway (format is 10.0.0.0/8). | [optional] 
+**ExtraRoutes** | Pointer to **[]string** | The list of extra routes to be accessed through designated gateway (format is 10.0.0.0/8). | [optional] 
 **Reserved** | Pointer to [**[]IpRange**](IpRange.md) | The network subnet reserved IPv4 ranges (i.e. no IP address can be assigned from there). | [optional] 
 **GwPool** | Pointer to [**[]IpRange**](IpRange.md) | The network subnet IPv4 ranges reserved for per-zone local network gateways (range size must be at least equal to region number of zones). | [optional] 
 **Application** | Pointer to **string** | Optional application service type. | [optional] [default to "user"]

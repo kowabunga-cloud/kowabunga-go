@@ -3,7 +3,7 @@ Kowabunga API
 
 Kvm Orchestrator With A BUNch of Goods Added
 
-API version: 0.57.1
+API version: 0.58.0
 Contact: maintainers@kowabunga.cloud
 */
 
@@ -22,19 +22,19 @@ var _ MappedNullable = &Subnet{}
 
 // Subnet A network subnet.
 type Subnet struct {
-	// The network subnet ID (auto-generated).
+	// The network subnet ID (auto-generated) (read-only).
 	Id *string `json:"id,omitempty"`
 	// The network subnet name.
 	Name string `json:"name"`
 	// The network subnet description.
 	Description *string `json:"description,omitempty"`
-	// The network subnet CIDR (e.g. 192.168.0.0/24).
+	// The network subnet CIDR (e.g. 192.168.0.0/24). Can only be set at creation time, ignored on updates.
 	Cidr string `json:"cidr"`
 	// The network subnet router/gateway IP address (e.g. 192.168.0.254).
 	Gateway string `json:"gateway"`
 	// The network subnet DNS server IP address (gateway value if unspecified).
 	Dns *string `json:"dns,omitempty"`
-	// The list of extra routes to be access through designated gateway (format is 10.0.0.0/8).
+	// The list of extra routes to be accessed through designated gateway (format is 10.0.0.0/8).
 	ExtraRoutes []string `json:"extra_routes,omitempty"`
 	// The network subnet reserved IPv4 ranges (i.e. no IP address can be assigned from there).
 	Reserved []IpRange `json:"reserved,omitempty"`

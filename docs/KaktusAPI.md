@@ -8,7 +8,7 @@ Method | HTTP request | Description
 [**DisableKaktusMaintenance**](KaktusAPI.md#DisableKaktusMaintenance) | **Patch** /kaktus/{kaktusId}/maintenance/disable | 
 [**EnableKaktusMaintenance**](KaktusAPI.md#EnableKaktusMaintenance) | **Patch** /kaktus/{kaktusId}/maintenance/enable | 
 [**ListKaktusInstances**](KaktusAPI.md#ListKaktusInstances) | **Get** /kaktus/{kaktusId}/instances | 
-[**ListKaktuss**](KaktusAPI.md#ListKaktuss) | **Get** /kaktus | 
+[**ListKaktuses**](KaktusAPI.md#ListKaktuses) | **Get** /kaktus | 
 [**ReadKaktus**](KaktusAPI.md#ReadKaktus) | **Get** /kaktus/{kaktusId} | 
 [**ReadKaktusCaps**](KaktusAPI.md#ReadKaktusCaps) | **Get** /kaktus/{kaktusId}/caps | 
 [**UpdateKaktus**](KaktusAPI.md#UpdateKaktus) | **Put** /kaktus/{kaktusId} | 
@@ -289,9 +289,9 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## ListKaktuss
+## ListKaktuses
 
-> []string ListKaktuss(ctx).Execute()
+> []string ListKaktuses(ctx).Execute()
 
 
 
@@ -313,13 +313,13 @@ func main() {
 
 	configuration := kowabunga.NewConfiguration()
 	apiClient := kowabunga.NewAPIClient(configuration)
-	resp, r, err := apiClient.KaktusAPI.ListKaktuss(context.Background()).Execute()
+	resp, r, err := apiClient.KaktusAPI.ListKaktuses(context.Background()).Execute()
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `KaktusAPI.ListKaktuss``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `KaktusAPI.ListKaktuses``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `ListKaktuss`: []string
-	fmt.Fprintf(os.Stdout, "Response from `KaktusAPI.ListKaktuss`: %v\n", resp)
+	// response from `ListKaktuses`: []string
+	fmt.Fprintf(os.Stdout, "Response from `KaktusAPI.ListKaktuses`: %v\n", resp)
 }
 ```
 
@@ -329,7 +329,7 @@ This endpoint does not need any parameter.
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiListKaktussRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiListKaktusesRequest struct via the builder pattern
 
 
 ### Return type
@@ -492,7 +492,7 @@ Name | Type | Description  | Notes
 
 ## UpdateKaktus
 
-> Kaktus UpdateKaktus(ctx, kaktusId).Kaktus(kaktus).Execute()
+> Kaktus UpdateKaktus(ctx, kaktusId).KaktusUpdate(kaktusUpdate).Execute()
 
 
 
@@ -512,11 +512,11 @@ import (
 
 func main() {
 	kaktusId := "kaktusId_example" // string | The ID of the Kaktus computing node.
-	kaktus := *kowabunga.NewKaktus("Name_example", []string{"Agents_example"}) // Kaktus | Kaktus payload.
+	kaktusUpdate := *kowabunga.NewKaktusUpdate() // KaktusUpdate | KaktusUpdate payload.
 
 	configuration := kowabunga.NewConfiguration()
 	apiClient := kowabunga.NewAPIClient(configuration)
-	resp, r, err := apiClient.KaktusAPI.UpdateKaktus(context.Background(), kaktusId).Kaktus(kaktus).Execute()
+	resp, r, err := apiClient.KaktusAPI.UpdateKaktus(context.Background(), kaktusId).KaktusUpdate(kaktusUpdate).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `KaktusAPI.UpdateKaktus``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -542,7 +542,7 @@ Other parameters are passed through a pointer to a apiUpdateKaktusRequest struct
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **kaktus** | [**Kaktus**](Kaktus.md) | Kaktus payload. | 
+ **kaktusUpdate** | [**KaktusUpdate**](KaktusUpdate.md) | KaktusUpdate payload. | 
 
 ### Return type
 

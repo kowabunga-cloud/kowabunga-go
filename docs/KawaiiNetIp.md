@@ -4,9 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Public** | **[]string** | The Kawaii global public gateways virtual IP addresses (read-only). | 
-**Private** | **[]string** | The Kawaii global private gateways virtual IP addresses (read-only). | 
-**Zones** | [**[]KawaiiNetIpZone**](KawaiiNetIpZone.md) | The Kawaii per-zone list of Kowabunga virtual IP addresses. | 
+**Public** | **[]string** | The Kawaii global public gateways virtual IP addresses (read-only). | [readonly] 
+**Private** | **[]string** | The Kawaii global private gateways virtual IP addresses (read-only). | [readonly] 
+**Zones** | [**[]KawaiiNetIpZone**](KawaiiNetIpZone.md) | The Kawaii per-zone list of Kowabunga virtual IP addresses (read-only). | [readonly] 
 
 ## Methods
 

@@ -4,10 +4,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | Pointer to **string** | The server-to-server authentication security token ID (auto-generated). | [optional] 
+**Id** | Pointer to **string** | The server-to-server authentication security token ID (auto-generated) (read-only). | [optional] [readonly] 
 **Name** | **string** | The server-to-server authentication security token name. | 
 **Description** | Pointer to **string** | The server-to-server authentication security token description. | [optional] 
-**Expire** | **bool** | Does the API token expires at some stage ?. | [default to false]
+**Expire** | **bool** | Whether the API token expires at some stage. | [default to false]
 **ExpirationDate** | Pointer to **string** | Expiration date of the token (YYYY-MM-DD format). | [optional] 
 
 ## Methods

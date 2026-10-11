@@ -4,32 +4,32 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | Pointer to **string** | The Kawaii IPsec connection ID (auto-generated). | [optional] 
+**Id** | Pointer to **string** | The Kawaii IPsec connection ID (auto-generated) (read-only). | [optional] [readonly] 
 **Name** | **string** | The Kawaii IPsec connection name. | 
 **Description** | Pointer to **string** | The Kawaii IPsec connection description. | [optional] 
-**Ip** | Pointer to **string** | The Kawaii IPsec connection IPSec IP. | [optional] 
-**RemoteIp** | **string** | The Kawaii IPsec connection remote peer VPN Gateway. | 
+**Ip** | Pointer to **string** | The Kawaii IPsec connection local IPsec IP address (read-only). | [optional] [readonly] 
+**RemoteIp** | **string** | The Kawaii IPsec connection remote peer VPN gateway IP address. | 
 **RemoteSubnet** | **string** | The Kawaii IPsec connection remote subnet. | 
-**PreSharedKey** | **string** | The Kawaii IPsec connection pre-shared key(PSK). | 
-**DpdTimeoutAction** | Pointer to **string** | The Kawaii IPsec connection Dead Peer Detection Action (clear,restart or trap). | [optional] [default to "restart"]
-**DpdTimeout** | Pointer to **string** | The Kawaii IPsec connection Dead Peer Detection Timeout. | [optional] [default to "240s"]
-**StartAction** | Pointer to **string** | The Kawaii IPsec connection start action (none, start, trap). | [optional] [default to "start"]
-**RekeyTime** | Pointer to **string** | The Kawaii IPsec connection rekey time. Default is 2h. | [optional] [default to "2h"]
-**Phase1Lifetime** | Pointer to **string** | The Kawaii IPsec connection Lifetime for phase 1 negociation. Default is 1h. | [optional] [default to "1h"]
-**Phase1DhGroupNumber** | **int64** | The Kawaii IPsec connection phase 1 Diffie Hellman IANA algorithm. | 
-**Phase1IntegrityAlgorithm** | **string** | The Kawaii IPsec connection phase 1 integrity algorithm.. | 
-**Phase1EncryptionAlgorithm** | **string** | The Kawaii IPsec connection phase 1 encryption algorithm.. | 
-**Phase2Lifetime** | Pointer to **string** | The Kawaii IPsec connection Lifetime for phase 2 negociation. Default is 1h. | [optional] [default to "1h"]
-**Phase2DhGroupNumber** | **int64** | The Kawaii IPsec connection phase 2 Diffie Hellman IANA algorithm. | 
-**Phase2IntegrityAlgorithm** | **string** | The Kawaii IPsec connection phase 2 integrity algorithm.. | 
-**Phase2EncryptionAlgorithm** | **string** | The Kawaii IPsec connection phase 2 encryption algorithm.. | 
-**Firewall** | Pointer to [**KawaiiFirewall**](KawaiiFirewall.md) | The Kawaii IPsec connection firewall settings on the IPsec interface. | [optional] 
+**PreSharedKey** | **string** | The Kawaii IPsec connection pre-shared key (PSK). | 
+**DpdTimeoutAction** | Pointer to **string** | The Kawaii IPsec connection Dead Peer Detection (DPD) timeout action. | [optional] [default to "restart"]
+**DpdTimeout** | Pointer to **string** | The Kawaii IPsec connection Dead Peer Detection (DPD) timeout. | [optional] [default to "240s"]
+**StartAction** | Pointer to **string** | The Kawaii IPsec connection start action. | [optional] [default to "start"]
+**RekeyTime** | Pointer to **string** | The Kawaii IPsec connection rekey time. | [optional] [default to "2h"]
+**Phase1Lifetime** | Pointer to **string** | The Kawaii IPsec connection lifetime for phase 1 negotiation. | [optional] [default to "1h"]
+**Phase1DhGroupNumber** | **int32** | The Kawaii IPsec connection phase 1 Diffie Hellman IANA algorithm. | 
+**Phase1IntegrityAlgorithm** | **string** | The Kawaii IPsec connection phase 1 integrity algorithm. | 
+**Phase1EncryptionAlgorithm** | **string** | The Kawaii IPsec connection phase 1 encryption algorithm. | 
+**Phase2Lifetime** | Pointer to **string** | The Kawaii IPsec connection lifetime for phase 2 negotiation. | [optional] [default to "1h"]
+**Phase2DhGroupNumber** | **int32** | The Kawaii IPsec connection phase 2 Diffie Hellman IANA algorithm. | 
+**Phase2IntegrityAlgorithm** | **string** | The Kawaii IPsec connection phase 2 integrity algorithm. | 
+**Phase2EncryptionAlgorithm** | **string** | The Kawaii IPsec connection phase 2 encryption algorithm. | 
+**Firewall** | Pointer to [**KawaiiIpSecFirewall**](KawaiiIpSecFirewall.md) | The Kawaii IPsec connection firewall settings on the IPsec interface. | [optional] 
 
 ## Methods
 
 ### NewKawaiiIpSec
 
-`func NewKawaiiIpSec(name string, remoteIp string, remoteSubnet string, preSharedKey string, phase1DhGroupNumber int64, phase1IntegrityAlgorithm string, phase1EncryptionAlgorithm string, phase2DhGroupNumber int64, phase2IntegrityAlgorithm string, phase2EncryptionAlgorithm string, ) *KawaiiIpSec`
+`func NewKawaiiIpSec(name string, remoteIp string, remoteSubnet string, preSharedKey string, phase1DhGroupNumber int32, phase1IntegrityAlgorithm string, phase1EncryptionAlgorithm string, phase2DhGroupNumber int32, phase2IntegrityAlgorithm string, phase2EncryptionAlgorithm string, ) *KawaiiIpSec`
 
 NewKawaiiIpSec instantiates a new KawaiiIpSec object
 This constructor will assign default values to properties that have it defined,
@@ -326,20 +326,20 @@ HasPhase1Lifetime returns a boolean if a field has been set.
 
 ### GetPhase1DhGroupNumber
 
-`func (o *KawaiiIpSec) GetPhase1DhGroupNumber() int64`
+`func (o *KawaiiIpSec) GetPhase1DhGroupNumber() int32`
 
 GetPhase1DhGroupNumber returns the Phase1DhGroupNumber field if non-nil, zero value otherwise.
 
 ### GetPhase1DhGroupNumberOk
 
-`func (o *KawaiiIpSec) GetPhase1DhGroupNumberOk() (*int64, bool)`
+`func (o *KawaiiIpSec) GetPhase1DhGroupNumberOk() (*int32, bool)`
 
 GetPhase1DhGroupNumberOk returns a tuple with the Phase1DhGroupNumber field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetPhase1DhGroupNumber
 
-`func (o *KawaiiIpSec) SetPhase1DhGroupNumber(v int64)`
+`func (o *KawaiiIpSec) SetPhase1DhGroupNumber(v int32)`
 
 SetPhase1DhGroupNumber sets Phase1DhGroupNumber field to given value.
 
@@ -411,20 +411,20 @@ HasPhase2Lifetime returns a boolean if a field has been set.
 
 ### GetPhase2DhGroupNumber
 
-`func (o *KawaiiIpSec) GetPhase2DhGroupNumber() int64`
+`func (o *KawaiiIpSec) GetPhase2DhGroupNumber() int32`
 
 GetPhase2DhGroupNumber returns the Phase2DhGroupNumber field if non-nil, zero value otherwise.
 
 ### GetPhase2DhGroupNumberOk
 
-`func (o *KawaiiIpSec) GetPhase2DhGroupNumberOk() (*int64, bool)`
+`func (o *KawaiiIpSec) GetPhase2DhGroupNumberOk() (*int32, bool)`
 
 GetPhase2DhGroupNumberOk returns a tuple with the Phase2DhGroupNumber field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetPhase2DhGroupNumber
 
-`func (o *KawaiiIpSec) SetPhase2DhGroupNumber(v int64)`
+`func (o *KawaiiIpSec) SetPhase2DhGroupNumber(v int32)`
 
 SetPhase2DhGroupNumber sets Phase2DhGroupNumber field to given value.
 
@@ -471,20 +471,20 @@ SetPhase2EncryptionAlgorithm sets Phase2EncryptionAlgorithm field to given value
 
 ### GetFirewall
 
-`func (o *KawaiiIpSec) GetFirewall() KawaiiFirewall`
+`func (o *KawaiiIpSec) GetFirewall() KawaiiIpSecFirewall`
 
 GetFirewall returns the Firewall field if non-nil, zero value otherwise.
 
 ### GetFirewallOk
 
-`func (o *KawaiiIpSec) GetFirewallOk() (*KawaiiFirewall, bool)`
+`func (o *KawaiiIpSec) GetFirewallOk() (*KawaiiIpSecFirewall, bool)`
 
 GetFirewallOk returns a tuple with the Firewall field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetFirewall
 
-`func (o *KawaiiIpSec) SetFirewall(v KawaiiFirewall)`
+`func (o *KawaiiIpSec) SetFirewall(v KawaiiIpSecFirewall)`
 
 SetFirewall sets Firewall field to given value.
 

@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Email** | **string** | The user email address for login. | 
 **Password** | **string** | The user password for login. | 
-**Jwt** | Pointer to **string** | The resulting server-generated JWT token for Bearer Authentication (read-only). | [optional] 
+**Jwt** | Pointer to **string** | The resulting server-generated JWT token for Bearer Authentication (read-only). | [optional] [readonly] 
 
 ## Methods
 

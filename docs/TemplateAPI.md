@@ -212,7 +212,7 @@ Name | Type | Description  | Notes
 
 ## UpdateTemplate
 
-> Template UpdateTemplate(ctx, templateId).Template(template).Execute()
+> Template UpdateTemplate(ctx, templateId).TemplateUpdate(templateUpdate).Execute()
 
 
 
@@ -232,11 +232,11 @@ import (
 
 func main() {
 	templateId := "templateId_example" // string | The ID of the image template.
-	template := *kowabunga.NewTemplate("Name_example", "Source_example") // Template | Template payload.
+	templateUpdate := *kowabunga.NewTemplateUpdate() // TemplateUpdate | TemplateUpdate payload.
 
 	configuration := kowabunga.NewConfiguration()
 	apiClient := kowabunga.NewAPIClient(configuration)
-	resp, r, err := apiClient.TemplateAPI.UpdateTemplate(context.Background(), templateId).Template(template).Execute()
+	resp, r, err := apiClient.TemplateAPI.UpdateTemplate(context.Background(), templateId).TemplateUpdate(templateUpdate).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `TemplateAPI.UpdateTemplate``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -262,7 +262,7 @@ Other parameters are passed through a pointer to a apiUpdateTemplateRequest stru
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **template** | [**Template**](Template.md) | Template payload. | 
+ **templateUpdate** | [**TemplateUpdate**](TemplateUpdate.md) | TemplateUpdate payload. | 
 
 ### Return type
 

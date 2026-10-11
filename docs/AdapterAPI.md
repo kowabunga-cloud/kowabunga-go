@@ -212,7 +212,7 @@ Name | Type | Description  | Notes
 
 ## UpdateAdapter
 
-> Adapter UpdateAdapter(ctx, adapterId).Adapter(adapter).Execute()
+> Adapter UpdateAdapter(ctx, adapterId).AdapterUpdate(adapterUpdate).Execute()
 
 
 
@@ -232,11 +232,11 @@ import (
 
 func main() {
 	adapterId := "adapterId_example" // string | The ID of the network adapter.
-	adapter := *kowabunga.NewAdapter("Name_example") // Adapter | Adapter payload.
+	adapterUpdate := *kowabunga.NewAdapterUpdate() // AdapterUpdate | AdapterUpdate payload.
 
 	configuration := kowabunga.NewConfiguration()
 	apiClient := kowabunga.NewAPIClient(configuration)
-	resp, r, err := apiClient.AdapterAPI.UpdateAdapter(context.Background(), adapterId).Adapter(adapter).Execute()
+	resp, r, err := apiClient.AdapterAPI.UpdateAdapter(context.Background(), adapterId).AdapterUpdate(adapterUpdate).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `AdapterAPI.UpdateAdapter``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -262,7 +262,7 @@ Other parameters are passed through a pointer to a apiUpdateAdapterRequest struc
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **adapter** | [**Adapter**](Adapter.md) | Adapter payload. | 
+ **adapterUpdate** | [**AdapterUpdate**](AdapterUpdate.md) | AdapterUpdate payload. | 
 
 ### Return type
 

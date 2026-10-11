@@ -3,7 +3,7 @@ Kowabunga API
 
 Kvm Orchestrator With A BUNch of Goods Added
 
-API version: 0.57.1
+API version: 0.58.0
 Contact: maintainers@kowabunga.cloud
 */
 
@@ -22,7 +22,7 @@ var _ MappedNullable = &Region{}
 
 // Region A region.
 type Region struct {
-	// The region ID (auto-generated).
+	// The region ID (auto-generated) (read-only).
 	Id *string `json:"id,omitempty"`
 	// The region name.
 	Name string `json:"name"`

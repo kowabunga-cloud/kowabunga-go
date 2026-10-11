@@ -3,7 +3,7 @@ Kowabunga API
 
 Kvm Orchestrator With A BUNch of Goods Added
 
-API version: 0.57.1
+API version: 0.58.0
 Contact: maintainers@kowabunga.cloud
 */
 
@@ -24,8 +24,8 @@ var _ MappedNullable = &KawaiiNetIpZone{}
 type KawaiiNetIpZone struct {
 	// The Kawaii zone name (read-only).
 	Zone string `json:"zone"`
-	// The Kawaii zone gateway public virtual IP (read-only).
-	Public string `json:"public"`
+	// The Kawaii zone gateway public virtual IP (unset for VPC peered subnets) (read-only).
+	Public *string `json:"public,omitempty"`
 	// The Kawaii zone gateway private virtual IP (read-only).
 	Private string `json:"private"`
 }
@@ -36,10 +36,9 @@ type _KawaiiNetIpZone KawaiiNetIpZone
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewKawaiiNetIpZone(zone string, public string, private string) *KawaiiNetIpZone {
+func NewKawaiiNetIpZone(zone string, private string) *KawaiiNetIpZone {
 	this := KawaiiNetIpZone{}
 	this.Zone = zone
-	this.Public = public
 	this.Private = private
 	return &this
 }
@@ -76,28 +75,36 @@ func (o *KawaiiNetIpZone) SetZone(v string) {
 	o.Zone = v
 }
 
-// GetPublic returns the Public field value
+// GetPublic returns the Public field value if set, zero value otherwise.
 func (o *KawaiiNetIpZone) GetPublic() string {
-	if o == nil {
+	if o == nil || IsNil(o.Public) {
 		var ret string
 		return ret
 	}
-
-	return o.Public
+	return *o.Public
 }
 
-// GetPublicOk returns a tuple with the Public field value
+// GetPublicOk returns a tuple with the Public field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *KawaiiNetIpZone) GetPublicOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Public) {
 		return nil, false
 	}
-	return &o.Public, true
+	return o.Public, true
 }
 
-// SetPublic sets field value
+// HasPublic returns a boolean if a field has been set.
+func (o *KawaiiNetIpZone) HasPublic() bool {
+	if o != nil && !IsNil(o.Public) {
+		return true
+	}
+
+	return false
+}
+
+// SetPublic gets a reference to the given string and assigns it to the Public field.
 func (o *KawaiiNetIpZone) SetPublic(v string) {
-	o.Public = v
+	o.Public = &v
 }
 
 // GetPrivate returns the Private field value
@@ -135,7 +142,9 @@ func (o KawaiiNetIpZone) MarshalJSON() ([]byte, error) {
 func (o KawaiiNetIpZone) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["zone"] = o.Zone
-	toSerialize["public"] = o.Public
+	if !IsNil(o.Public) {
+		toSerialize["public"] = o.Public
+	}
 	toSerialize["private"] = o.Private
 	return toSerialize, nil
 }
@@ -146,7 +155,6 @@ func (o *KawaiiNetIpZone) UnmarshalJSON(data []byte) (err error) {
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
 		"zone",
-		"public",
 		"private",
 	}
 

@@ -3,7 +3,7 @@ Kowabunga API
 
 Kvm Orchestrator With A BUNch of Goods Added
 
-API version: 0.57.1
+API version: 0.58.0
 Contact: maintainers@kowabunga.cloud
 */
 
@@ -22,7 +22,7 @@ var _ MappedNullable = &Kwarantine{}
 
 // Kwarantine A Kwarantine is an anti-affinity mechanism that ensures its member virtual machine instances or Kompute resources are never co-scheduled on the same Kaktus computing node (host policy) or the same availability zone (zone policy), regardless of Kaktus host scheduling score, so that critical redundant resources stay properly spread out.
 type Kwarantine struct {
-	// The Kwarantine ID (auto-generated).
+	// The Kwarantine ID (auto-generated) (read-only).
 	Id *string `json:"id,omitempty"`
 	// The Kwarantine name.
 	Name string `json:"name"`
@@ -30,9 +30,9 @@ type Kwarantine struct {
 	Description *string `json:"description,omitempty"`
 	// The anti-affinity enforcement policy. Use \"host\" to guarantee no two group members are ever scheduled on the same Kaktus computing node, or \"zone\" to guarantee no two group members are ever scheduled within the same availability zone.
 	Policy *string `json:"policy,omitempty"`
-	// A list of existing virtual machine instance IDs that are part of the Kwarantine group. Members are guaranteed to never be co-scheduled according to the group policy, regardless of Kaktus host scheduling score.
+	// A list of existing virtual machine instance IDs that are part of the Kwarantine group. Members are guaranteed to never be co-scheduled according to the group policy, regardless of Kaktus host scheduling score. Managed through the dedicated add/remove operations (read-only).
 	Instances []string `json:"instances,omitempty"`
-	// A list of existing Kompute IDs that are part of the Kwarantine group. Members are guaranteed to never be co-scheduled according to the group policy, regardless of Kaktus host scheduling score.
+	// A list of existing Kompute IDs that are part of the Kwarantine group. Members are guaranteed to never be co-scheduled according to the group policy, regardless of Kaktus host scheduling score. Managed through the dedicated add/remove operations (read-only).
 	Komputes []string `json:"komputes,omitempty"`
 }
 

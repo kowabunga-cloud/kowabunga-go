@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | Pointer to **string** | The Kowabunga user ID (auto-generated). | [optional] 
+**Id** | Pointer to **string** | The Kowabunga user ID (auto-generated) (read-only). | [optional] [readonly] 
 **Name** | **string** | The Kowabunga user name. | 
 **Description** | Pointer to **string** | The Kowabunga user description. | [optional] 
 **Email** | **string** | User email address. | 

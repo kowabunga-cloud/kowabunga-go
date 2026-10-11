@@ -3,7 +3,7 @@ Kowabunga API
 
 Kvm Orchestrator With A BUNch of Goods Added
 
-API version: 0.57.1
+API version: 0.58.0
 Contact: maintainers@kowabunga.cloud
 */
 
@@ -137,6 +137,17 @@ func (a *KaktusAPIService) DeleteKaktusExecute(r ApiDeleteKaktusRequest) (*http.
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ApiErrorForbidden
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ApiErrorInternalServerError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -306,6 +317,17 @@ func (a *KaktusAPIService) DisableKaktusMaintenanceExecute(r ApiDisableKaktusMai
 					newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ApiErrorInternalServerError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v ApiErrorNotFound
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -446,6 +468,17 @@ func (a *KaktusAPIService) EnableKaktusMaintenanceExecute(r ApiEnableKaktusMaint
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ApiErrorForbidden
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ApiErrorInternalServerError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -606,6 +639,17 @@ func (a *KaktusAPIService) ListKaktusInstancesExecute(r ApiListKaktusInstancesRe
 					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ApiErrorInternalServerError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v ApiErrorNotFound
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -631,25 +675,25 @@ func (a *KaktusAPIService) ListKaktusInstancesExecute(r ApiListKaktusInstancesRe
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiListKaktussRequest struct {
+type ApiListKaktusesRequest struct {
 	ctx context.Context
 	ApiService *KaktusAPIService
 }
 
-func (r ApiListKaktussRequest) Execute() ([]string, *http.Response, error) {
-	return r.ApiService.ListKaktussExecute(r)
+func (r ApiListKaktusesRequest) Execute() ([]string, *http.Response, error) {
+	return r.ApiService.ListKaktusesExecute(r)
 }
 
 /*
-ListKaktuss Method for ListKaktuss
+ListKaktuses Method for ListKaktuses
 
 Returns the IDs of Kaktus computing node objects.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiListKaktussRequest
+ @return ApiListKaktusesRequest
 */
-func (a *KaktusAPIService) ListKaktuss(ctx context.Context) ApiListKaktussRequest {
-	return ApiListKaktussRequest{
+func (a *KaktusAPIService) ListKaktuses(ctx context.Context) ApiListKaktusesRequest {
+	return ApiListKaktusesRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
@@ -657,7 +701,7 @@ func (a *KaktusAPIService) ListKaktuss(ctx context.Context) ApiListKaktussReques
 
 // Execute executes the request
 //  @return []string
-func (a *KaktusAPIService) ListKaktussExecute(r ApiListKaktussRequest) ([]string, *http.Response, error) {
+func (a *KaktusAPIService) ListKaktusesExecute(r ApiListKaktusesRequest) ([]string, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -665,7 +709,7 @@ func (a *KaktusAPIService) ListKaktussExecute(r ApiListKaktussRequest) ([]string
 		localVarReturnValue  []string
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "KaktusAPIService.ListKaktuss")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "KaktusAPIService.ListKaktuses")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -742,6 +786,17 @@ func (a *KaktusAPIService) ListKaktussExecute(r ApiListKaktussRequest) ([]string
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ApiErrorForbidden
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ApiErrorInternalServerError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -880,6 +935,17 @@ func (a *KaktusAPIService) ReadKaktusExecute(r ApiReadKaktusRequest) (*Kaktus, *
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ApiErrorForbidden
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ApiErrorInternalServerError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1038,6 +1104,17 @@ func (a *KaktusAPIService) ReadKaktusCapsExecute(r ApiReadKaktusCapsRequest) (*K
 					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ApiErrorInternalServerError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v ApiErrorNotFound
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -1067,12 +1144,12 @@ type ApiUpdateKaktusRequest struct {
 	ctx context.Context
 	ApiService *KaktusAPIService
 	kaktusId string
-	kaktus *Kaktus
+	kaktusUpdate *KaktusUpdate
 }
 
-// Kaktus payload.
-func (r ApiUpdateKaktusRequest) Kaktus(kaktus Kaktus) ApiUpdateKaktusRequest {
-	r.kaktus = &kaktus
+// KaktusUpdate payload.
+func (r ApiUpdateKaktusRequest) KaktusUpdate(kaktusUpdate KaktusUpdate) ApiUpdateKaktusRequest {
+	r.kaktusUpdate = &kaktusUpdate
 	return r
 }
 
@@ -1118,8 +1195,8 @@ func (a *KaktusAPIService) UpdateKaktusExecute(r ApiUpdateKaktusRequest) (*Kaktu
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.kaktus == nil {
-		return localVarReturnValue, nil, reportError("kaktus is required and must be specified")
+	if r.kaktusUpdate == nil {
+		return localVarReturnValue, nil, reportError("kaktusUpdate is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -1140,7 +1217,7 @@ func (a *KaktusAPIService) UpdateKaktusExecute(r ApiUpdateKaktusRequest) (*Kaktu
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.kaktus
+	localVarPostBody = r.kaktusUpdate
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -1201,6 +1278,17 @@ func (a *KaktusAPIService) UpdateKaktusExecute(r ApiUpdateKaktusRequest) (*Kaktu
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ApiErrorForbidden
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ApiErrorInternalServerError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()

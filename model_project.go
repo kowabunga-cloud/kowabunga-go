@@ -3,7 +3,7 @@ Kowabunga API
 
 Kvm Orchestrator With A BUNch of Goods Added
 
-API version: 0.57.1
+API version: 0.58.0
 Contact: maintainers@kowabunga.cloud
 */
 
@@ -22,13 +22,13 @@ var _ MappedNullable = &Project{}
 
 // Project A Kowabunga project corresponds to a single tenant, isolated set of resources.
 type Project struct {
-	// The project ID (auto-generated).
+	// The project ID (auto-generated) (read-only).
 	Id *string `json:"id,omitempty"`
 	// The project name.
 	Name string `json:"name"`
 	// The project description.
 	Description *string `json:"description,omitempty"`
-	// Internal domain name (e.g. myproject.acme.com).
+	// Internal domain name (e.g. myproject.acme.com). Can only be set at creation time, ignored on updates.
 	Domain *string `json:"domain,omitempty"`
 	// Default root password, set at cloud-init instance bootstrap phase. Will be randomly auto-generated at each instance creation if unspecified.
 	RootPassword *string `json:"root_password,omitempty"`
@@ -44,7 +44,7 @@ type Project struct {
 	Quotas *ProjectResources `json:"quotas,omitempty"`
 	// The assigned project VPC private subnets IDs (read-only).
 	PrivateSubnets []RegionSubnet `json:"private_subnets,omitempty"`
-	// The list of VRRP IDs used by -as-a-service resources within the project virtual network (read-only). Should your application use VRRP for service redundancy, you should use different IDs to prevent issues..
+	// The list of VRRP IDs used by -as-a-service resources within the project virtual network. Should your application use VRRP for service redundancy, you should use different IDs to prevent issues (read-only).
 	ReservedVrrpIds []int32 `json:"reserved_vrrp_ids,omitempty"`
 	// A list of user teams allowed to administrate the project (i.e. capable of managing internal resources).
 	Teams []string `json:"teams"`

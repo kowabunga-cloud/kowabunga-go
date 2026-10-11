@@ -3,7 +3,7 @@ Kowabunga API
 
 Kvm Orchestrator With A BUNch of Goods Added
 
-API version: 0.57.1
+API version: 0.58.0
 Contact: maintainers@kowabunga.cloud
 */
 
@@ -26,7 +26,7 @@ type KawaiiNetIp struct {
 	Public []string `json:"public"`
 	// The Kawaii global private gateways virtual IP addresses (read-only).
 	Private []string `json:"private"`
-	// The Kawaii per-zone list of Kowabunga virtual IP addresses.
+	// The Kawaii per-zone list of Kowabunga virtual IP addresses (read-only).
 	Zones []KawaiiNetIpZone `json:"zones"`
 }
 

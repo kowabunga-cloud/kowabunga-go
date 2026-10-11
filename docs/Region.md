@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | Pointer to **string** | The region ID (auto-generated). | [optional] 
+**Id** | Pointer to **string** | The region ID (auto-generated) (read-only). | [optional] [readonly] 
 **Name** | **string** | The region name. | 
 **Description** | Pointer to **string** | The region description. | [optional] 
 **Domain** | **string** | Region domain name (e.g. myregion.kowabunga.acme.com). | 

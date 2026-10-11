@@ -3,7 +3,7 @@ Kowabunga API
 
 Kvm Orchestrator With A BUNch of Goods Added
 
-API version: 0.57.1
+API version: 0.58.0
 Contact: maintainers@kowabunga.cloud
 */
 
@@ -22,17 +22,17 @@ var _ MappedNullable = &VNet{}
 
 // VNet A virtual network.
 type VNet struct {
-	// The virtual network ID (auto-generated).
+	// The virtual network ID (auto-generated) (read-only).
 	Id *string `json:"id,omitempty"`
 	// The virtual network name.
 	Name string `json:"name"`
 	// The virtual network description.
 	Description *string `json:"description,omitempty"`
 	// The VLAN identifier (0 if unspecified).
-	Vlan *int64 `json:"vlan,omitempty"`
+	Vlan *int32 `json:"vlan,omitempty"`
 	// The libvirt's bridge network interface (brX).
 	Interface string `json:"interface"`
-	// Is the virtual network adapter connected to private (LAN) or public (WAN) physical network ?.
+	// Whether the virtual network is connected to private (LAN) or public (WAN) physical network. Can only be set at creation time, ignored on updates.
 	Private *bool `json:"private,omitempty"`
 }
 
@@ -150,9 +150,9 @@ func (o *VNet) SetDescription(v string) {
 }
 
 // GetVlan returns the Vlan field value if set, zero value otherwise.
-func (o *VNet) GetVlan() int64 {
+func (o *VNet) GetVlan() int32 {
 	if o == nil || IsNil(o.Vlan) {
-		var ret int64
+		var ret int32
 		return ret
 	}
 	return *o.Vlan
@@ -160,7 +160,7 @@ func (o *VNet) GetVlan() int64 {
 
 // GetVlanOk returns a tuple with the Vlan field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *VNet) GetVlanOk() (*int64, bool) {
+func (o *VNet) GetVlanOk() (*int32, bool) {
 	if o == nil || IsNil(o.Vlan) {
 		return nil, false
 	}
@@ -176,8 +176,8 @@ func (o *VNet) HasVlan() bool {
 	return false
 }
 
-// SetVlan gets a reference to the given int64 and assigns it to the Vlan field.
-func (o *VNet) SetVlan(v int64) {
+// SetVlan gets a reference to the given int32 and assigns it to the Vlan field.
+func (o *VNet) SetVlan(v int32) {
 	o.Vlan = &v
 }
 

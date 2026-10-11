@@ -3,7 +3,7 @@ Kowabunga API
 
 Kvm Orchestrator With A BUNch of Goods Added
 
-API version: 0.57.1
+API version: 0.58.0
 Contact: maintainers@kowabunga.cloud
 */
 
@@ -22,7 +22,7 @@ var _ MappedNullable = &Kiwi{}
 
 // Kiwi A Kiwi (Kowabunga Inner Wan Interface) provides edge-network services..
 type Kiwi struct {
-	// The Kiwi (Kowabunga Inner Wan Interface) provides edge-network services. ID (auto-generated).
+	// The Kiwi (Kowabunga Inner Wan Interface) provides edge-network services. ID (auto-generated) (read-only).
 	Id *string `json:"id,omitempty"`
 	// The Kiwi (Kowabunga Inner Wan Interface) provides edge-network services. name.
 	Name string `json:"name"`

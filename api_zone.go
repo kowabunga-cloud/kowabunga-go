@@ -3,7 +3,7 @@ Kowabunga API
 
 Kvm Orchestrator With A BUNch of Goods Added
 
-API version: 0.57.1
+API version: 0.58.0
 Contact: maintainers@kowabunga.cloud
 */
 
@@ -24,7 +24,7 @@ import (
 // ZoneAPIService ZoneAPI service
 type ZoneAPIService service
 
-type ApiCreateKaktusRequest struct {
+type ApiCreateZoneKaktusRequest struct {
 	ctx context.Context
 	ApiService *ZoneAPIService
 	zoneId string
@@ -32,26 +32,26 @@ type ApiCreateKaktusRequest struct {
 }
 
 // Kaktus payload.
-func (r ApiCreateKaktusRequest) Kaktus(kaktus Kaktus) ApiCreateKaktusRequest {
+func (r ApiCreateZoneKaktusRequest) Kaktus(kaktus Kaktus) ApiCreateZoneKaktusRequest {
 	r.kaktus = &kaktus
 	return r
 }
 
-func (r ApiCreateKaktusRequest) Execute() (*Kaktus, *http.Response, error) {
-	return r.ApiService.CreateKaktusExecute(r)
+func (r ApiCreateZoneKaktusRequest) Execute() (*Kaktus, *http.Response, error) {
+	return r.ApiService.CreateZoneKaktusExecute(r)
 }
 
 /*
-CreateKaktus Method for CreateKaktus
+CreateZoneKaktus Method for CreateZoneKaktus
 
 Creates a new Kaktus computing node.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param zoneId The ID of the availability zone.
- @return ApiCreateKaktusRequest
+ @return ApiCreateZoneKaktusRequest
 */
-func (a *ZoneAPIService) CreateKaktus(ctx context.Context, zoneId string) ApiCreateKaktusRequest {
-	return ApiCreateKaktusRequest{
+func (a *ZoneAPIService) CreateZoneKaktus(ctx context.Context, zoneId string) ApiCreateZoneKaktusRequest {
+	return ApiCreateZoneKaktusRequest{
 		ApiService: a,
 		ctx: ctx,
 		zoneId: zoneId,
@@ -60,7 +60,7 @@ func (a *ZoneAPIService) CreateKaktus(ctx context.Context, zoneId string) ApiCre
 
 // Execute executes the request
 //  @return Kaktus
-func (a *ZoneAPIService) CreateKaktusExecute(r ApiCreateKaktusRequest) (*Kaktus, *http.Response, error) {
+func (a *ZoneAPIService) CreateZoneKaktusExecute(r ApiCreateZoneKaktusRequest) (*Kaktus, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -68,7 +68,7 @@ func (a *ZoneAPIService) CreateKaktusExecute(r ApiCreateKaktusRequest) (*Kaktus,
 		localVarReturnValue  *Kaktus
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ZoneAPIService.CreateKaktus")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ZoneAPIService.CreateZoneKaktus")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -162,6 +162,17 @@ func (a *ZoneAPIService) CreateKaktusExecute(r ApiCreateKaktusRequest) (*Kaktus,
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ApiErrorForbidden
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ApiErrorInternalServerError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -351,6 +362,17 @@ func (a *ZoneAPIService) DeleteZoneExecute(r ApiDeleteZoneRequest) (*http.Respon
 					newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ApiErrorInternalServerError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v ApiErrorNotFound
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -513,6 +535,17 @@ func (a *ZoneAPIService) ListZoneKaktusesExecute(r ApiListZoneKaktusesRequest) (
 					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ApiErrorInternalServerError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v ApiErrorNotFound
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -649,6 +682,17 @@ func (a *ZoneAPIService) ListZonesExecute(r ApiListZonesRequest) ([]string, *htt
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ApiErrorForbidden
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ApiErrorInternalServerError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -796,6 +840,17 @@ func (a *ZoneAPIService) ReadZoneExecute(r ApiReadZoneRequest) (*Zone, *http.Res
 					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ApiErrorInternalServerError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v ApiErrorNotFound
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -825,12 +880,12 @@ type ApiUpdateZoneRequest struct {
 	ctx context.Context
 	ApiService *ZoneAPIService
 	zoneId string
-	zone *Zone
+	zoneUpdate *ZoneUpdate
 }
 
-// Zone payload.
-func (r ApiUpdateZoneRequest) Zone(zone Zone) ApiUpdateZoneRequest {
-	r.zone = &zone
+// ZoneUpdate payload.
+func (r ApiUpdateZoneRequest) ZoneUpdate(zoneUpdate ZoneUpdate) ApiUpdateZoneRequest {
+	r.zoneUpdate = &zoneUpdate
 	return r
 }
 
@@ -876,8 +931,8 @@ func (a *ZoneAPIService) UpdateZoneExecute(r ApiUpdateZoneRequest) (*Zone, *http
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.zone == nil {
-		return localVarReturnValue, nil, reportError("zone is required and must be specified")
+	if r.zoneUpdate == nil {
+		return localVarReturnValue, nil, reportError("zoneUpdate is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -898,7 +953,7 @@ func (a *ZoneAPIService) UpdateZoneExecute(r ApiUpdateZoneRequest) (*Zone, *http
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.zone
+	localVarPostBody = r.zoneUpdate
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -959,6 +1014,17 @@ func (a *ZoneAPIService) UpdateZoneExecute(r ApiUpdateZoneRequest) (*Zone, *http
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ApiErrorForbidden
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ApiErrorInternalServerError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()

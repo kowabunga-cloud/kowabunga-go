@@ -3,7 +3,7 @@ Kowabunga API
 
 Kvm Orchestrator With A BUNch of Goods Added
 
-API version: 0.57.1
+API version: 0.58.0
 Contact: maintainers@kowabunga.cloud
 */
 
@@ -22,15 +22,15 @@ var _ MappedNullable = &Template{}
 
 // Template A image template.
 type Template struct {
-	// The image template ID (auto-generated).
+	// The image template ID (auto-generated) (read-only).
 	Id *string `json:"id,omitempty"`
 	// The image template name.
 	Name string `json:"name"`
 	// The image template description.
 	Description *string `json:"description,omitempty"`
-	// Type of operating system if OS kind (useful to determine cloud-init parameters for instance).
+	// Type of operating system (useful to determine cloud-init parameters for instance). Can only be set at creation time, ignored on updates.
 	Os *string `json:"os,omitempty"`
-	// HTTP(s) source URL of the KVM-ready OS image.
+	// HTTP(s) source URL of the KVM-ready OS image. Can only be set at creation time, ignored on updates.
 	Source string `json:"source"`
 }
 

@@ -6,13 +6,13 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**CreateKawaiiIpSec**](KawaiiAPI.md#CreateKawaiiIpSec) | **Post** /kawaii/{kawaiiId}/ipsec | 
 [**DeleteKawaii**](KawaiiAPI.md#DeleteKawaii) | **Delete** /kawaii/{kawaiiId} | 
-[**DeleteKawaiiIpSec**](KawaiiAPI.md#DeleteKawaiiIpSec) | **Delete** /kawaii/{kawaiiId}/ipsec/{KawaiiIpSecId} | 
+[**DeleteKawaiiIpSec**](KawaiiAPI.md#DeleteKawaiiIpSec) | **Delete** /kawaii/{kawaiiId}/ipsec/{kawaiiIpSecId} | 
 [**ListKawaiiIpSecs**](KawaiiAPI.md#ListKawaiiIpSecs) | **Get** /kawaii/{kawaiiId}/ipsec | 
 [**ListKawaiis**](KawaiiAPI.md#ListKawaiis) | **Get** /kawaii | 
 [**ReadKawaii**](KawaiiAPI.md#ReadKawaii) | **Get** /kawaii/{kawaiiId} | 
-[**ReadKawaiiIpSec**](KawaiiAPI.md#ReadKawaiiIpSec) | **Get** /kawaii/{kawaiiId}/ipsec/{KawaiiIpSecId} | 
+[**ReadKawaiiIpSec**](KawaiiAPI.md#ReadKawaiiIpSec) | **Get** /kawaii/{kawaiiId}/ipsec/{kawaiiIpSecId} | 
 [**UpdateKawaii**](KawaiiAPI.md#UpdateKawaii) | **Put** /kawaii/{kawaiiId} | 
-[**UpdateKawaiiIpSec**](KawaiiAPI.md#UpdateKawaiiIpSec) | **Put** /kawaii/{kawaiiId}/ipsec/{KawaiiIpSecId} | 
+[**UpdateKawaiiIpSec**](KawaiiAPI.md#UpdateKawaiiIpSec) | **Put** /kawaii/{kawaiiId}/ipsec/{kawaiiIpSecId} | 
 
 
 
@@ -38,7 +38,7 @@ import (
 
 func main() {
 	kawaiiId := "kawaiiId_example" // string | The ID of the Kawaii.
-	kawaiiIpSec := *kowabunga.NewKawaiiIpSec("Name_example", "RemoteIp_example", "RemoteSubnet_example", "PreSharedKey_example", int64(123), "Phase1IntegrityAlgorithm_example", "Phase1EncryptionAlgorithm_example", int64(123), "Phase2IntegrityAlgorithm_example", "Phase2EncryptionAlgorithm_example") // KawaiiIpSec | KawaiiIpSec payload.
+	kawaiiIpSec := *kowabunga.NewKawaiiIpSec("Name_example", "RemoteIp_example", "RemoteSubnet_example", "PreSharedKey_example", int32(123), "Phase1IntegrityAlgorithm_example", "Phase1EncryptionAlgorithm_example", int32(123), "Phase2IntegrityAlgorithm_example", "Phase2EncryptionAlgorithm_example") // KawaiiIpSec | KawaiiIpSec payload.
 
 	configuration := kowabunga.NewConfiguration()
 	apiClient := kowabunga.NewAPIClient(configuration)
@@ -503,7 +503,7 @@ Name | Type | Description  | Notes
 
 ## UpdateKawaii
 
-> Kawaii UpdateKawaii(ctx, kawaiiId).Kawaii(kawaii).Execute()
+> Kawaii UpdateKawaii(ctx, kawaiiId).KawaiiUpdate(kawaiiUpdate).Execute()
 
 
 
@@ -523,11 +523,11 @@ import (
 
 func main() {
 	kawaiiId := "kawaiiId_example" // string | The ID of the Kawaii.
-	kawaii := *kowabunga.NewKawaii() // Kawaii | Kawaii payload.
+	kawaiiUpdate := *kowabunga.NewKawaiiUpdate() // KawaiiUpdate | KawaiiUpdate payload.
 
 	configuration := kowabunga.NewConfiguration()
 	apiClient := kowabunga.NewAPIClient(configuration)
-	resp, r, err := apiClient.KawaiiAPI.UpdateKawaii(context.Background(), kawaiiId).Kawaii(kawaii).Execute()
+	resp, r, err := apiClient.KawaiiAPI.UpdateKawaii(context.Background(), kawaiiId).KawaiiUpdate(kawaiiUpdate).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `KawaiiAPI.UpdateKawaii``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -553,7 +553,7 @@ Other parameters are passed through a pointer to a apiUpdateKawaiiRequest struct
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **kawaii** | [**Kawaii**](Kawaii.md) | Kawaii payload. | 
+ **kawaiiUpdate** | [**KawaiiUpdate**](KawaiiUpdate.md) | KawaiiUpdate payload. | 
 
 ### Return type
 
@@ -575,7 +575,7 @@ Name | Type | Description  | Notes
 
 ## UpdateKawaiiIpSec
 
-> KawaiiIpSec UpdateKawaiiIpSec(ctx, kawaiiId, kawaiiIpSecId).KawaiiIpSec(kawaiiIpSec).Execute()
+> KawaiiIpSec UpdateKawaiiIpSec(ctx, kawaiiId, kawaiiIpSecId).KawaiiIpSecUpdate(kawaiiIpSecUpdate).Execute()
 
 
 
@@ -596,11 +596,11 @@ import (
 func main() {
 	kawaiiId := "kawaiiId_example" // string | The ID of the Kawaii.
 	kawaiiIpSecId := "kawaiiIpSecId_example" // string | The ID of the Kawaii IPsec connection.
-	kawaiiIpSec := *kowabunga.NewKawaiiIpSec("Name_example", "RemoteIp_example", "RemoteSubnet_example", "PreSharedKey_example", int64(123), "Phase1IntegrityAlgorithm_example", "Phase1EncryptionAlgorithm_example", int64(123), "Phase2IntegrityAlgorithm_example", "Phase2EncryptionAlgorithm_example") // KawaiiIpSec | KawaiiIpSec payload.
+	kawaiiIpSecUpdate := *kowabunga.NewKawaiiIpSecUpdate() // KawaiiIpSecUpdate | KawaiiIpSecUpdate payload.
 
 	configuration := kowabunga.NewConfiguration()
 	apiClient := kowabunga.NewAPIClient(configuration)
-	resp, r, err := apiClient.KawaiiAPI.UpdateKawaiiIpSec(context.Background(), kawaiiId, kawaiiIpSecId).KawaiiIpSec(kawaiiIpSec).Execute()
+	resp, r, err := apiClient.KawaiiAPI.UpdateKawaiiIpSec(context.Background(), kawaiiId, kawaiiIpSecId).KawaiiIpSecUpdate(kawaiiIpSecUpdate).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `KawaiiAPI.UpdateKawaiiIpSec``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -628,7 +628,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **kawaiiIpSec** | [**KawaiiIpSec**](KawaiiIpSec.md) | KawaiiIpSec payload. | 
+ **kawaiiIpSecUpdate** | [**KawaiiIpSecUpdate**](KawaiiIpSecUpdate.md) | KawaiiIpSecUpdate payload. | 
 
 ### Return type
 

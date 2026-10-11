@@ -3,7 +3,7 @@ Kowabunga API
 
 Kvm Orchestrator With A BUNch of Goods Added
 
-API version: 0.57.1
+API version: 0.58.0
 Contact: maintainers@kowabunga.cloud
 */
 
@@ -22,7 +22,7 @@ var _ MappedNullable = &Instance{}
 
 // Instance A virtual machine instance.
 type Instance struct {
-	// The virtual machine instance ID (auto-generated).
+	// The virtual machine instance ID (auto-generated) (read-only).
 	Id *string `json:"id,omitempty"`
 	// The virtual machine instance name.
 	Name string `json:"name"`
@@ -31,14 +31,14 @@ type Instance struct {
 	// The virtual machine instance memory size (in bytes).
 	Memory int64 `json:"memory"`
 	// The virtual machine instance number of vCPUs.
-	Vcpus int64 `json:"vcpus"`
-	// a list of existing network adapters to be connected to the instance.
+	Vcpus int32 `json:"vcpus"`
+	// A list of existing network adapters to be connected to the instance.
 	Adapters []string `json:"adapters,omitempty"`
-	// volumes list of existing storage volumes (i.e. disks) to be connected to the instance.
+	// A list of existing storage volumes (i.e. disks) to be connected to the instance.
 	Volumes []string `json:"volumes,omitempty"`
-	// An optional list of existing Kwarantine anti-affinity group IDs. Only considered at instance creation time, to elect an initial host consistent with the referenced groups policies and register the instance as one of their members. Read-only afterwards, always reflecting current membership, which should be managed going forward via the Kwarantine webservices.
+	// An optional list of existing Kwarantine anti-affinity group IDs. Only considered at instance creation time, to elect an initial host consistent with the referenced groups policies and register the instance as one of their members. Read-only afterwards, always reflecting current membership, which should be managed going forward via the Kwarantine webservices. Can only be set at creation time, ignored on updates.
 	Kwarantines []string `json:"kwarantines,omitempty"`
-	// enable UEFI secure firmware (vs. legacy BIOS).
+	// Enable UEFI secure firmware (vs. legacy BIOS). Can only be set at creation time, ignored on updates.
 	Uefi *bool `json:"uefi,omitempty"`
 	// Whether kMotion (live/cold host migration) is enabled for the virtual machine instance. When disabled, the instance remains bound to its original hosting node.
 	KmotionEnabled *bool `json:"kmotion_enabled,omitempty"`
@@ -50,7 +50,7 @@ type _Instance Instance
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewInstance(name string, memory int64, vcpus int64) *Instance {
+func NewInstance(name string, memory int64, vcpus int32) *Instance {
 	this := Instance{}
 	this.Name = name
 	this.Memory = memory
@@ -187,9 +187,9 @@ func (o *Instance) SetMemory(v int64) {
 }
 
 // GetVcpus returns the Vcpus field value
-func (o *Instance) GetVcpus() int64 {
+func (o *Instance) GetVcpus() int32 {
 	if o == nil {
-		var ret int64
+		var ret int32
 		return ret
 	}
 
@@ -198,7 +198,7 @@ func (o *Instance) GetVcpus() int64 {
 
 // GetVcpusOk returns a tuple with the Vcpus field value
 // and a boolean to check if the value has been set.
-func (o *Instance) GetVcpusOk() (*int64, bool) {
+func (o *Instance) GetVcpusOk() (*int32, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -206,7 +206,7 @@ func (o *Instance) GetVcpusOk() (*int64, bool) {
 }
 
 // SetVcpus sets field value
-func (o *Instance) SetVcpus(v int64) {
+func (o *Instance) SetVcpus(v int32) {
 	o.Vcpus = v
 }
 

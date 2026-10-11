@@ -3,7 +3,7 @@ Kowabunga API
 
 Kvm Orchestrator With A BUNch of Goods Added
 
-API version: 0.57.1
+API version: 0.58.0
 Contact: maintainers@kowabunga.cloud
 */
 
@@ -24,7 +24,7 @@ import (
 // PoolAPIService PoolAPI service
 type PoolAPIService service
 
-type ApiCreateTemplateRequest struct {
+type ApiCreateStoragePoolTemplateRequest struct {
 	ctx context.Context
 	ApiService *PoolAPIService
 	poolId string
@@ -32,26 +32,26 @@ type ApiCreateTemplateRequest struct {
 }
 
 // Template payload.
-func (r ApiCreateTemplateRequest) Template(template Template) ApiCreateTemplateRequest {
+func (r ApiCreateStoragePoolTemplateRequest) Template(template Template) ApiCreateStoragePoolTemplateRequest {
 	r.template = &template
 	return r
 }
 
-func (r ApiCreateTemplateRequest) Execute() (*Template, *http.Response, error) {
-	return r.ApiService.CreateTemplateExecute(r)
+func (r ApiCreateStoragePoolTemplateRequest) Execute() (*Template, *http.Response, error) {
+	return r.ApiService.CreateStoragePoolTemplateExecute(r)
 }
 
 /*
-CreateTemplate Method for CreateTemplate
+CreateStoragePoolTemplate Method for CreateStoragePoolTemplate
 
 Creates a new image template.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param poolId The ID of the storage pool.
- @return ApiCreateTemplateRequest
+ @return ApiCreateStoragePoolTemplateRequest
 */
-func (a *PoolAPIService) CreateTemplate(ctx context.Context, poolId string) ApiCreateTemplateRequest {
-	return ApiCreateTemplateRequest{
+func (a *PoolAPIService) CreateStoragePoolTemplate(ctx context.Context, poolId string) ApiCreateStoragePoolTemplateRequest {
+	return ApiCreateStoragePoolTemplateRequest{
 		ApiService: a,
 		ctx: ctx,
 		poolId: poolId,
@@ -60,7 +60,7 @@ func (a *PoolAPIService) CreateTemplate(ctx context.Context, poolId string) ApiC
 
 // Execute executes the request
 //  @return Template
-func (a *PoolAPIService) CreateTemplateExecute(r ApiCreateTemplateRequest) (*Template, *http.Response, error) {
+func (a *PoolAPIService) CreateStoragePoolTemplateExecute(r ApiCreateStoragePoolTemplateRequest) (*Template, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -68,7 +68,7 @@ func (a *PoolAPIService) CreateTemplateExecute(r ApiCreateTemplateRequest) (*Tem
 		localVarReturnValue  *Template
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PoolAPIService.CreateTemplate")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PoolAPIService.CreateStoragePoolTemplate")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -162,6 +162,17 @@ func (a *PoolAPIService) CreateTemplateExecute(r ApiCreateTemplateRequest) (*Tem
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ApiErrorForbidden
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ApiErrorInternalServerError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -351,6 +362,17 @@ func (a *PoolAPIService) DeleteStoragePoolExecute(r ApiDeleteStoragePoolRequest)
 					newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ApiErrorInternalServerError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v ApiErrorNotFound
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -513,6 +535,17 @@ func (a *PoolAPIService) ListStoragePoolTemplatesExecute(r ApiListStoragePoolTem
 					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ApiErrorInternalServerError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v ApiErrorNotFound
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -653,6 +686,17 @@ func (a *PoolAPIService) ListStoragePoolVolumesExecute(r ApiListStoragePoolVolum
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ApiErrorForbidden
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ApiErrorInternalServerError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -805,6 +849,17 @@ func (a *PoolAPIService) ListStoragePoolsExecute(r ApiListStoragePoolsRequest) (
 			}
 					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ApiErrorInternalServerError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -936,6 +991,17 @@ func (a *PoolAPIService) ReadStoragePoolExecute(r ApiReadStoragePoolRequest) (*S
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ApiErrorForbidden
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ApiErrorInternalServerError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1096,6 +1162,17 @@ func (a *PoolAPIService) SetStoragePoolDefaultTemplateExecute(r ApiSetStoragePoo
 					newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ApiErrorInternalServerError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v ApiErrorNotFound
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -1127,12 +1204,12 @@ type ApiUpdateStoragePoolRequest struct {
 	ctx context.Context
 	ApiService *PoolAPIService
 	poolId string
-	storagePool *StoragePool
+	storagePoolUpdate *StoragePoolUpdate
 }
 
-// StoragePool payload.
-func (r ApiUpdateStoragePoolRequest) StoragePool(storagePool StoragePool) ApiUpdateStoragePoolRequest {
-	r.storagePool = &storagePool
+// StoragePoolUpdate payload.
+func (r ApiUpdateStoragePoolRequest) StoragePoolUpdate(storagePoolUpdate StoragePoolUpdate) ApiUpdateStoragePoolRequest {
+	r.storagePoolUpdate = &storagePoolUpdate
 	return r
 }
 
@@ -1178,8 +1255,8 @@ func (a *PoolAPIService) UpdateStoragePoolExecute(r ApiUpdateStoragePoolRequest)
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.storagePool == nil {
-		return localVarReturnValue, nil, reportError("storagePool is required and must be specified")
+	if r.storagePoolUpdate == nil {
+		return localVarReturnValue, nil, reportError("storagePoolUpdate is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -1200,7 +1277,7 @@ func (a *PoolAPIService) UpdateStoragePoolExecute(r ApiUpdateStoragePoolRequest)
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.storagePool
+	localVarPostBody = r.storagePoolUpdate
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -1261,6 +1338,17 @@ func (a *PoolAPIService) UpdateStoragePoolExecute(r ApiUpdateStoragePoolRequest)
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ApiErrorForbidden
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ApiErrorInternalServerError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()

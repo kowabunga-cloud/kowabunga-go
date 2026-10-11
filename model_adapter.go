@@ -3,7 +3,7 @@ Kowabunga API
 
 Kvm Orchestrator With A BUNch of Goods Added
 
-API version: 0.57.1
+API version: 0.58.0
 Contact: maintainers@kowabunga.cloud
 */
 
@@ -22,7 +22,7 @@ var _ MappedNullable = &Adapter{}
 
 // Adapter A network adapter.
 type Adapter struct {
-	// The network adapter ID (auto-generated).
+	// The network adapter ID (auto-generated) (read-only).
 	Id *string `json:"id,omitempty"`
 	// The network adapter name.
 	Name string `json:"name"`

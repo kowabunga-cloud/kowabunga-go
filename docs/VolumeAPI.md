@@ -212,7 +212,7 @@ Name | Type | Description  | Notes
 
 ## UpdateVolume
 
-> Volume UpdateVolume(ctx, volumeId).Volume(volume).Execute()
+> Volume UpdateVolume(ctx, volumeId).VolumeUpdate(volumeUpdate).Execute()
 
 
 
@@ -232,11 +232,11 @@ import (
 
 func main() {
 	volumeId := "volumeId_example" // string | The ID of the storage volume.
-	volume := *kowabunga.NewVolume("Name_example", "Type_example", int64(123)) // Volume | Volume payload.
+	volumeUpdate := *kowabunga.NewVolumeUpdate() // VolumeUpdate | VolumeUpdate payload.
 
 	configuration := kowabunga.NewConfiguration()
 	apiClient := kowabunga.NewAPIClient(configuration)
-	resp, r, err := apiClient.VolumeAPI.UpdateVolume(context.Background(), volumeId).Volume(volume).Execute()
+	resp, r, err := apiClient.VolumeAPI.UpdateVolume(context.Background(), volumeId).VolumeUpdate(volumeUpdate).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `VolumeAPI.UpdateVolume``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -262,7 +262,7 @@ Other parameters are passed through a pointer to a apiUpdateVolumeRequest struct
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **volume** | [**Volume**](Volume.md) | Volume payload. | 
+ **volumeUpdate** | [**VolumeUpdate**](VolumeUpdate.md) | VolumeUpdate payload. | 
 
 ### Return type
 

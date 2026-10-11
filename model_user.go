@@ -3,7 +3,7 @@ Kowabunga API
 
 Kvm Orchestrator With A BUNch of Goods Added
 
-API version: 0.57.1
+API version: 0.58.0
 Contact: maintainers@kowabunga.cloud
 */
 
@@ -22,7 +22,7 @@ var _ MappedNullable = &User{}
 
 // User A Kowabunga user.
 type User struct {
-	// The Kowabunga user ID (auto-generated).
+	// The Kowabunga user ID (auto-generated) (read-only).
 	Id *string `json:"id,omitempty"`
 	// The Kowabunga user name.
 	Name string `json:"name"`

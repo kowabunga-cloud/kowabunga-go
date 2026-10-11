@@ -3,7 +3,7 @@ Kowabunga API
 
 Kvm Orchestrator With A BUNch of Goods Added
 
-API version: 0.57.1
+API version: 0.58.0
 Contact: maintainers@kowabunga.cloud
 */
 
@@ -22,46 +22,46 @@ var _ MappedNullable = &KawaiiIpSec{}
 
 // KawaiiIpSec A Kawaii IPsec connection.
 type KawaiiIpSec struct {
-	// The Kawaii IPsec connection ID (auto-generated).
+	// The Kawaii IPsec connection ID (auto-generated) (read-only).
 	Id *string `json:"id,omitempty"`
 	// The Kawaii IPsec connection name.
 	Name string `json:"name"`
 	// The Kawaii IPsec connection description.
 	Description *string `json:"description,omitempty"`
-	// The Kawaii IPsec connection IPSec IP.
+	// The Kawaii IPsec connection local IPsec IP address (read-only).
 	Ip *string `json:"ip,omitempty"`
-	// The Kawaii IPsec connection remote peer VPN Gateway.
+	// The Kawaii IPsec connection remote peer VPN gateway IP address.
 	RemoteIp string `json:"remote_ip"`
 	// The Kawaii IPsec connection remote subnet.
 	RemoteSubnet string `json:"remote_subnet"`
-	// The Kawaii IPsec connection pre-shared key(PSK).
+	// The Kawaii IPsec connection pre-shared key (PSK).
 	PreSharedKey string `json:"pre_shared_key"`
-	// The Kawaii IPsec connection Dead Peer Detection Action (clear,restart or trap).
+	// The Kawaii IPsec connection Dead Peer Detection (DPD) timeout action.
 	DpdTimeoutAction *string `json:"dpd_timeout_action,omitempty"`
-	// The Kawaii IPsec connection Dead Peer Detection Timeout.
+	// The Kawaii IPsec connection Dead Peer Detection (DPD) timeout.
 	DpdTimeout *string `json:"dpd_timeout,omitempty"`
-	// The Kawaii IPsec connection start action (none, start, trap).
+	// The Kawaii IPsec connection start action.
 	StartAction *string `json:"start_action,omitempty"`
-	// The Kawaii IPsec connection rekey time. Default is 2h.
+	// The Kawaii IPsec connection rekey time.
 	RekeyTime *string `json:"rekey_time,omitempty"`
-	// The Kawaii IPsec connection Lifetime for phase 1 negociation. Default is 1h.
+	// The Kawaii IPsec connection lifetime for phase 1 negotiation.
 	Phase1Lifetime *string `json:"phase1_lifetime,omitempty"`
 	// The Kawaii IPsec connection phase 1 Diffie Hellman IANA algorithm.
-	Phase1DhGroupNumber int64 `json:"phase1_dh_group_number"`
-	// The Kawaii IPsec connection phase 1 integrity algorithm..
+	Phase1DhGroupNumber int32 `json:"phase1_dh_group_number"`
+	// The Kawaii IPsec connection phase 1 integrity algorithm.
 	Phase1IntegrityAlgorithm string `json:"phase1_integrity_algorithm"`
-	// The Kawaii IPsec connection phase 1 encryption algorithm..
+	// The Kawaii IPsec connection phase 1 encryption algorithm.
 	Phase1EncryptionAlgorithm string `json:"phase1_encryption_algorithm"`
-	// The Kawaii IPsec connection Lifetime for phase 2 negociation. Default is 1h.
+	// The Kawaii IPsec connection lifetime for phase 2 negotiation.
 	Phase2Lifetime *string `json:"phase2_lifetime,omitempty"`
 	// The Kawaii IPsec connection phase 2 Diffie Hellman IANA algorithm.
-	Phase2DhGroupNumber int64 `json:"phase2_dh_group_number"`
-	// The Kawaii IPsec connection phase 2 integrity algorithm..
+	Phase2DhGroupNumber int32 `json:"phase2_dh_group_number"`
+	// The Kawaii IPsec connection phase 2 integrity algorithm.
 	Phase2IntegrityAlgorithm string `json:"phase2_integrity_algorithm"`
-	// The Kawaii IPsec connection phase 2 encryption algorithm..
+	// The Kawaii IPsec connection phase 2 encryption algorithm.
 	Phase2EncryptionAlgorithm string `json:"phase2_encryption_algorithm"`
 	// The Kawaii IPsec connection firewall settings on the IPsec interface.
-	Firewall *KawaiiFirewall `json:"firewall,omitempty"`
+	Firewall *KawaiiIpSecFirewall `json:"firewall,omitempty"`
 }
 
 type _KawaiiIpSec KawaiiIpSec
@@ -70,7 +70,7 @@ type _KawaiiIpSec KawaiiIpSec
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewKawaiiIpSec(name string, remoteIp string, remoteSubnet string, preSharedKey string, phase1DhGroupNumber int64, phase1IntegrityAlgorithm string, phase1EncryptionAlgorithm string, phase2DhGroupNumber int64, phase2IntegrityAlgorithm string, phase2EncryptionAlgorithm string) *KawaiiIpSec {
+func NewKawaiiIpSec(name string, remoteIp string, remoteSubnet string, preSharedKey string, phase1DhGroupNumber int32, phase1IntegrityAlgorithm string, phase1EncryptionAlgorithm string, phase2DhGroupNumber int32, phase2IntegrityAlgorithm string, phase2EncryptionAlgorithm string) *KawaiiIpSec {
 	this := KawaiiIpSec{}
 	this.Name = name
 	this.RemoteIp = remoteIp
@@ -470,9 +470,9 @@ func (o *KawaiiIpSec) SetPhase1Lifetime(v string) {
 }
 
 // GetPhase1DhGroupNumber returns the Phase1DhGroupNumber field value
-func (o *KawaiiIpSec) GetPhase1DhGroupNumber() int64 {
+func (o *KawaiiIpSec) GetPhase1DhGroupNumber() int32 {
 	if o == nil {
-		var ret int64
+		var ret int32
 		return ret
 	}
 
@@ -481,7 +481,7 @@ func (o *KawaiiIpSec) GetPhase1DhGroupNumber() int64 {
 
 // GetPhase1DhGroupNumberOk returns a tuple with the Phase1DhGroupNumber field value
 // and a boolean to check if the value has been set.
-func (o *KawaiiIpSec) GetPhase1DhGroupNumberOk() (*int64, bool) {
+func (o *KawaiiIpSec) GetPhase1DhGroupNumberOk() (*int32, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -489,7 +489,7 @@ func (o *KawaiiIpSec) GetPhase1DhGroupNumberOk() (*int64, bool) {
 }
 
 // SetPhase1DhGroupNumber sets field value
-func (o *KawaiiIpSec) SetPhase1DhGroupNumber(v int64) {
+func (o *KawaiiIpSec) SetPhase1DhGroupNumber(v int32) {
 	o.Phase1DhGroupNumber = v
 }
 
@@ -574,9 +574,9 @@ func (o *KawaiiIpSec) SetPhase2Lifetime(v string) {
 }
 
 // GetPhase2DhGroupNumber returns the Phase2DhGroupNumber field value
-func (o *KawaiiIpSec) GetPhase2DhGroupNumber() int64 {
+func (o *KawaiiIpSec) GetPhase2DhGroupNumber() int32 {
 	if o == nil {
-		var ret int64
+		var ret int32
 		return ret
 	}
 
@@ -585,7 +585,7 @@ func (o *KawaiiIpSec) GetPhase2DhGroupNumber() int64 {
 
 // GetPhase2DhGroupNumberOk returns a tuple with the Phase2DhGroupNumber field value
 // and a boolean to check if the value has been set.
-func (o *KawaiiIpSec) GetPhase2DhGroupNumberOk() (*int64, bool) {
+func (o *KawaiiIpSec) GetPhase2DhGroupNumberOk() (*int32, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -593,7 +593,7 @@ func (o *KawaiiIpSec) GetPhase2DhGroupNumberOk() (*int64, bool) {
 }
 
 // SetPhase2DhGroupNumber sets field value
-func (o *KawaiiIpSec) SetPhase2DhGroupNumber(v int64) {
+func (o *KawaiiIpSec) SetPhase2DhGroupNumber(v int32) {
 	o.Phase2DhGroupNumber = v
 }
 
@@ -646,9 +646,9 @@ func (o *KawaiiIpSec) SetPhase2EncryptionAlgorithm(v string) {
 }
 
 // GetFirewall returns the Firewall field value if set, zero value otherwise.
-func (o *KawaiiIpSec) GetFirewall() KawaiiFirewall {
+func (o *KawaiiIpSec) GetFirewall() KawaiiIpSecFirewall {
 	if o == nil || IsNil(o.Firewall) {
-		var ret KawaiiFirewall
+		var ret KawaiiIpSecFirewall
 		return ret
 	}
 	return *o.Firewall
@@ -656,7 +656,7 @@ func (o *KawaiiIpSec) GetFirewall() KawaiiFirewall {
 
 // GetFirewallOk returns a tuple with the Firewall field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *KawaiiIpSec) GetFirewallOk() (*KawaiiFirewall, bool) {
+func (o *KawaiiIpSec) GetFirewallOk() (*KawaiiIpSecFirewall, bool) {
 	if o == nil || IsNil(o.Firewall) {
 		return nil, false
 	}
@@ -672,8 +672,8 @@ func (o *KawaiiIpSec) HasFirewall() bool {
 	return false
 }
 
-// SetFirewall gets a reference to the given KawaiiFirewall and assigns it to the Firewall field.
-func (o *KawaiiIpSec) SetFirewall(v KawaiiFirewall) {
+// SetFirewall gets a reference to the given KawaiiIpSecFirewall and assigns it to the Firewall field.
+func (o *KawaiiIpSec) SetFirewall(v KawaiiIpSecFirewall) {
 	o.Firewall = &v
 }
 

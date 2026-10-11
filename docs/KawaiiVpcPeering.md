@@ -4,11 +4,11 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Subnet** | **string** | Kowabunga Subnet ID to be peered with (subnet local IP addresses will be automatically assigned to Kawaii instances).. | 
+**Subnet** | **string** | Kowabunga Subnet ID to be peered with (subnet local IP addresses will be automatically assigned to Kawaii instances). | 
 **Policy** | Pointer to **string** | The default VPC traffic forwarding policy. | [optional] [default to "drop"]
 **Ingress** | Pointer to [**[]KawaiiVpcForwardRule**](KawaiiVpcForwardRule.md) | The firewall list of forwarding ingress rules from VPC peered subnet. ICMP traffic is always accepted. The specified ruleset will be explicitly accepted if drop is the default policy (useless otherwise). | [optional] 
 **Egress** | Pointer to [**[]KawaiiVpcForwardRule**](KawaiiVpcForwardRule.md) | The firewall list of forwarding egress rules to VPC peered subnet. ICMP traffic is always accepted. The specified ruleset will be explicitly accepted if drop is the default policy (useless otherwise). | [optional] 
-**Netip** | Pointer to [**[]KawaiiVpcNetIpZone**](KawaiiVpcNetIpZone.md) | The per-zone auto-assigned private IPs in peered subnet (read-only). | [optional] 
+**Netip** | Pointer to [**[]KawaiiNetIpZone**](KawaiiNetIpZone.md) | The per-zone auto-assigned private IPs in peered subnet (read-only). | [optional] [readonly] 
 
 ## Methods
 
@@ -126,20 +126,20 @@ HasEgress returns a boolean if a field has been set.
 
 ### GetNetip
 
-`func (o *KawaiiVpcPeering) GetNetip() []KawaiiVpcNetIpZone`
+`func (o *KawaiiVpcPeering) GetNetip() []KawaiiNetIpZone`
 
 GetNetip returns the Netip field if non-nil, zero value otherwise.
 
 ### GetNetipOk
 
-`func (o *KawaiiVpcPeering) GetNetipOk() (*[]KawaiiVpcNetIpZone, bool)`
+`func (o *KawaiiVpcPeering) GetNetipOk() (*[]KawaiiNetIpZone, bool)`
 
 GetNetipOk returns a tuple with the Netip field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetNetip
 
-`func (o *KawaiiVpcPeering) SetNetip(v []KawaiiVpcNetIpZone)`
+`func (o *KawaiiVpcPeering) SetNetip(v []KawaiiNetIpZone)`
 
 SetNetip sets Netip field to given value.
 

@@ -3,7 +3,7 @@ Kowabunga API
 
 Kvm Orchestrator With A BUNch of Goods Added
 
-API version: 0.57.1
+API version: 0.58.0
 Contact: maintainers@kowabunga.cloud
 */
 
@@ -24,7 +24,7 @@ import (
 // VnetAPIService VnetAPI service
 type VnetAPIService service
 
-type ApiCreateSubnetRequest struct {
+type ApiCreateVNetSubnetRequest struct {
 	ctx context.Context
 	ApiService *VnetAPIService
 	vnetId string
@@ -32,26 +32,26 @@ type ApiCreateSubnetRequest struct {
 }
 
 // Subnet payload.
-func (r ApiCreateSubnetRequest) Subnet(subnet Subnet) ApiCreateSubnetRequest {
+func (r ApiCreateVNetSubnetRequest) Subnet(subnet Subnet) ApiCreateVNetSubnetRequest {
 	r.subnet = &subnet
 	return r
 }
 
-func (r ApiCreateSubnetRequest) Execute() (*Subnet, *http.Response, error) {
-	return r.ApiService.CreateSubnetExecute(r)
+func (r ApiCreateVNetSubnetRequest) Execute() (*Subnet, *http.Response, error) {
+	return r.ApiService.CreateVNetSubnetExecute(r)
 }
 
 /*
-CreateSubnet Method for CreateSubnet
+CreateVNetSubnet Method for CreateVNetSubnet
 
 Creates a new network subnet.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param vnetId The ID of the virtual network.
- @return ApiCreateSubnetRequest
+ @return ApiCreateVNetSubnetRequest
 */
-func (a *VnetAPIService) CreateSubnet(ctx context.Context, vnetId string) ApiCreateSubnetRequest {
-	return ApiCreateSubnetRequest{
+func (a *VnetAPIService) CreateVNetSubnet(ctx context.Context, vnetId string) ApiCreateVNetSubnetRequest {
+	return ApiCreateVNetSubnetRequest{
 		ApiService: a,
 		ctx: ctx,
 		vnetId: vnetId,
@@ -60,7 +60,7 @@ func (a *VnetAPIService) CreateSubnet(ctx context.Context, vnetId string) ApiCre
 
 // Execute executes the request
 //  @return Subnet
-func (a *VnetAPIService) CreateSubnetExecute(r ApiCreateSubnetRequest) (*Subnet, *http.Response, error) {
+func (a *VnetAPIService) CreateVNetSubnetExecute(r ApiCreateVNetSubnetRequest) (*Subnet, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -68,7 +68,7 @@ func (a *VnetAPIService) CreateSubnetExecute(r ApiCreateSubnetRequest) (*Subnet,
 		localVarReturnValue  *Subnet
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "VnetAPIService.CreateSubnet")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "VnetAPIService.CreateVNetSubnet")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -162,6 +162,17 @@ func (a *VnetAPIService) CreateSubnetExecute(r ApiCreateSubnetRequest) (*Subnet,
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ApiErrorForbidden
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ApiErrorInternalServerError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -351,6 +362,17 @@ func (a *VnetAPIService) DeleteVNetExecute(r ApiDeleteVNetRequest) (*http.Respon
 					newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ApiErrorInternalServerError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v ApiErrorNotFound
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -513,6 +535,17 @@ func (a *VnetAPIService) ListVNetSubnetsExecute(r ApiListVNetSubnetsRequest) ([]
 					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ApiErrorInternalServerError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v ApiErrorNotFound
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -656,6 +689,17 @@ func (a *VnetAPIService) ListVNetsExecute(r ApiListVNetsRequest) ([]string, *htt
 			}
 					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ApiErrorInternalServerError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -787,6 +831,17 @@ func (a *VnetAPIService) ReadVNetExecute(r ApiReadVNetRequest) (*VNet, *http.Res
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ApiErrorForbidden
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ApiErrorInternalServerError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -947,6 +1002,17 @@ func (a *VnetAPIService) SetVNetDefaultSubnetExecute(r ApiSetVNetDefaultSubnetRe
 					newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ApiErrorInternalServerError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v ApiErrorNotFound
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -978,12 +1044,12 @@ type ApiUpdateVNetRequest struct {
 	ctx context.Context
 	ApiService *VnetAPIService
 	vnetId string
-	vNet *VNet
+	vNetUpdate *VNetUpdate
 }
 
-// VNet payload.
-func (r ApiUpdateVNetRequest) VNet(vNet VNet) ApiUpdateVNetRequest {
-	r.vNet = &vNet
+// VNetUpdate payload.
+func (r ApiUpdateVNetRequest) VNetUpdate(vNetUpdate VNetUpdate) ApiUpdateVNetRequest {
+	r.vNetUpdate = &vNetUpdate
 	return r
 }
 
@@ -1029,8 +1095,8 @@ func (a *VnetAPIService) UpdateVNetExecute(r ApiUpdateVNetRequest) (*VNet, *http
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.vNet == nil {
-		return localVarReturnValue, nil, reportError("vNet is required and must be specified")
+	if r.vNetUpdate == nil {
+		return localVarReturnValue, nil, reportError("vNetUpdate is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -1051,7 +1117,7 @@ func (a *VnetAPIService) UpdateVNetExecute(r ApiUpdateVNetRequest) (*VNet, *http
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.vNet
+	localVarPostBody = r.vNetUpdate
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -1112,6 +1178,17 @@ func (a *VnetAPIService) UpdateVNetExecute(r ApiUpdateVNetRequest) (*VNet, *http
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ApiErrorForbidden
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ApiErrorInternalServerError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()

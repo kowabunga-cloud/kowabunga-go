@@ -3,7 +3,7 @@ Kowabunga API
 
 Kvm Orchestrator With A BUNch of Goods Added
 
-API version: 0.57.1
+API version: 0.58.0
 Contact: maintainers@kowabunga.cloud
 */
 
@@ -22,7 +22,7 @@ var _ MappedNullable = &KMotionPlan{}
 
 // KMotionPlan A virtual machine instance kMotion plan.
 type KMotionPlan struct {
-	// The kMotion plan ID (auto-generated).
+	// The kMotion plan ID (auto-generated) (read-only).
 	Id *string `json:"id,omitempty"`
 	// The ID of the virtual machine instance this kMotion plan applies to.
 	Instance string `json:"instance"`

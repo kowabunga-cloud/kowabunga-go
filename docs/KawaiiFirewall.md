@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Ingress** | Pointer to [**[]KawaiiFirewallIngressRule**](KawaiiFirewallIngressRule.md) | The Kawaii public firewall list of ingress rules. Kawaii default policy is to drop all incoming traffic, including ICMP. Specified ruleset will be explicitly accepted. | [optional] 
 **EgressPolicy** | Pointer to **string** | The default public traffic egress policy. | [optional] [default to "accept"]
-**Egress** | Pointer to [**[]KawaiiFirewallEgressRule**](KawaiiFirewallEgressRule.md) | The Kawaii public firewall list of egress rules. Kawaii default policy is to accept all outgoing traffic, including ICMP. Specified ruleset will be explicitly dropped if egress_policy is set to accept, and explicitly accepted if egress policy is set to drop.. | [optional] 
+**Egress** | Pointer to [**[]KawaiiFirewallEgressRule**](KawaiiFirewallEgressRule.md) | The Kawaii public firewall list of egress rules. Kawaii default policy is to accept all outgoing traffic, including ICMP. Specified ruleset will be explicitly dropped if egress_policy is set to accept, and explicitly accepted if egress policy is set to drop. | [optional] 
 
 ## Methods
 

@@ -4,13 +4,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | Pointer to **string** | The Kylo ID (auto-generated). | [optional] 
+**Id** | Pointer to **string** | The Kylo ID (auto-generated) (read-only). | [optional] [readonly] 
 **Name** | **string** | The Kylo name. | 
 **Description** | Pointer to **string** | The Kylo description. | [optional] 
 **Access** | Pointer to **string** | The Kylo volume access type. | [optional] [default to "RW"]
 **Protocols** | Pointer to **[]int32** | The Kylo NFS protocol versions to be supported. | [optional] [default to {3, 4}]
-**Endpoint** | Pointer to **string** | The Kylo endpoint FQDN (read-only). | [optional] 
-**Size** | Pointer to **int64** | The Kylo volume bytes used (read-only). | [optional] 
+**Endpoint** | Pointer to **string** | The Kylo endpoint FQDN (read-only). | [optional] [readonly] 
+**Size** | Pointer to **int64** | The Kylo volume bytes used (read-only). | [optional] [readonly] 
 
 ## Methods
 

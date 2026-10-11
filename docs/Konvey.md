@@ -4,11 +4,11 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | Pointer to **string** | The Konvey (Kowabunga Network Load-Balancer) ID (auto-generated). | [optional] 
-**Name** | Pointer to **string** | The Konvey (Kowabunga Network Load-Balancer) name. | [optional] 
+**Id** | Pointer to **string** | The Konvey (Kowabunga Network Load-Balancer) ID (auto-generated) (read-only). | [optional] [readonly] 
+**Name** | Pointer to **string** | The Konvey (Kowabunga Network Load-Balancer) name, prefixed with konvey- (project name if unspecified). | [optional] 
 **Description** | Pointer to **string** | The Konvey (Kowabunga Network Load-Balancer) description. | [optional] 
-**Vip** | Pointer to **string** | The Konvey (Kowabunga Network Load-Balancer) assigned private virtual IP address (read-only). | [optional] 
-**Failover** | Pointer to **bool** | Whether Konvey (Kowabunga Network Load-Balancer) must be deployed in a highly-available replicated state to support service failover. | [optional] [default to true]
+**Vip** | Pointer to **string** | The Konvey (Kowabunga Network Load-Balancer) assigned private virtual IP address (read-only). | [optional] [readonly] 
+**Failover** | Pointer to **bool** | Whether Konvey (Kowabunga Network Load-Balancer) must be deployed in a highly-available replicated state to support service failover. Can only be set at creation time, ignored on updates. | [optional] [default to true]
 **Endpoints** | [**[]KonveyEndpoint**](KonveyEndpoint.md) | The Konvey (Kowabunga Network Load-Balancer) list of load-balanced endpoints. | 
 
 ## Methods

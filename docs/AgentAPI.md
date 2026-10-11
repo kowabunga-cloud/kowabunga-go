@@ -301,7 +301,7 @@ import (
 
 func main() {
 	agentId := "agentId_example" // string | The ID of the Kowabunga remote agent.
-	expire := true // bool | Whether or not the token should expire. (optional)
+	expire := true // bool | Whether or not the token should expire. (optional) (default to false)
 	expirationDate := time.Now() // string | Token's expiration date (YYYY-MM-DD format). (optional)
 
 	configuration := kowabunga.NewConfiguration()
@@ -332,7 +332,7 @@ Other parameters are passed through a pointer to a apiSetAgentApiTokenRequest st
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **expire** | **bool** | Whether or not the token should expire. | 
+ **expire** | **bool** | Whether or not the token should expire. | [default to false]
  **expirationDate** | **string** | Token&#39;s expiration date (YYYY-MM-DD format). | 
 
 ### Return type
@@ -355,7 +355,7 @@ Name | Type | Description  | Notes
 
 ## UpdateAgent
 
-> Agent UpdateAgent(ctx, agentId).Agent(agent).Execute()
+> Agent UpdateAgent(ctx, agentId).AgentUpdate(agentUpdate).Execute()
 
 
 
@@ -375,11 +375,11 @@ import (
 
 func main() {
 	agentId := "agentId_example" // string | The ID of the Kowabunga remote agent.
-	agent := *kowabunga.NewAgent("Name_example", "Type_example") // Agent | Agent payload.
+	agentUpdate := *kowabunga.NewAgentUpdate() // AgentUpdate | AgentUpdate payload.
 
 	configuration := kowabunga.NewConfiguration()
 	apiClient := kowabunga.NewAPIClient(configuration)
-	resp, r, err := apiClient.AgentAPI.UpdateAgent(context.Background(), agentId).Agent(agent).Execute()
+	resp, r, err := apiClient.AgentAPI.UpdateAgent(context.Background(), agentId).AgentUpdate(agentUpdate).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `AgentAPI.UpdateAgent``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -405,7 +405,7 @@ Other parameters are passed through a pointer to a apiUpdateAgentRequest struct 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **agent** | [**Agent**](Agent.md) | Agent payload. | 
+ **agentUpdate** | [**AgentUpdate**](AgentUpdate.md) | AgentUpdate payload. | 
 
 ### Return type
 

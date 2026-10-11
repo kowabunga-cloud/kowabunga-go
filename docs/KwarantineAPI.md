@@ -504,7 +504,7 @@ Name | Type | Description  | Notes
 
 ## UpdateKwarantine
 
-> Kwarantine UpdateKwarantine(ctx, kwarantineId).Kwarantine(kwarantine).Execute()
+> Kwarantine UpdateKwarantine(ctx, kwarantineId).KwarantineUpdate(kwarantineUpdate).Execute()
 
 
 
@@ -524,11 +524,11 @@ import (
 
 func main() {
 	kwarantineId := "kwarantineId_example" // string | The ID of the Kwarantine.
-	kwarantine := *kowabunga.NewKwarantine("Name_example") // Kwarantine | Kwarantine payload.
+	kwarantineUpdate := *kowabunga.NewKwarantineUpdate() // KwarantineUpdate | KwarantineUpdate payload.
 
 	configuration := kowabunga.NewConfiguration()
 	apiClient := kowabunga.NewAPIClient(configuration)
-	resp, r, err := apiClient.KwarantineAPI.UpdateKwarantine(context.Background(), kwarantineId).Kwarantine(kwarantine).Execute()
+	resp, r, err := apiClient.KwarantineAPI.UpdateKwarantine(context.Background(), kwarantineId).KwarantineUpdate(kwarantineUpdate).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `KwarantineAPI.UpdateKwarantine``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -554,7 +554,7 @@ Other parameters are passed through a pointer to a apiUpdateKwarantineRequest st
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **kwarantine** | [**Kwarantine**](Kwarantine.md) | Kwarantine payload. | 
+ **kwarantineUpdate** | [**KwarantineUpdate**](KwarantineUpdate.md) | KwarantineUpdate payload. | 
 
 ### Return type
 

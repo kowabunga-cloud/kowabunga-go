@@ -5,13 +5,13 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Hosts** | **[]string** | The Konvey (Kowabunga Network Load-Balancer) endpoint list of load-balanced backend hosts. | 
-**Port** | **int64** | The Konvey (Kowabunga Network Load-Balancer) endpoint backend service port. | 
+**Port** | **int32** | The Konvey (Kowabunga Network Load-Balancer) endpoint backend service port. | 
 
 ## Methods
 
 ### NewKonveyBackends
 
-`func NewKonveyBackends(hosts []string, port int64, ) *KonveyBackends`
+`func NewKonveyBackends(hosts []string, port int32, ) *KonveyBackends`
 
 NewKonveyBackends instantiates a new KonveyBackends object
 This constructor will assign default values to properties that have it defined,
@@ -48,20 +48,20 @@ SetHosts sets Hosts field to given value.
 
 ### GetPort
 
-`func (o *KonveyBackends) GetPort() int64`
+`func (o *KonveyBackends) GetPort() int32`
 
 GetPort returns the Port field if non-nil, zero value otherwise.
 
 ### GetPortOk
 
-`func (o *KonveyBackends) GetPortOk() (*int64, bool)`
+`func (o *KonveyBackends) GetPortOk() (*int32, bool)`
 
 GetPortOk returns a tuple with the Port field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetPort
 
-`func (o *KonveyBackends) SetPort(v int64)`
+`func (o *KonveyBackends) SetPort(v int32)`
 
 SetPort sets Port field to given value.
 

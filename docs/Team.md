@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | Pointer to **string** | The Kowabunga users team ID (auto-generated). | [optional] 
+**Id** | Pointer to **string** | The Kowabunga users team ID (auto-generated) (read-only). | [optional] [readonly] 
 **Name** | **string** | The Kowabunga users team name. | 
 **Description** | Pointer to **string** | The Kowabunga users team description. | [optional] 
 **Users** | **[]string** | List of user IDs that are part of the team. | 

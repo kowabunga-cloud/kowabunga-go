@@ -4,14 +4,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | Pointer to **string** | The Kawaii ID (auto-generated). | [optional] 
-**Name** | Pointer to **string** | The Kawaii name. | [optional] 
+**Id** | Pointer to **string** | The Kawaii ID (auto-generated) (read-only). | [optional] [readonly] 
+**Name** | Pointer to **string** | The Kawaii name, auto-generated from the project name. | [optional] 
 **Description** | Pointer to **string** | The Kawaii description. | [optional] 
-**Netip** | Pointer to [**KawaiiNetIp**](KawaiiNetIp.md) | The Kawaii list of assigned virtual IPs per-zone addresses (read-only). | [optional] 
-**Firewall** | Pointer to [**KawaiiFirewall**](KawaiiFirewall.md) | The Kawaii firewall settings from/to public Internet). | [optional] 
+**Netip** | Pointer to [**KawaiiNetIp**](KawaiiNetIp.md) | The Kawaii list of assigned virtual IPs per-zone addresses (read-only). | [optional] [readonly] 
+**Firewall** | Pointer to [**KawaiiFirewall**](KawaiiFirewall.md) | The Kawaii firewall settings from/to public Internet. | [optional] 
 **Dnat** | Pointer to [**[]KawaiiDNatRule**](KawaiiDNatRule.md) | The Kawaii list of NAT forwarding entries. Kawaii will forward public Internet traffic from all public virtual IPs to requested private subnet IP addresses. | [optional] 
-**VpcPeerings** | Pointer to [**[]KawaiiVpcPeering**](KawaiiVpcPeering.md) | The Kawaii list of Kowabunga private VPC subnet peering entries. | [optional] 
-**IpsecConnections** | Pointer to [**[]KawaiiIpSec**](KawaiiIpSec.md) | The Kawaii list of Kowabunga IPsec connections. | [optional] 
+**VpcPeerings** | Pointer to [**[]KawaiiVpcPeering**](KawaiiVpcPeering.md) | The Kawaii list of Kowabunga private VPC subnet peering entries. Can only be set at creation time, ignored on updates. | [optional] 
 
 ## Methods
 
@@ -206,31 +205,6 @@ SetVpcPeerings sets VpcPeerings field to given value.
 `func (o *Kawaii) HasVpcPeerings() bool`
 
 HasVpcPeerings returns a boolean if a field has been set.
-
-### GetIpsecConnections
-
-`func (o *Kawaii) GetIpsecConnections() []KawaiiIpSec`
-
-GetIpsecConnections returns the IpsecConnections field if non-nil, zero value otherwise.
-
-### GetIpsecConnectionsOk
-
-`func (o *Kawaii) GetIpsecConnectionsOk() (*[]KawaiiIpSec, bool)`
-
-GetIpsecConnectionsOk returns a tuple with the IpsecConnections field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetIpsecConnections
-
-`func (o *Kawaii) SetIpsecConnections(v []KawaiiIpSec)`
-
-SetIpsecConnections sets IpsecConnections field to given value.
-
-### HasIpsecConnections
-
-`func (o *Kawaii) HasIpsecConnections() bool`
-
-HasIpsecConnections returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

@@ -22,13 +22,13 @@ func Test_kowabunga_SubnetAPIService(t *testing.T) {
 	configuration := NewConfiguration()
 	apiClient := NewAPIClient(configuration)
 
-	t.Run("Test SubnetAPIService CreateAdapter", func(t *testing.T) {
+	t.Run("Test SubnetAPIService CreateSubnetAdapter", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
 		var subnetId string
 
-		resp, httpRes, err := apiClient.SubnetAPI.CreateAdapter(context.Background(), subnetId).Execute()
+		resp, httpRes, err := apiClient.SubnetAPI.CreateSubnetAdapter(context.Background(), subnetId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)

@@ -981,7 +981,7 @@ Name | Type | Description  | Notes
 
 ## UpdateInstance
 
-> Instance UpdateInstance(ctx, instanceId).Instance(instance).Execute()
+> Instance UpdateInstance(ctx, instanceId).InstanceUpdate(instanceUpdate).Execute()
 
 
 
@@ -1001,11 +1001,11 @@ import (
 
 func main() {
 	instanceId := "instanceId_example" // string | The ID of the virtual machine instance.
-	instance := *kowabunga.NewInstance("Name_example", int64(123), int64(123)) // Instance | Instance payload.
+	instanceUpdate := *kowabunga.NewInstanceUpdate() // InstanceUpdate | InstanceUpdate payload.
 
 	configuration := kowabunga.NewConfiguration()
 	apiClient := kowabunga.NewAPIClient(configuration)
-	resp, r, err := apiClient.InstanceAPI.UpdateInstance(context.Background(), instanceId).Instance(instance).Execute()
+	resp, r, err := apiClient.InstanceAPI.UpdateInstance(context.Background(), instanceId).InstanceUpdate(instanceUpdate).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `InstanceAPI.UpdateInstance``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1031,7 +1031,7 @@ Other parameters are passed through a pointer to a apiUpdateInstanceRequest stru
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **instance** | [**Instance**](Instance.md) | Instance payload. | 
+ **instanceUpdate** | [**InstanceUpdate**](InstanceUpdate.md) | InstanceUpdate payload. | 
 
 ### Return type
 

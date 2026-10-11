@@ -3,7 +3,7 @@ Kowabunga API
 
 Kvm Orchestrator With A BUNch of Goods Added
 
-API version: 0.57.1
+API version: 0.58.0
 Contact: maintainers@kowabunga.cloud
 */
 
@@ -22,7 +22,7 @@ var _ MappedNullable = &Kompute{}
 
 // Kompute A Kompute is a wrapper object for bare virtual machines. It consists of an instance, one to several attached volumes and 2 network adapters (a private one, a public one). This is the prefered way for creating virtual machines. IP addresses will be automatically assigned.
 type Kompute struct {
-	// The Kompute ID (auto-generated).
+	// The Kompute ID (auto-generated) (read-only).
 	Id *string `json:"id,omitempty"`
 	// The Kompute name.
 	Name string `json:"name"`
@@ -31,16 +31,16 @@ type Kompute struct {
 	// The Kompute memory size (in bytes).
 	Memory int64 `json:"memory"`
 	// The Kompute number of vCPUs.
-	Vcpus int64 `json:"vcpus"`
+	Vcpus int32 `json:"vcpus"`
 	// The Kompute OS disk size (in bytes).
 	Disk int64 `json:"disk"`
 	// The Kompute extra data disk size (in bytes). If unspecified, no extra data disk will be assigned.
 	DataDisk *int64 `json:"data_disk,omitempty"`
 	// The Kompute assigned private IPv4 address (read-only).
 	Ip *string `json:"ip,omitempty"`
-	// An optional list of existing Kwarantine anti-affinity group IDs. Only considered at Kompute creation time, to elect an initial host consistent with the referenced groups policies and register the Kompute as one of their members. Read-only afterwards, always reflecting current membership, which should be managed going forward via the Kwarantine webservices.
+	// An optional list of existing Kwarantine anti-affinity group IDs. Only considered at Kompute creation time, to elect an initial host consistent with the referenced groups policies and register the Kompute as one of their members. Read-only afterwards, always reflecting current membership, which should be managed going forward via the Kwarantine webservices. Can only be set at creation time, ignored on updates.
 	Kwarantines []string `json:"kwarantines,omitempty"`
-	// enable UEFI secure firmware (vs. legacy BIOS).
+	// Enable UEFI secure firmware (vs. legacy BIOS). Can only be set at creation time, ignored on updates.
 	Uefi *bool `json:"uefi,omitempty"`
 	// Whether kMotion (live/cold host migration) is enabled for the Kompute. When disabled, the instance remains bound to its original hosting node.
 	KmotionEnabled *bool `json:"kmotion_enabled,omitempty"`
@@ -52,7 +52,7 @@ type _Kompute Kompute
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewKompute(name string, memory int64, vcpus int64, disk int64) *Kompute {
+func NewKompute(name string, memory int64, vcpus int32, disk int64) *Kompute {
 	this := Kompute{}
 	this.Name = name
 	this.Memory = memory
@@ -194,9 +194,9 @@ func (o *Kompute) SetMemory(v int64) {
 }
 
 // GetVcpus returns the Vcpus field value
-func (o *Kompute) GetVcpus() int64 {
+func (o *Kompute) GetVcpus() int32 {
 	if o == nil {
-		var ret int64
+		var ret int32
 		return ret
 	}
 
@@ -205,7 +205,7 @@ func (o *Kompute) GetVcpus() int64 {
 
 // GetVcpusOk returns a tuple with the Vcpus field value
 // and a boolean to check if the value has been set.
-func (o *Kompute) GetVcpusOk() (*int64, bool) {
+func (o *Kompute) GetVcpusOk() (*int32, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -213,7 +213,7 @@ func (o *Kompute) GetVcpusOk() (*int64, bool) {
 }
 
 // SetVcpus sets field value
-func (o *Kompute) SetVcpus(v int64) {
+func (o *Kompute) SetVcpus(v int32) {
 	o.Vcpus = v
 }
 

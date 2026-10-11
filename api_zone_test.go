@@ -22,13 +22,13 @@ func Test_kowabunga_ZoneAPIService(t *testing.T) {
 	configuration := NewConfiguration()
 	apiClient := NewAPIClient(configuration)
 
-	t.Run("Test ZoneAPIService CreateKaktus", func(t *testing.T) {
+	t.Run("Test ZoneAPIService CreateZoneKaktus", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
 		var zoneId string
 
-		resp, httpRes, err := apiClient.ZoneAPI.CreateKaktus(context.Background(), zoneId).Execute()
+		resp, httpRes, err := apiClient.ZoneAPI.CreateZoneKaktus(context.Background(), zoneId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)

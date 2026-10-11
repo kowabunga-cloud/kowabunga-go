@@ -3,7 +3,7 @@ Kowabunga API
 
 Kvm Orchestrator With A BUNch of Goods Added
 
-API version: 0.57.1
+API version: 0.58.0
 Contact: maintainers@kowabunga.cloud
 */
 
@@ -22,13 +22,13 @@ var _ MappedNullable = &ApiToken{}
 
 // ApiToken A Kowabunga authentication security token consists of an API key granting access to resources.
 type ApiToken struct {
-	// The server-to-server authentication security token ID (auto-generated).
+	// The server-to-server authentication security token ID (auto-generated) (read-only).
 	Id *string `json:"id,omitempty"`
 	// The server-to-server authentication security token name.
 	Name string `json:"name"`
 	// The server-to-server authentication security token description.
 	Description *string `json:"description,omitempty"`
-	// Does the API token expires at some stage ?.
+	// Whether the API token expires at some stage.
 	Expire bool `json:"expire"`
 	// Expiration date of the token (YYYY-MM-DD format).
 	ExpirationDate *string `json:"expiration_date,omitempty"`

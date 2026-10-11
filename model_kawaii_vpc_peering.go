@@ -3,7 +3,7 @@ Kowabunga API
 
 Kvm Orchestrator With A BUNch of Goods Added
 
-API version: 0.57.1
+API version: 0.58.0
 Contact: maintainers@kowabunga.cloud
 */
 
@@ -22,7 +22,7 @@ var _ MappedNullable = &KawaiiVpcPeering{}
 
 // KawaiiVpcPeering A Kawaii internal VPC subnet peering.
 type KawaiiVpcPeering struct {
-	// Kowabunga Subnet ID to be peered with (subnet local IP addresses will be automatically assigned to Kawaii instances)..
+	// Kowabunga Subnet ID to be peered with (subnet local IP addresses will be automatically assigned to Kawaii instances).
 	Subnet string `json:"subnet"`
 	// The default VPC traffic forwarding policy.
 	Policy *string `json:"policy,omitempty"`
@@ -31,7 +31,7 @@ type KawaiiVpcPeering struct {
 	// The firewall list of forwarding egress rules to VPC peered subnet. ICMP traffic is always accepted. The specified ruleset will be explicitly accepted if drop is the default policy (useless otherwise).
 	Egress []KawaiiVpcForwardRule `json:"egress,omitempty"`
 	// The per-zone auto-assigned private IPs in peered subnet (read-only).
-	Netip []KawaiiVpcNetIpZone `json:"netip,omitempty"`
+	Netip []KawaiiNetIpZone `json:"netip,omitempty"`
 }
 
 type _KawaiiVpcPeering KawaiiVpcPeering
@@ -179,9 +179,9 @@ func (o *KawaiiVpcPeering) SetEgress(v []KawaiiVpcForwardRule) {
 }
 
 // GetNetip returns the Netip field value if set, zero value otherwise.
-func (o *KawaiiVpcPeering) GetNetip() []KawaiiVpcNetIpZone {
+func (o *KawaiiVpcPeering) GetNetip() []KawaiiNetIpZone {
 	if o == nil || IsNil(o.Netip) {
-		var ret []KawaiiVpcNetIpZone
+		var ret []KawaiiNetIpZone
 		return ret
 	}
 	return o.Netip
@@ -189,7 +189,7 @@ func (o *KawaiiVpcPeering) GetNetip() []KawaiiVpcNetIpZone {
 
 // GetNetipOk returns a tuple with the Netip field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *KawaiiVpcPeering) GetNetipOk() ([]KawaiiVpcNetIpZone, bool) {
+func (o *KawaiiVpcPeering) GetNetipOk() ([]KawaiiNetIpZone, bool) {
 	if o == nil || IsNil(o.Netip) {
 		return nil, false
 	}
@@ -205,8 +205,8 @@ func (o *KawaiiVpcPeering) HasNetip() bool {
 	return false
 }
 
-// SetNetip gets a reference to the given []KawaiiVpcNetIpZone and assigns it to the Netip field.
-func (o *KawaiiVpcPeering) SetNetip(v []KawaiiVpcNetIpZone) {
+// SetNetip gets a reference to the given []KawaiiNetIpZone and assigns it to the Netip field.
+func (o *KawaiiVpcPeering) SetNetip(v []KawaiiNetIpZone) {
 	o.Netip = v
 }
 

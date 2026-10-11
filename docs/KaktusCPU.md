@@ -7,15 +7,15 @@ Name | Type | Description | Notes
 **Arch** | **string** | The Kaktus computing node CPU architecture. | 
 **Model** | **string** | The Kaktus computing node CPU model. | 
 **Vendor** | **string** | The Kaktus computing node CPU vendor. | 
-**Sockets** | **int64** | The Kaktus computing node CPU number of sockets. | 
-**Cores** | **int64** | The Kaktus computing node CPU number of cores. | 
-**Threads** | **int64** | The Kaktus computing node CPU number of threads. | 
+**Sockets** | **int32** | The Kaktus computing node CPU number of sockets. | 
+**Cores** | **int32** | The Kaktus computing node CPU number of cores. | 
+**Threads** | **int32** | The Kaktus computing node CPU number of threads. | 
 
 ## Methods
 
 ### NewKaktusCPU
 
-`func NewKaktusCPU(arch string, model string, vendor string, sockets int64, cores int64, threads int64, ) *KaktusCPU`
+`func NewKaktusCPU(arch string, model string, vendor string, sockets int32, cores int32, threads int32, ) *KaktusCPU`
 
 NewKaktusCPU instantiates a new KaktusCPU object
 This constructor will assign default values to properties that have it defined,
@@ -92,60 +92,60 @@ SetVendor sets Vendor field to given value.
 
 ### GetSockets
 
-`func (o *KaktusCPU) GetSockets() int64`
+`func (o *KaktusCPU) GetSockets() int32`
 
 GetSockets returns the Sockets field if non-nil, zero value otherwise.
 
 ### GetSocketsOk
 
-`func (o *KaktusCPU) GetSocketsOk() (*int64, bool)`
+`func (o *KaktusCPU) GetSocketsOk() (*int32, bool)`
 
 GetSocketsOk returns a tuple with the Sockets field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetSockets
 
-`func (o *KaktusCPU) SetSockets(v int64)`
+`func (o *KaktusCPU) SetSockets(v int32)`
 
 SetSockets sets Sockets field to given value.
 
 
 ### GetCores
 
-`func (o *KaktusCPU) GetCores() int64`
+`func (o *KaktusCPU) GetCores() int32`
 
 GetCores returns the Cores field if non-nil, zero value otherwise.
 
 ### GetCoresOk
 
-`func (o *KaktusCPU) GetCoresOk() (*int64, bool)`
+`func (o *KaktusCPU) GetCoresOk() (*int32, bool)`
 
 GetCoresOk returns a tuple with the Cores field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetCores
 
-`func (o *KaktusCPU) SetCores(v int64)`
+`func (o *KaktusCPU) SetCores(v int32)`
 
 SetCores sets Cores field to given value.
 
 
 ### GetThreads
 
-`func (o *KaktusCPU) GetThreads() int64`
+`func (o *KaktusCPU) GetThreads() int32`
 
 GetThreads returns the Threads field if non-nil, zero value otherwise.
 
 ### GetThreadsOk
 
-`func (o *KaktusCPU) GetThreadsOk() (*int64, bool)`
+`func (o *KaktusCPU) GetThreadsOk() (*int32, bool)`
 
 GetThreadsOk returns a tuple with the Threads field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetThreads
 
-`func (o *KaktusCPU) SetThreads(v int64)`
+`func (o *KaktusCPU) SetThreads(v int32)`
 
 SetThreads sets Threads field to given value.
 

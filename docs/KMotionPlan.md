@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | Pointer to **string** | The kMotion plan ID (auto-generated). | [optional] 
+**Id** | Pointer to **string** | The kMotion plan ID (auto-generated) (read-only). | [optional] [readonly] 
 **Instance** | **string** | The ID of the virtual machine instance this kMotion plan applies to. | 
 **Source** | **string** | The ID of the Kaktus computing node currently hosting the instance. | 
 **Target** | **string** | The ID of the Kaktus computing node elected to host the instance once the kMotion completes. | 

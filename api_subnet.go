@@ -3,7 +3,7 @@ Kowabunga API
 
 Kvm Orchestrator With A BUNch of Goods Added
 
-API version: 0.57.1
+API version: 0.58.0
 Contact: maintainers@kowabunga.cloud
 */
 
@@ -24,7 +24,7 @@ import (
 // SubnetAPIService SubnetAPI service
 type SubnetAPIService service
 
-type ApiCreateAdapterRequest struct {
+type ApiCreateSubnetAdapterRequest struct {
 	ctx context.Context
 	ApiService *SubnetAPIService
 	subnetId string
@@ -33,32 +33,32 @@ type ApiCreateAdapterRequest struct {
 }
 
 // Adapter payload.
-func (r ApiCreateAdapterRequest) Adapter(adapter Adapter) ApiCreateAdapterRequest {
+func (r ApiCreateSubnetAdapterRequest) Adapter(adapter Adapter) ApiCreateSubnetAdapterRequest {
 	r.adapter = &adapter
 	return r
 }
 
 // Whether Kowabunga should pick and assign an IP address to this adapter.
-func (r ApiCreateAdapterRequest) AssignIP(assignIP bool) ApiCreateAdapterRequest {
+func (r ApiCreateSubnetAdapterRequest) AssignIP(assignIP bool) ApiCreateSubnetAdapterRequest {
 	r.assignIP = &assignIP
 	return r
 }
 
-func (r ApiCreateAdapterRequest) Execute() (*Adapter, *http.Response, error) {
-	return r.ApiService.CreateAdapterExecute(r)
+func (r ApiCreateSubnetAdapterRequest) Execute() (*Adapter, *http.Response, error) {
+	return r.ApiService.CreateSubnetAdapterExecute(r)
 }
 
 /*
-CreateAdapter Method for CreateAdapter
+CreateSubnetAdapter Method for CreateSubnetAdapter
 
 Creates a new network adapter.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param subnetId The ID of the network subnet.
- @return ApiCreateAdapterRequest
+ @return ApiCreateSubnetAdapterRequest
 */
-func (a *SubnetAPIService) CreateAdapter(ctx context.Context, subnetId string) ApiCreateAdapterRequest {
-	return ApiCreateAdapterRequest{
+func (a *SubnetAPIService) CreateSubnetAdapter(ctx context.Context, subnetId string) ApiCreateSubnetAdapterRequest {
+	return ApiCreateSubnetAdapterRequest{
 		ApiService: a,
 		ctx: ctx,
 		subnetId: subnetId,
@@ -67,7 +67,7 @@ func (a *SubnetAPIService) CreateAdapter(ctx context.Context, subnetId string) A
 
 // Execute executes the request
 //  @return Adapter
-func (a *SubnetAPIService) CreateAdapterExecute(r ApiCreateAdapterRequest) (*Adapter, *http.Response, error) {
+func (a *SubnetAPIService) CreateSubnetAdapterExecute(r ApiCreateSubnetAdapterRequest) (*Adapter, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -75,7 +75,7 @@ func (a *SubnetAPIService) CreateAdapterExecute(r ApiCreateAdapterRequest) (*Ada
 		localVarReturnValue  *Adapter
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SubnetAPIService.CreateAdapter")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SubnetAPIService.CreateSubnetAdapter")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -92,6 +92,10 @@ func (a *SubnetAPIService) CreateAdapterExecute(r ApiCreateAdapterRequest) (*Ada
 
 	if r.assignIP != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "assignIP", r.assignIP, "form", "")
+	} else {
+		var defaultValue bool = false
+		parameterAddToHeaderOrQuery(localVarQueryParams, "assignIP", defaultValue, "form", "")
+		r.assignIP = &defaultValue
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json"}
@@ -172,6 +176,17 @@ func (a *SubnetAPIService) CreateAdapterExecute(r ApiCreateAdapterRequest) (*Ada
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ApiErrorForbidden
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ApiErrorInternalServerError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -361,6 +376,17 @@ func (a *SubnetAPIService) DeleteSubnetExecute(r ApiDeleteSubnetRequest) (*http.
 					newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ApiErrorInternalServerError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v ApiErrorNotFound
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -523,6 +549,17 @@ func (a *SubnetAPIService) ListSubnetAdaptersExecute(r ApiListSubnetAdaptersRequ
 					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ApiErrorInternalServerError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v ApiErrorNotFound
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -659,6 +696,17 @@ func (a *SubnetAPIService) ListSubnetsExecute(r ApiListSubnetsRequest) ([]string
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ApiErrorForbidden
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ApiErrorInternalServerError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -806,6 +854,17 @@ func (a *SubnetAPIService) ReadSubnetExecute(r ApiReadSubnetRequest) (*Subnet, *
 					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ApiErrorInternalServerError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v ApiErrorNotFound
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -835,12 +894,12 @@ type ApiUpdateSubnetRequest struct {
 	ctx context.Context
 	ApiService *SubnetAPIService
 	subnetId string
-	subnet *Subnet
+	subnetUpdate *SubnetUpdate
 }
 
-// Subnet payload.
-func (r ApiUpdateSubnetRequest) Subnet(subnet Subnet) ApiUpdateSubnetRequest {
-	r.subnet = &subnet
+// SubnetUpdate payload.
+func (r ApiUpdateSubnetRequest) SubnetUpdate(subnetUpdate SubnetUpdate) ApiUpdateSubnetRequest {
+	r.subnetUpdate = &subnetUpdate
 	return r
 }
 
@@ -886,8 +945,8 @@ func (a *SubnetAPIService) UpdateSubnetExecute(r ApiUpdateSubnetRequest) (*Subne
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.subnet == nil {
-		return localVarReturnValue, nil, reportError("subnet is required and must be specified")
+	if r.subnetUpdate == nil {
+		return localVarReturnValue, nil, reportError("subnetUpdate is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -908,7 +967,7 @@ func (a *SubnetAPIService) UpdateSubnetExecute(r ApiUpdateSubnetRequest) (*Subne
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.subnet
+	localVarPostBody = r.subnetUpdate
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -969,6 +1028,17 @@ func (a *SubnetAPIService) UpdateSubnetExecute(r ApiUpdateSubnetRequest) (*Subne
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ApiErrorForbidden
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ApiErrorInternalServerError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()

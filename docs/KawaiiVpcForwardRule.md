@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Protocol** | Pointer to **string** | The transport layer protocol to forward public traffic to. | [optional] [default to "tcp"]
-**Ports** | **string** | The port (or list of ports) to forward public traffic from. Ranges are accepted. Format is a-b,c-d (e.g. 443; 22,80,443; 80,443,3000-3005). | 
+**Protocol** | Pointer to **string** | The transport layer protocol to forward VPC traffic to. | [optional] [default to "tcp"]
+**Ports** | **string** | The port (or list of ports) to forward VPC traffic from. Ranges are accepted. Format is a-b,c-d (e.g. 443; 22,80,443; 80,443,3000-3005). | 
 
 ## Methods
 

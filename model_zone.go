@@ -3,7 +3,7 @@ Kowabunga API
 
 Kvm Orchestrator With A BUNch of Goods Added
 
-API version: 0.57.1
+API version: 0.58.0
 Contact: maintainers@kowabunga.cloud
 */
 
@@ -22,7 +22,7 @@ var _ MappedNullable = &Zone{}
 
 // Zone A availability zone.
 type Zone struct {
-	// The availability zone ID (auto-generated).
+	// The availability zone ID (auto-generated) (read-only).
 	Id *string `json:"id,omitempty"`
 	// The availability zone name.
 	Name string `json:"name"`

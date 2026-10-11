@@ -4,10 +4,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | Pointer to **string** | The DNS record ID (auto-generated). | [optional] 
+**Id** | Pointer to **string** | The DNS record ID (auto-generated) (read-only). | [optional] [readonly] 
 **Name** | **string** | The DNS record name. | 
 **Description** | Pointer to **string** | The DNS record description. | [optional] 
-**Domain** | Pointer to **string** | The DNS record associated domain (inherited from associated project). | [optional] 
+**Domain** | Pointer to **string** | The DNS record associated domain, inherited from associated project (read-only). | [optional] [readonly] 
 **Addresses** | **[]string** | A list of IPv4 addresses to be associated to the record. | 
 
 ## Methods

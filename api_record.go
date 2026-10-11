@@ -3,7 +3,7 @@ Kowabunga API
 
 Kvm Orchestrator With A BUNch of Goods Added
 
-API version: 0.57.1
+API version: 0.58.0
 Contact: maintainers@kowabunga.cloud
 */
 
@@ -137,6 +137,17 @@ func (a *RecordAPIService) DeleteDnsRecordExecute(r ApiDeleteDnsRecordRequest) (
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ApiErrorForbidden
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ApiErrorInternalServerError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -308,6 +319,17 @@ func (a *RecordAPIService) ReadDnsRecordExecute(r ApiReadDnsRecordRequest) (*Dns
 					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ApiErrorInternalServerError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v ApiErrorNotFound
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -337,12 +359,12 @@ type ApiUpdateDnsRecordRequest struct {
 	ctx context.Context
 	ApiService *RecordAPIService
 	recordId string
-	dnsRecord *DnsRecord
+	dnsRecordUpdate *DnsRecordUpdate
 }
 
-// DnsRecord payload.
-func (r ApiUpdateDnsRecordRequest) DnsRecord(dnsRecord DnsRecord) ApiUpdateDnsRecordRequest {
-	r.dnsRecord = &dnsRecord
+// DnsRecordUpdate payload.
+func (r ApiUpdateDnsRecordRequest) DnsRecordUpdate(dnsRecordUpdate DnsRecordUpdate) ApiUpdateDnsRecordRequest {
+	r.dnsRecordUpdate = &dnsRecordUpdate
 	return r
 }
 
@@ -388,8 +410,8 @@ func (a *RecordAPIService) UpdateDnsRecordExecute(r ApiUpdateDnsRecordRequest) (
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.dnsRecord == nil {
-		return localVarReturnValue, nil, reportError("dnsRecord is required and must be specified")
+	if r.dnsRecordUpdate == nil {
+		return localVarReturnValue, nil, reportError("dnsRecordUpdate is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -410,7 +432,7 @@ func (a *RecordAPIService) UpdateDnsRecordExecute(r ApiUpdateDnsRecordRequest) (
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.dnsRecord
+	localVarPostBody = r.dnsRecordUpdate
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -471,6 +493,17 @@ func (a *RecordAPIService) UpdateDnsRecordExecute(r ApiUpdateDnsRecordRequest) (
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ApiErrorForbidden
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ApiErrorInternalServerError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()

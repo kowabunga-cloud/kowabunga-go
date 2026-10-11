@@ -4,10 +4,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Vcpus** | Pointer to **int32** | The maximum total number of vCPUs allowed to be consumed by sum of all instances. | [optional] 
-**Memory** | Pointer to **int64** | The maximum total memory (in bytes) allowed to be consumed by sum of all instances. | [optional] 
-**Storage** | Pointer to **int64** | The maximum total disk capacity allowed to be consumed by sum of all instances. | [optional] 
-**Instances** | Pointer to **int32** | The maximum number of instances allowed to be spawned. | [optional] 
+**Vcpus** | Pointer to **int32** | The total number of vCPUs consumed by (or allowed for) the sum of all instances. | [optional] 
+**Memory** | Pointer to **int64** | The total memory (in bytes) consumed by (or allowed for) the sum of all instances. | [optional] 
+**Storage** | Pointer to **int64** | The total disk capacity (in bytes) consumed by (or allowed for) the sum of all volumes. | [optional] 
+**Instances** | Pointer to **int32** | The number of instances spawned (or allowed to be). | [optional] 
 
 ## Methods
 

@@ -212,7 +212,7 @@ Name | Type | Description  | Notes
 
 ## UpdateKiwi
 
-> Kiwi UpdateKiwi(ctx, kiwiId).Kiwi(kiwi).Execute()
+> Kiwi UpdateKiwi(ctx, kiwiId).KiwiUpdate(kiwiUpdate).Execute()
 
 
 
@@ -232,11 +232,11 @@ import (
 
 func main() {
 	kiwiId := "kiwiId_example" // string | The ID of the Kiwi (Kowabunga Inner Wan Interface) provides edge-network services..
-	kiwi := *kowabunga.NewKiwi("Name_example") // Kiwi | Kiwi payload.
+	kiwiUpdate := *kowabunga.NewKiwiUpdate() // KiwiUpdate | KiwiUpdate payload.
 
 	configuration := kowabunga.NewConfiguration()
 	apiClient := kowabunga.NewAPIClient(configuration)
-	resp, r, err := apiClient.KiwiAPI.UpdateKiwi(context.Background(), kiwiId).Kiwi(kiwi).Execute()
+	resp, r, err := apiClient.KiwiAPI.UpdateKiwi(context.Background(), kiwiId).KiwiUpdate(kiwiUpdate).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `KiwiAPI.UpdateKiwi``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -262,7 +262,7 @@ Other parameters are passed through a pointer to a apiUpdateKiwiRequest struct v
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **kiwi** | [**Kiwi**](Kiwi.md) | Kiwi payload. | 
+ **kiwiUpdate** | [**KiwiUpdate**](KiwiUpdate.md) | KiwiUpdate payload. | 
 
 ### Return type
 

@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | Pointer to **string** | The availability zone ID (auto-generated). | [optional] 
+**Id** | Pointer to **string** | The availability zone ID (auto-generated) (read-only). | [optional] [readonly] 
 **Name** | **string** | The availability zone name. | 
 **Description** | Pointer to **string** | The availability zone description. | [optional] 
 

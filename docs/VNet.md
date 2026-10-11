@@ -4,12 +4,12 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | Pointer to **string** | The virtual network ID (auto-generated). | [optional] 
+**Id** | Pointer to **string** | The virtual network ID (auto-generated) (read-only). | [optional] [readonly] 
 **Name** | **string** | The virtual network name. | 
 **Description** | Pointer to **string** | The virtual network description. | [optional] 
-**Vlan** | Pointer to **int64** | The VLAN identifier (0 if unspecified). | [optional] 
+**Vlan** | Pointer to **int32** | The VLAN identifier (0 if unspecified). | [optional] 
 **Interface** | **string** | The libvirt&#39;s bridge network interface (brX). | 
-**Private** | Pointer to **bool** | Is the virtual network adapter connected to private (LAN) or public (WAN) physical network ?. | [optional] [default to true]
+**Private** | Pointer to **bool** | Whether the virtual network is connected to private (LAN) or public (WAN) physical network. Can only be set at creation time, ignored on updates. | [optional] [default to true]
 
 ## Methods
 
@@ -102,20 +102,20 @@ HasDescription returns a boolean if a field has been set.
 
 ### GetVlan
 
-`func (o *VNet) GetVlan() int64`
+`func (o *VNet) GetVlan() int32`
 
 GetVlan returns the Vlan field if non-nil, zero value otherwise.
 
 ### GetVlanOk
 
-`func (o *VNet) GetVlanOk() (*int64, bool)`
+`func (o *VNet) GetVlanOk() (*int32, bool)`
 
 GetVlanOk returns a tuple with the Vlan field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetVlan
 
-`func (o *VNet) SetVlan(v int64)`
+`func (o *VNet) SetVlan(v int32)`
 
 SetVlan sets Vlan field to given value.
 

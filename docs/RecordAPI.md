@@ -150,7 +150,7 @@ Name | Type | Description  | Notes
 
 ## UpdateDnsRecord
 
-> DnsRecord UpdateDnsRecord(ctx, recordId).DnsRecord(dnsRecord).Execute()
+> DnsRecord UpdateDnsRecord(ctx, recordId).DnsRecordUpdate(dnsRecordUpdate).Execute()
 
 
 
@@ -170,11 +170,11 @@ import (
 
 func main() {
 	recordId := "recordId_example" // string | The ID of the DNS record.
-	dnsRecord := *kowabunga.NewDnsRecord("Name_example", []string{"Addresses_example"}) // DnsRecord | DnsRecord payload.
+	dnsRecordUpdate := *kowabunga.NewDnsRecordUpdate() // DnsRecordUpdate | DnsRecordUpdate payload.
 
 	configuration := kowabunga.NewConfiguration()
 	apiClient := kowabunga.NewAPIClient(configuration)
-	resp, r, err := apiClient.RecordAPI.UpdateDnsRecord(context.Background(), recordId).DnsRecord(dnsRecord).Execute()
+	resp, r, err := apiClient.RecordAPI.UpdateDnsRecord(context.Background(), recordId).DnsRecordUpdate(dnsRecordUpdate).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `RecordAPI.UpdateDnsRecord``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -200,7 +200,7 @@ Other parameters are passed through a pointer to a apiUpdateDnsRecordRequest str
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **dnsRecord** | [**DnsRecord**](DnsRecord.md) | DnsRecord payload. | 
+ **dnsRecordUpdate** | [**DnsRecordUpdate**](DnsRecordUpdate.md) | DnsRecordUpdate payload. | 
 
 ### Return type
 

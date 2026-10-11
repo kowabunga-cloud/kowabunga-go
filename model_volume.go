@@ -3,7 +3,7 @@ Kowabunga API
 
 Kvm Orchestrator With A BUNch of Goods Added
 
-API version: 0.57.1
+API version: 0.58.0
 Contact: maintainers@kowabunga.cloud
 */
 
@@ -22,15 +22,15 @@ var _ MappedNullable = &Volume{}
 
 // Volume A storage volume.
 type Volume struct {
-	// The storage volume ID (auto-generated).
+	// The storage volume ID (auto-generated) (read-only).
 	Id *string `json:"id,omitempty"`
 	// The storage volume name.
 	Name string `json:"name"`
 	// The storage volume description.
 	Description *string `json:"description,omitempty"`
-	// The storage volume type.
+	// The storage volume type. Can only be set at creation time, ignored on updates.
 	Type string `json:"type"`
-	// The storage volume size (in bytes).
+	// The storage volume size (in bytes), can only be increased.
 	Size int64 `json:"size"`
 }
 

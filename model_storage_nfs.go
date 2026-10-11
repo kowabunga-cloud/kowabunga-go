@@ -3,7 +3,7 @@ Kowabunga API
 
 Kvm Orchestrator With A BUNch of Goods Added
 
-API version: 0.57.1
+API version: 0.58.0
 Contact: maintainers@kowabunga.cloud
 */
 
@@ -22,7 +22,7 @@ var _ MappedNullable = &StorageNFS{}
 
 // StorageNFS A NFS storage.
 type StorageNFS struct {
-	// The NFS storage ID (auto-generated).
+	// The NFS storage ID (auto-generated) (read-only).
 	Id *string `json:"id,omitempty"`
 	// The NFS storage name.
 	Name string `json:"name"`
@@ -33,9 +33,9 @@ type StorageNFS struct {
 	// The underlying associated Ceph volume name.
 	Fs *string `json:"fs,omitempty"`
 	// List of NFS Ganesha API server IP addresses.
-	Backends []string `json:"backends,omitempty"`
-	// NFS Ganesha API server port (default 54934).
-	Port *int64 `json:"port,omitempty"`
+	Backends []string `json:"backends"`
+	// NFS Ganesha API server port.
+	Port *int32 `json:"port,omitempty"`
 }
 
 type _StorageNFS StorageNFS
@@ -44,13 +44,14 @@ type _StorageNFS StorageNFS
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewStorageNFS(name string, endpoint string) *StorageNFS {
+func NewStorageNFS(name string, endpoint string, backends []string) *StorageNFS {
 	this := StorageNFS{}
 	this.Name = name
 	this.Endpoint = endpoint
 	var fs string = "nfs"
 	this.Fs = &fs
-	var port int64 = 54934
+	this.Backends = backends
+	var port int32 = 54934
 	this.Port = &port
 	return &this
 }
@@ -62,7 +63,7 @@ func NewStorageNFSWithDefaults() *StorageNFS {
 	this := StorageNFS{}
 	var fs string = "nfs"
 	this.Fs = &fs
-	var port int64 = 54934
+	var port int32 = 54934
 	this.Port = &port
 	return &this
 }
@@ -211,42 +212,34 @@ func (o *StorageNFS) SetFs(v string) {
 	o.Fs = &v
 }
 
-// GetBackends returns the Backends field value if set, zero value otherwise.
+// GetBackends returns the Backends field value
 func (o *StorageNFS) GetBackends() []string {
-	if o == nil || IsNil(o.Backends) {
+	if o == nil {
 		var ret []string
 		return ret
 	}
+
 	return o.Backends
 }
 
-// GetBackendsOk returns a tuple with the Backends field value if set, nil otherwise
+// GetBackendsOk returns a tuple with the Backends field value
 // and a boolean to check if the value has been set.
 func (o *StorageNFS) GetBackendsOk() ([]string, bool) {
-	if o == nil || IsNil(o.Backends) {
+	if o == nil {
 		return nil, false
 	}
 	return o.Backends, true
 }
 
-// HasBackends returns a boolean if a field has been set.
-func (o *StorageNFS) HasBackends() bool {
-	if o != nil && !IsNil(o.Backends) {
-		return true
-	}
-
-	return false
-}
-
-// SetBackends gets a reference to the given []string and assigns it to the Backends field.
+// SetBackends sets field value
 func (o *StorageNFS) SetBackends(v []string) {
 	o.Backends = v
 }
 
 // GetPort returns the Port field value if set, zero value otherwise.
-func (o *StorageNFS) GetPort() int64 {
+func (o *StorageNFS) GetPort() int32 {
 	if o == nil || IsNil(o.Port) {
-		var ret int64
+		var ret int32
 		return ret
 	}
 	return *o.Port
@@ -254,7 +247,7 @@ func (o *StorageNFS) GetPort() int64 {
 
 // GetPortOk returns a tuple with the Port field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *StorageNFS) GetPortOk() (*int64, bool) {
+func (o *StorageNFS) GetPortOk() (*int32, bool) {
 	if o == nil || IsNil(o.Port) {
 		return nil, false
 	}
@@ -270,8 +263,8 @@ func (o *StorageNFS) HasPort() bool {
 	return false
 }
 
-// SetPort gets a reference to the given int64 and assigns it to the Port field.
-func (o *StorageNFS) SetPort(v int64) {
+// SetPort gets a reference to the given int32 and assigns it to the Port field.
+func (o *StorageNFS) SetPort(v int32) {
 	o.Port = &v
 }
 
@@ -296,9 +289,7 @@ func (o StorageNFS) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Fs) {
 		toSerialize["fs"] = o.Fs
 	}
-	if !IsNil(o.Backends) {
-		toSerialize["backends"] = o.Backends
-	}
+	toSerialize["backends"] = o.Backends
 	if !IsNil(o.Port) {
 		toSerialize["port"] = o.Port
 	}
@@ -312,6 +303,7 @@ func (o *StorageNFS) UnmarshalJSON(data []byte) (err error) {
 	requiredProperties := []string{
 		"name",
 		"endpoint",
+		"backends",
 	}
 
 	allProperties := make(map[string]interface{})

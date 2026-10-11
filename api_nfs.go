@@ -3,7 +3,7 @@ Kowabunga API
 
 Kvm Orchestrator With A BUNch of Goods Added
 
-API version: 0.57.1
+API version: 0.58.0
 Contact: maintainers@kowabunga.cloud
 */
 
@@ -146,6 +146,17 @@ func (a *NfsAPIService) DeleteStorageNFSExecute(r ApiDeleteStorageNFSRequest) (*
 					newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ApiErrorInternalServerError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v ApiErrorNotFound
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -226,7 +237,7 @@ func (a *NfsAPIService) ListStorageNFSKylosExecute(r ApiListStorageNFSKylosReque
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/nfs/{nfsId}/kylo"
+	localVarPath := localBasePath + "/nfs/{nfsId}/kylos"
 	localVarPath = strings.Replace(localVarPath, "{"+"nfsId"+"}", url.PathEscape(parameterValueToString(r.nfsId, "nfsId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
@@ -308,6 +319,17 @@ func (a *NfsAPIService) ListStorageNFSKylosExecute(r ApiListStorageNFSKylosReque
 					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ApiErrorInternalServerError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v ApiErrorNotFound
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -333,25 +355,25 @@ func (a *NfsAPIService) ListStorageNFSKylosExecute(r ApiListStorageNFSKylosReque
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiListStorageNFSsRequest struct {
+type ApiListStorageNFSesRequest struct {
 	ctx context.Context
 	ApiService *NfsAPIService
 }
 
-func (r ApiListStorageNFSsRequest) Execute() ([]string, *http.Response, error) {
-	return r.ApiService.ListStorageNFSsExecute(r)
+func (r ApiListStorageNFSesRequest) Execute() ([]string, *http.Response, error) {
+	return r.ApiService.ListStorageNFSesExecute(r)
 }
 
 /*
-ListStorageNFSs Method for ListStorageNFSs
+ListStorageNFSes Method for ListStorageNFSes
 
 Returns the IDs of NFS storage objects.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiListStorageNFSsRequest
+ @return ApiListStorageNFSesRequest
 */
-func (a *NfsAPIService) ListStorageNFSs(ctx context.Context) ApiListStorageNFSsRequest {
-	return ApiListStorageNFSsRequest{
+func (a *NfsAPIService) ListStorageNFSes(ctx context.Context) ApiListStorageNFSesRequest {
+	return ApiListStorageNFSesRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
@@ -359,7 +381,7 @@ func (a *NfsAPIService) ListStorageNFSs(ctx context.Context) ApiListStorageNFSsR
 
 // Execute executes the request
 //  @return []string
-func (a *NfsAPIService) ListStorageNFSsExecute(r ApiListStorageNFSsRequest) ([]string, *http.Response, error) {
+func (a *NfsAPIService) ListStorageNFSesExecute(r ApiListStorageNFSesRequest) ([]string, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -367,7 +389,7 @@ func (a *NfsAPIService) ListStorageNFSsExecute(r ApiListStorageNFSsRequest) ([]s
 		localVarReturnValue  []string
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NfsAPIService.ListStorageNFSs")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NfsAPIService.ListStorageNFSes")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -444,6 +466,17 @@ func (a *NfsAPIService) ListStorageNFSsExecute(r ApiListStorageNFSsRequest) ([]s
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ApiErrorForbidden
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ApiErrorInternalServerError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -591,6 +624,17 @@ func (a *NfsAPIService) ReadStorageNFSExecute(r ApiReadStorageNFSRequest) (*Stor
 					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ApiErrorInternalServerError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v ApiErrorNotFound
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -620,12 +664,12 @@ type ApiUpdateStorageNFSRequest struct {
 	ctx context.Context
 	ApiService *NfsAPIService
 	nfsId string
-	storageNFS *StorageNFS
+	storageNFSUpdate *StorageNFSUpdate
 }
 
-// StorageNFS payload.
-func (r ApiUpdateStorageNFSRequest) StorageNFS(storageNFS StorageNFS) ApiUpdateStorageNFSRequest {
-	r.storageNFS = &storageNFS
+// StorageNFSUpdate payload.
+func (r ApiUpdateStorageNFSRequest) StorageNFSUpdate(storageNFSUpdate StorageNFSUpdate) ApiUpdateStorageNFSRequest {
+	r.storageNFSUpdate = &storageNFSUpdate
 	return r
 }
 
@@ -671,8 +715,8 @@ func (a *NfsAPIService) UpdateStorageNFSExecute(r ApiUpdateStorageNFSRequest) (*
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.storageNFS == nil {
-		return localVarReturnValue, nil, reportError("storageNFS is required and must be specified")
+	if r.storageNFSUpdate == nil {
+		return localVarReturnValue, nil, reportError("storageNFSUpdate is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -693,7 +737,7 @@ func (a *NfsAPIService) UpdateStorageNFSExecute(r ApiUpdateStorageNFSRequest) (*
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.storageNFS
+	localVarPostBody = r.storageNFSUpdate
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -754,6 +798,17 @@ func (a *NfsAPIService) UpdateStorageNFSExecute(r ApiUpdateStorageNFSRequest) (*
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ApiErrorForbidden
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ApiErrorInternalServerError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()

@@ -4,7 +4,7 @@ All URIs are relative to *https://your_kowabunga_kahuna_server/api/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**CreateAdapter**](SubnetAPI.md#CreateAdapter) | **Post** /subnet/{subnetId}/adapter | 
+[**CreateSubnetAdapter**](SubnetAPI.md#CreateSubnetAdapter) | **Post** /subnet/{subnetId}/adapter | 
 [**DeleteSubnet**](SubnetAPI.md#DeleteSubnet) | **Delete** /subnet/{subnetId} | 
 [**ListSubnetAdapters**](SubnetAPI.md#ListSubnetAdapters) | **Get** /subnet/{subnetId}/adapters | 
 [**ListSubnets**](SubnetAPI.md#ListSubnets) | **Get** /subnet | 
@@ -13,9 +13,9 @@ Method | HTTP request | Description
 
 
 
-## CreateAdapter
+## CreateSubnetAdapter
 
-> Adapter CreateAdapter(ctx, subnetId).Adapter(adapter).AssignIP(assignIP).Execute()
+> Adapter CreateSubnetAdapter(ctx, subnetId).Adapter(adapter).AssignIP(assignIP).Execute()
 
 
 
@@ -36,17 +36,17 @@ import (
 func main() {
 	subnetId := "subnetId_example" // string | The ID of the network subnet.
 	adapter := *kowabunga.NewAdapter("Name_example") // Adapter | Adapter payload.
-	assignIP := true // bool | Whether Kowabunga should pick and assign an IP address to this adapter. (optional)
+	assignIP := true // bool | Whether Kowabunga should pick and assign an IP address to this adapter. (optional) (default to false)
 
 	configuration := kowabunga.NewConfiguration()
 	apiClient := kowabunga.NewAPIClient(configuration)
-	resp, r, err := apiClient.SubnetAPI.CreateAdapter(context.Background(), subnetId).Adapter(adapter).AssignIP(assignIP).Execute()
+	resp, r, err := apiClient.SubnetAPI.CreateSubnetAdapter(context.Background(), subnetId).Adapter(adapter).AssignIP(assignIP).Execute()
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `SubnetAPI.CreateAdapter``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `SubnetAPI.CreateSubnetAdapter``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `CreateAdapter`: Adapter
-	fmt.Fprintf(os.Stdout, "Response from `SubnetAPI.CreateAdapter`: %v\n", resp)
+	// response from `CreateSubnetAdapter`: Adapter
+	fmt.Fprintf(os.Stdout, "Response from `SubnetAPI.CreateSubnetAdapter`: %v\n", resp)
 }
 ```
 
@@ -60,14 +60,14 @@ Name | Type | Description  | Notes
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiCreateAdapterRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiCreateSubnetAdapterRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **adapter** | [**Adapter**](Adapter.md) | Adapter payload. | 
- **assignIP** | **bool** | Whether Kowabunga should pick and assign an IP address to this adapter. | 
+ **assignIP** | **bool** | Whether Kowabunga should pick and assign an IP address to this adapter. | [default to false]
 
 ### Return type
 
@@ -358,7 +358,7 @@ Name | Type | Description  | Notes
 
 ## UpdateSubnet
 
-> Subnet UpdateSubnet(ctx, subnetId).Subnet(subnet).Execute()
+> Subnet UpdateSubnet(ctx, subnetId).SubnetUpdate(subnetUpdate).Execute()
 
 
 
@@ -378,11 +378,11 @@ import (
 
 func main() {
 	subnetId := "subnetId_example" // string | The ID of the network subnet.
-	subnet := *kowabunga.NewSubnet("Name_example", "Cidr_example", "Gateway_example") // Subnet | Subnet payload.
+	subnetUpdate := *kowabunga.NewSubnetUpdate() // SubnetUpdate | SubnetUpdate payload.
 
 	configuration := kowabunga.NewConfiguration()
 	apiClient := kowabunga.NewAPIClient(configuration)
-	resp, r, err := apiClient.SubnetAPI.UpdateSubnet(context.Background(), subnetId).Subnet(subnet).Execute()
+	resp, r, err := apiClient.SubnetAPI.UpdateSubnet(context.Background(), subnetId).SubnetUpdate(subnetUpdate).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `SubnetAPI.UpdateSubnet``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -408,7 +408,7 @@ Other parameters are passed through a pointer to a apiUpdateSubnetRequest struct
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **subnet** | [**Subnet**](Subnet.md) | Subnet payload. | 
+ **subnetUpdate** | [**SubnetUpdate**](SubnetUpdate.md) | SubnetUpdate payload. | 
 
 ### Return type
 

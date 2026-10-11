@@ -3,7 +3,7 @@ Kowabunga API
 
 Kvm Orchestrator With A BUNch of Goods Added
 
-API version: 0.57.1
+API version: 0.58.0
 Contact: maintainers@kowabunga.cloud
 */
 
@@ -25,7 +25,7 @@ type KonveyEndpoint struct {
 	// The Konvey (Kowabunga Network Load-Balancer) endpoint name.
 	Name string `json:"name"`
 	// The port to be exposed.
-	Port int64 `json:"port"`
+	Port int32 `json:"port"`
 	// The transport layer protocol to be exposed.
 	Protocol string `json:"protocol"`
 	// The Konvey (Kowabunga Network Load-Balancer) list of load-balanced backends.
@@ -38,7 +38,7 @@ type _KonveyEndpoint KonveyEndpoint
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewKonveyEndpoint(name string, port int64, protocol string, backends KonveyBackends) *KonveyEndpoint {
+func NewKonveyEndpoint(name string, port int32, protocol string, backends KonveyBackends) *KonveyEndpoint {
 	this := KonveyEndpoint{}
 	this.Name = name
 	this.Port = port
@@ -82,9 +82,9 @@ func (o *KonveyEndpoint) SetName(v string) {
 }
 
 // GetPort returns the Port field value
-func (o *KonveyEndpoint) GetPort() int64 {
+func (o *KonveyEndpoint) GetPort() int32 {
 	if o == nil {
-		var ret int64
+		var ret int32
 		return ret
 	}
 
@@ -93,7 +93,7 @@ func (o *KonveyEndpoint) GetPort() int64 {
 
 // GetPortOk returns a tuple with the Port field value
 // and a boolean to check if the value has been set.
-func (o *KonveyEndpoint) GetPortOk() (*int64, bool) {
+func (o *KonveyEndpoint) GetPortOk() (*int32, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -101,7 +101,7 @@ func (o *KonveyEndpoint) GetPortOk() (*int64, bool) {
 }
 
 // SetPort sets field value
-func (o *KonveyEndpoint) SetPort(v int64) {
+func (o *KonveyEndpoint) SetPort(v int32) {
 	o.Port = v
 }
 

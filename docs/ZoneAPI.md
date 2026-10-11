@@ -4,7 +4,7 @@ All URIs are relative to *https://your_kowabunga_kahuna_server/api/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**CreateKaktus**](ZoneAPI.md#CreateKaktus) | **Post** /zone/{zoneId}/kaktus | 
+[**CreateZoneKaktus**](ZoneAPI.md#CreateZoneKaktus) | **Post** /zone/{zoneId}/kaktus | 
 [**DeleteZone**](ZoneAPI.md#DeleteZone) | **Delete** /zone/{zoneId} | 
 [**ListZoneKaktuses**](ZoneAPI.md#ListZoneKaktuses) | **Get** /zone/{zoneId}/kaktuses | 
 [**ListZones**](ZoneAPI.md#ListZones) | **Get** /zone | 
@@ -13,9 +13,9 @@ Method | HTTP request | Description
 
 
 
-## CreateKaktus
+## CreateZoneKaktus
 
-> Kaktus CreateKaktus(ctx, zoneId).Kaktus(kaktus).Execute()
+> Kaktus CreateZoneKaktus(ctx, zoneId).Kaktus(kaktus).Execute()
 
 
 
@@ -39,13 +39,13 @@ func main() {
 
 	configuration := kowabunga.NewConfiguration()
 	apiClient := kowabunga.NewAPIClient(configuration)
-	resp, r, err := apiClient.ZoneAPI.CreateKaktus(context.Background(), zoneId).Kaktus(kaktus).Execute()
+	resp, r, err := apiClient.ZoneAPI.CreateZoneKaktus(context.Background(), zoneId).Kaktus(kaktus).Execute()
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `ZoneAPI.CreateKaktus``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `ZoneAPI.CreateZoneKaktus``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `CreateKaktus`: Kaktus
-	fmt.Fprintf(os.Stdout, "Response from `ZoneAPI.CreateKaktus`: %v\n", resp)
+	// response from `CreateZoneKaktus`: Kaktus
+	fmt.Fprintf(os.Stdout, "Response from `ZoneAPI.CreateZoneKaktus`: %v\n", resp)
 }
 ```
 
@@ -59,7 +59,7 @@ Name | Type | Description  | Notes
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiCreateKaktusRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiCreateZoneKaktusRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -356,7 +356,7 @@ Name | Type | Description  | Notes
 
 ## UpdateZone
 
-> Zone UpdateZone(ctx, zoneId).Zone(zone).Execute()
+> Zone UpdateZone(ctx, zoneId).ZoneUpdate(zoneUpdate).Execute()
 
 
 
@@ -376,11 +376,11 @@ import (
 
 func main() {
 	zoneId := "zoneId_example" // string | The ID of the availability zone.
-	zone := *kowabunga.NewZone("Name_example") // Zone | Zone payload.
+	zoneUpdate := *kowabunga.NewZoneUpdate() // ZoneUpdate | ZoneUpdate payload.
 
 	configuration := kowabunga.NewConfiguration()
 	apiClient := kowabunga.NewAPIClient(configuration)
-	resp, r, err := apiClient.ZoneAPI.UpdateZone(context.Background(), zoneId).Zone(zone).Execute()
+	resp, r, err := apiClient.ZoneAPI.UpdateZone(context.Background(), zoneId).ZoneUpdate(zoneUpdate).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ZoneAPI.UpdateZone``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -406,7 +406,7 @@ Other parameters are passed through a pointer to a apiUpdateZoneRequest struct v
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **zone** | [**Zone**](Zone.md) | Zone payload. | 
+ **zoneUpdate** | [**ZoneUpdate**](ZoneUpdate.md) | ZoneUpdate payload. | 
 
 ### Return type
 

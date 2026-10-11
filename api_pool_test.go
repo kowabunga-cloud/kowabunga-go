@@ -22,13 +22,13 @@ func Test_kowabunga_PoolAPIService(t *testing.T) {
 	configuration := NewConfiguration()
 	apiClient := NewAPIClient(configuration)
 
-	t.Run("Test PoolAPIService CreateTemplate", func(t *testing.T) {
+	t.Run("Test PoolAPIService CreateStoragePoolTemplate", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
 		var poolId string
 
-		resp, httpRes, err := apiClient.PoolAPI.CreateTemplate(context.Background(), poolId).Execute()
+		resp, httpRes, err := apiClient.PoolAPI.CreateStoragePoolTemplate(context.Background(), poolId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)

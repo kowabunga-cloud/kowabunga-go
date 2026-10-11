@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | Pointer to **string** | The network adapter ID (auto-generated). | [optional] 
+**Id** | Pointer to **string** | The network adapter ID (auto-generated) (read-only). | [optional] [readonly] 
 **Name** | **string** | The network adapter name. | 
 **Description** | Pointer to **string** | The network adapter description. | [optional] 
 **Mac** | Pointer to **string** | The network adapter hardware address (e.g. 00:11:22:33:44:55). Auto-generated if unspecified. | [optional] 
